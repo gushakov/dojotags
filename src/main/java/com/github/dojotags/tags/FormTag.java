@@ -53,8 +53,6 @@ public class FormTag extends SimpleTagSupport {
 
 		try {
 			
-			logger.debug(">>>>>>>>>>>>>>>>>>>>>{}", getClass().getClassLoader().getResource("ch/unil/dojo/taglib/tags/FormTag-template.txt"));
-
 			StringWriter writer = new StringWriter();
 			writer.append("<script>" + "require([\""
 					+ Constants.TAGLIB_JS_NAMESPACE

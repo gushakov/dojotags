@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Testing Dojo</title>
+<title>Testing Dojo without tags</title>
 
 <!-- 
 	Header tags: declare dojo script, css theme
@@ -42,7 +42,7 @@
 				function(Form, kernel) {
 					if (kernel.global["frm1"] === undefined) {
 						kernel.global["frm1"] = new Form({
-							actionPath : "/submit"
+							actionPath : "/form/submit"
 						});
 					} else {
 						throw new Error(
@@ -105,18 +105,15 @@ frm1.submit();
 		require([ "dojotags/Form", "dojo/_base/kernel" ],
 				function(Form, kernel) {
 					kernel.global["frm2"] = new Form({
-						actionPath : "/submit",
+						actionPath : "/form/submit",
 						modelData : {
 							data : [ {
-// 								id : 1,
 								col1 : "toto",
 								col2 : "tata"
 							}, {
-// 								id : 2,
 								col1 : "bla",
 								col2 : "hehe"
 							}, {
-// 								id : 3,
 								col1 : "foo",
 								col2 : "bar"
 							} ]
@@ -155,9 +152,11 @@ frm1.submit();
 						data : []
 					});
 
-					//sync(frm2.model, "data", dataStore, "data");
+					sync(frm2.model, "data", dataStore, "data");
 					frm2.model.watch("data", function(){
-						console.debug("Sotor data changed: ", frm2.model);
+						console.debug("Store data changed: ", frm2.model);
+						//refresh the grid
+						grid.sort();
 					});
 
 					var store = new ObjectStore({
@@ -180,9 +179,6 @@ frm2.submit();
 		</div>
 	
 		</div>
-	
-
-
 
 </body>
 </html>

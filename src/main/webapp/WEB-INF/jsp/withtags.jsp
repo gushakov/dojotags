@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Testing Dojo JSP Taglib</title>
+<title>Testing Dojo with tags</title>
 
 <d:config />
 
@@ -15,23 +15,7 @@
 	<d:parse />
 
 
-	<d:form name="frm1" actionPath="/submit">
-
-
-First name: <d:textbox path="firstName" />
-		<br>
-		<br>
-
-		<d:button>Submit</d:button>
-		
-		<br>
-		<br>
-Message: <d:output path="message"/>		
-
-	</d:form>
-	
-	
-	<d:form name="frm3" actionPath="/submit">
+	<d:form name="frm1" actionPath="/form/submit">
 
 
 First name: <d:textbox path="firstName" />
