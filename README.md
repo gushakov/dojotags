@@ -5,27 +5,19 @@ JSP tag library implementation which uses Dojo MVC on the client side and Spring
 
 
 Getting Dojo web JAR
-====================
+--------------------
 
 In the project's pom.xml there is a dependency to dojotoolkit-1.8.1.jar installed locally. To create this file
 I just downloaded the latest Dojo binary from https://dojotoolkit.org/download/ and pakaged it in a JAR with
 the following structure:
 
-META-INF
-	|
-	+-- resources
-			|
-			+-- dijit
-			|
-			+-- dojo
-			|
-			+-- dojox
+/META-INF/resources/(dijit, dojo, dojox here)
 
 The path /META-INF/resources/ is referenced in WebConfig.java when declaring a ResourceHandler for the static
 resources.
 
 Testing
-=======
+-------
 
 For now this is a standard webapp to test it run the Maven target:
 
