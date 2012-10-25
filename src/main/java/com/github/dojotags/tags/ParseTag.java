@@ -12,7 +12,8 @@ import org.slf4j.LoggerFactory;
 
 public class ParseTag extends SimpleTagSupport {
 
-	private static final Logger logger = LoggerFactory.getLogger(ParseTag.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(ParseTag.class);
 
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -22,13 +23,12 @@ public class ParseTag extends SimpleTagSupport {
 
 		try {
 
-			out.println("<script type=\"dojo/require\">at: \"dojox/mvc/at\"</script>" +
-					"<script>require([\"dojo/parser\"],function(parser){parser.parse();});</script>");
+			out.println(TagTemplates.getTemplate("parse"));
 
 		} catch (Exception e) {
 			throw new JspException(e);
 		}
-		
+
 	}
-	
+
 }

@@ -1,7 +1,6 @@
-<link rel="stylesheet" type="text/css"
-	href="$contextPath$/resources/dijit/themes/$theme$/$theme$.css">
-<link rel="stylesheet" type="text/css"
-	href="$contextPath$/resources/dojox/grid/resources/$theme$Grid.css">
-<script src="$contextPath$/resources/dojo/dojo.js"
-	data-dojo-config="async: true,
-	packages: [{name: 'dojotags', location: '$contextPath$/resources/dojotags'}]"></script>
+<script type="dojo/require">at: "dojox/mvc/at"</script>
+<script>
+	require([ "dojo/parser" ], function(parser) {
+		parser.parse();
+	});
+</script>

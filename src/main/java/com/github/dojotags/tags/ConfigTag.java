@@ -1,6 +1,8 @@
 package com.github.dojotags.tags;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
@@ -32,34 +34,28 @@ public class ConfigTag extends SimpleTagSupport {
 
 		// get theme
 
-		String t = null;
+		String themeStr = null;
 		if (theme == null || theme.matches("\\s*")) {
-			t = Constants.THEME_DEFAULT;
-			logger.debug("Using default Dojo theme {}", t);
+			themeStr = Constants.THEME_DEFAULT;
+			logger.debug("Using default Dojo theme {}", themeStr);
 		} else {
 			try {
-				t = Enum.valueOf(Constants.Theme.class,
+				themeStr = Enum.valueOf(Constants.Theme.class,
 						theme.trim().toLowerCase()).name();
 			} catch (IllegalArgumentException e) {
-				t = Constants.THEME_DEFAULT;
+				themeStr = Constants.THEME_DEFAULT;
 				logger.error(
 						"Cannot configure Dojo theme {}, will use default {}",
-						theme, t);
+						theme, themeStr);
 			}
 		}
 
 		try {
-
-			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\""
-					+ contextPath + "/resources/dijit/themes/" + t + "/" + t
-					+ ".css\">");
-
-			out.println("<script src=\""
-					+ contextPath
-					+ "/resources/dojo/dojo.js\" data-dojo-config=\"async: true, packages: [{name: '"
-					+ Constants.THEME_DEFAULT + "', location: '" + contextPath
-					+ "/resources/" + Constants.THEME_DEFAULT
-					+ "'}]\"></script>");
+			
+			Map<String, Object> attrs = new HashMap<String, Object>();
+			attrs.put("contextPath", contextPath);
+			attrs.put("theme", themeStr);
+			out.println(TagTemplates.substitute("config", attrs));
 
 		} catch (Exception e) {
 			throw new JspException(e);

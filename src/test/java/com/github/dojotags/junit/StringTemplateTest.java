@@ -12,7 +12,7 @@ public class StringTemplateTest {
 	
 	@Test
 	public void testSubstitute() throws Exception {
-		String template = IOUtils.toString(getClass().getClassLoader().getResourceAsStream("com/github/dojotags/tags/templates/parse.html"));
+		String template = IOUtils.toString(getClass().getClassLoader().getResourceAsStream("com/github/dojotags/tags/templates/config.html"));
 		assertNotNull(template);
 		ST st = new ST(template, '$', '$');
 		st.add("theme", Constants.THEME_DEFAULT);
@@ -20,5 +20,6 @@ public class StringTemplateTest {
 		String out = st.render();
 		assertFalse("Did not replace $theme$", out.contains("$theme$"));
 		assertFalse("Did not replace $contextPath$", out.contains("$contextPath$"));
+		
 	}
 }

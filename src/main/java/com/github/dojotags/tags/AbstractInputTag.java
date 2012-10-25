@@ -1,6 +1,8 @@
 package com.github.dojotags.tags;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
@@ -32,7 +34,7 @@ public abstract class AbstractInputTag extends SimpleTagSupport {
 
 		PageContext pageContext = (PageContext) getJspContext();
 		JspWriter out = pageContext.getOut();
-		
+
 		// check if this tag is embedded into a parent form tag
 		JspTag formTag = getParent();
 		if (formTag == null || !(formTag instanceof FormTag)) {
@@ -40,7 +42,7 @@ public abstract class AbstractInputTag extends SimpleTagSupport {
 					"Submit tag should be embedded into a form tag. This tag's parent tag is "
 							+ formTag + ".");
 		}
-		
+
 		// binding path should not be empty
 		if (path == null || path.matches("\\s*")) {
 			throw new JspException("Path attribute cannot be null or empty");
@@ -50,9 +52,10 @@ public abstract class AbstractInputTag extends SimpleTagSupport {
 
 		try {
 
-			out.println("<div data-dojo-type=\"" + getDojoType()
-					+ "\" data-dojo-props=\"value: at('rel:', '" + inputPath
-					+ "')\"></div>");
+			Map<String, Object> attrs = new HashMap<String, Object>();
+			attrs.put("dojoType", getDojoType());
+			attrs.put("path", inputPath);
+			out.println(TagTemplates.substitute("input", attrs));
 
 		} catch (Exception e) {
 			throw new JspException(e);
