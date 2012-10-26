@@ -1,0 +1,13 @@
+<script>
+	require([ "dojotags/Form", "dojo/_base/kernel" ], function(Form, kernel) {
+		if (kernel.global["$formName$"] === undefined) {
+			kernel.global["$formName$"] = new Form({
+				actionPath : "$actionPath$"
+			});
+		} else {
+			throw new Error("Form with name \"frm1\" exists already.");
+		}
+	});
+</script>
+<div data-dojo-type="dojox/mvc/Group"
+	data-dojo-props="target: $formName$.model">

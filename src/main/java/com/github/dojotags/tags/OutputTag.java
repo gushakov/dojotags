@@ -1,6 +1,8 @@
 package com.github.dojotags.tags;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
@@ -44,9 +46,10 @@ public class OutputTag extends SimpleTagSupport {
 
 		try {
 
-			out.println("<span data-dojo-type=\"dojox/mvc/Output\" data-dojo-props=\"value: at('rel:', '"
-					+ outputPath + "')\"></span>");
-
+			Map<String, Object> attrs = new HashMap<String, Object>();
+			attrs.put("path", outputPath);
+			out.println(TagTemplates.substitute("output", attrs));
+			
 		} catch (Exception e) {
 			throw new JspException(e);
 		}

@@ -2,6 +2,8 @@ package com.github.dojotags.tags;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
@@ -50,28 +52,22 @@ public class FormTag extends SimpleTagSupport {
 		}
 
 		String formName = name.trim();
-
+		
+		String path = null;
+		if (actionPath!=null && !actionPath.matches("\\s*")) {
+			path = contextPath + actionPath;
+		}
+		else {
+			path = "";
+		}
+		
 		try {
 			
+			Map<String, Object> attrs = new HashMap<String, Object>();
+			attrs.put("formName", formName);
+			attrs.put("path", path);
 			StringWriter writer = new StringWriter();
-			writer.append("<script>" + "require([\""
-					+ Constants.TAGLIB_JS_NAMESPACE
-					+ "/Form\", \"dojo/_base/kernel"
-					+ "\"], function(Form, kernel){" + "if(kernel.global[\""
-					+ formName + "\"] === undefined){" + "kernel.global[\""
-					+ formName + "\"] = new Form({");
-			if (actionPath != null) {
-				writer.append("actionPath:\"" + contextPath + actionPath + "\"");
-			}
-			writer.append("});	"
-					+ "} else {"
-					+ "throw new Error(\"Form with name "
-					+ formName
-					+ " exists already.\");"
-					+ "}});"
-					+ "</script>"
-					+ "<div data-dojo-type=\"dojox/mvc/Group\" data-dojo-props=\"target: "
-					+ formName + ".model\">");
+			writer.append(TagTemplates.substitute("from", attrs));
 			body.invoke(writer);
 			writer.append("</div>");
 			out.println(writer);
