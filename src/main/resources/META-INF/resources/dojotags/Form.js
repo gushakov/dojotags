@@ -40,14 +40,20 @@ define([ "./utils", "dojo/_base/declare", "dojo/_base/lang", "dojo/when",
 		 * after receiving the response from the server. Returns a Deferred
 		 * which will be resolved with the data returned from the server.
 		 * 
+		 * @param {String}
+		 *            action optional, action to be executed on the server
 		 * @param {Boolean}
-		 *            sync whether the request should be executed synchronously,
-		 *            false by default
+		 *            sync optional, whether the request should be executed
+		 *            synchronously, false by default
 		 * @returns Deferred resolved with the response from the server
 		 */
-		submit : function(sync) {
+		submit : function(action, sync) {
 			var def = new Deferred();
-			when(utils.ajaxRequest(this._actionPath,
+			var path = this._actionPath;
+			if (action){
+				path = path + "/" + action;
+			}
+			when(utils.ajaxRequest(path,
 					json.stringify(this.model), sync || false), lang.hitch(
 					this, function(data) {
 						this._controller.set(new Stateful(data));

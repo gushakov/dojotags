@@ -1,11 +1,24 @@
 package com.github.dojotags.tags;
 
 public class Constants {
+	// Dijit themes
 	public static enum Theme {
 		claro, tundra
 	};
 
+	// Theme
 	public static final String THEME_DEFAULT = Theme.claro.name();
-	public static final String TAGLIB_JS_NAMESPACE = "dojotags";
+
+	// Button
+	public static final String BUTTON_LABEL_DEFAULT = "Submit";
+
+	// Grid
+	public static final String GRID_WIDTH_DEFAULT = "400px";
+	public static final String GRID_HEIGHT_DEFAULT = "20em";
+	public static final String GRID_COLUMN_WIDTH_DEFAULT = "200px";
+	
+	// Events
+	public static final String DOJO_EVENT_ON_CLICK = "onClick";
+
 
 }

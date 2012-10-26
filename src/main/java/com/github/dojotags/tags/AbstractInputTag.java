@@ -36,11 +36,11 @@ public abstract class AbstractInputTag extends SimpleTagSupport {
 		JspWriter out = pageContext.getOut();
 
 		// check if this tag is embedded into a parent form tag
-		JspTag formTag = getParent();
-		if (formTag == null || !(formTag instanceof FormTag)) {
+		JspTag parentTag = getParent();
+		if (parentTag == null || !(parentTag instanceof FormTag)) {
 			throw new JspException(
 					"Submit tag should be embedded into a form tag. This tag's parent tag is "
-							+ formTag + ".");
+							+ parentTag + ".");
 		}
 
 		// binding path should not be empty

@@ -5,5 +5,4 @@ public class TextBoxTag extends AbstractInputTag {
 	protected String getDojoType() {
 		return "dijit/form/TextBox";
 	}
-
 }

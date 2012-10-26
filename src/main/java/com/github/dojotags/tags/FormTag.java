@@ -38,7 +38,7 @@ public class FormTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		logger.debug(
-				"Parsing from tag with name {}, action path {}, and model data {}",
+				"Parsing form tag with name {}, action path {}, and model data {}",
 				new Object[] { name, actionPath });
 
 		PageContext pageContext = (PageContext) getJspContext();
@@ -54,22 +54,22 @@ public class FormTag extends SimpleTagSupport {
 		String formName = name.trim();
 		
 		String path = null;
-		if (actionPath!=null && !actionPath.matches("\\s*")) {
-			path = contextPath + actionPath;
+		if (actionPath!=null) {
+			path = contextPath + actionPath.trim() + "/" + formName;
 		}
 		else {
-			path = "";
+			path = "/formName";
 		}
 		
 		try {
 			
 			Map<String, Object> attrs = new HashMap<String, Object>();
 			attrs.put("formName", formName);
-			attrs.put("path", path);
+			attrs.put("actionPath", path);
 			StringWriter writer = new StringWriter();
-			writer.append(TagTemplates.substitute("from", attrs));
+			writer.append(TagTemplates.substitute("form-begin", attrs));
 			body.invoke(writer);
-			writer.append("</div>");
+			writer.append(TagTemplates.substitute("form-end", attrs));
 			out.println(writer);
 
 		} catch (Exception e) {

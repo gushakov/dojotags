@@ -84,7 +84,21 @@
 		</description>
 		<name>button</name>
 		<tag-class>com.github.dojotags.tags.ButtonTag</tag-class>
-		<body-content>scriptless</body-content>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>Action string appended to the request path of this submit. Empty string by default.
+			</description>
+			<name>action</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Label text for the button.
+			</description>
+			<name>label</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
 	</tag>
 
 	<tag>
@@ -100,6 +114,76 @@
 			</description>
 			<name>path</name>
 			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<description>Outputs a "th" element representing a column in a grid's component structure.
+		Must be embedded inside a gridLayout tag.
+		</description>
+		<name>gridColumn</name>
+		<tag-class>com.github.dojotags.tags.GridColumnTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>Field name fot the grid column. Must be unique for the grid.
+			</description>
+			<name>field</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Name text of the column.
+			</description>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Width of the column.
+			</description>
+			<name>width</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<description>Outputs a "tbody" element with one row representing the column structure
+		for the surrounding grid component.
+		</description>
+		<name>gridLayout</name>
+		<tag-class>com.github.dojotags.tags.GridLayoutTag</tag-class>
+		<body-content>scriptless</body-content>
+	</tag>
+
+	<tag>
+		<description>Outputs "dojox/grid/DataGrid" element and wires its object store data to
+		the form's model property with the name "gridName_data" where gridName is the name of
+		the grid. Must be embedded inside a form tag.
+		</description>
+		<name>grid</name>
+		<tag-class>com.github.dojotags.tags.GridTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Name for the grid component. Must be unique within the page.
+			</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Width of the grid.
+			</description>
+			<name>width</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Height of the grid.
+			</description>
+			<name>height</name>
+			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 	</tag>

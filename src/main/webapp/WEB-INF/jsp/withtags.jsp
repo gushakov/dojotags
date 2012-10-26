@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Testing Dojo with tags</title>
+<title>Page with tags</title>
 
 <d:config />
 
@@ -14,44 +14,35 @@
 
 	<d:parse />
 
+	Simple form:
+	<div style="width: 400px; border: 1px solid lightgray; padding: 5px;">
+		<d:form name="frm1" actionPath="/submit">
+			First name: 
+			<d:textbox path="firstName" />
+			<br>
+			Last name:
+			<d:textbox path="lastName" />
+			<br>
+			<d:button label="Submit the form" />
+			<br>
+			Message:
+			<d:output path="message" />
+		</d:form>
+	</div>
 
-	<d:form name="frm1" actionPath="/form/submit">
-
-
-First name: <d:textbox path="firstName" />
-		<br>
-		<br>
-
-		<d:button>Submit</d:button>
-		
-		<br>
-		<br>
-Message: <d:output path="message"/>		
-
-	</d:form>
-
-<br>
-<br>
-
-	<d:form name="frm2" actionPath="/toto">
-
-
-First name: <d:textbox path="firstName" />
-		<br>
-		<br>
-Last name: <d:textbox path="lastName" />
-		<br>
-		<br>
-
-		<d:button>Submit</d:button>
-
-		<br>
-		<br>
-
-Error: <span style="color: red;"><d:output path="error"/></span>		
-
-	</d:form>
-
+	Form with a grid:
+	<div style="width: 500px; border: 1px solid lightgray; padding: 5px;">
+		<d:form name="frm2" actionPath="/submit">
+			<d:button action="addNewItem" label="Add new item"/>
+			<br>
+			<d:grid name="grd1" width="450px">
+				<d:gridLayout>
+					<d:gridColumn field="col1" name="First Column" />
+					<d:gridColumn field="col2" name="Second Column" />
+				</d:gridLayout>
+			</d:grid>
+		</d:form>
+	</div>
 
 </body>
 

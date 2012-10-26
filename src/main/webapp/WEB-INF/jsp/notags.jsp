@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Testing Dojo without tags</title>
+<title>Page without tags</title>
 
 <!-- 
-	Header tags: declare dojo script, css theme
+	Config
  -->
 
 <link rel="stylesheet" type="text/css"
@@ -22,7 +22,7 @@
 <body class="claro">
 
 	<!-- 
-	Body tags: setup requires, and parser
+	Parse
  -->
 
 	<script type="dojo/require">at: "dojox/mvc/at"</script>
@@ -33,16 +33,16 @@
 				});
 	</script>
 
+		<!-- 
+	Form
+	 -->
 
-	<!-- 
-	Form tag: declare form instance, setup dojox.mvc.Group unique name from the attribute of the tag
- -->
 	<script>
 		require([ "dojotags/Form", "dojo/_base/kernel" ],
 				function(Form, kernel) {
 					if (kernel.global["frm1"] === undefined) {
 						kernel.global["frm1"] = new Form({
-							actionPath : "/form/submit"
+							actionPath : "/submit/frm1"
 						});
 					} else {
 						throw new Error(
@@ -54,7 +54,7 @@
 		data-dojo-props="target: frm1.model">
 
 		<!-- 
-		Input tag
+		Input
 	 -->
 
 		First name:
@@ -63,7 +63,7 @@
 
 		<br> <br>
 		<!-- 
-		Input tag
+		Input
 	 -->
 		Last name:
 		<div data-dojo-type="dijit/form/TextBox"
@@ -72,7 +72,7 @@
 		<br> <br>
 
 		<!-- 
-		Submit button tag
+		Button
 	 -->
 		<div data-dojo-type="dijit/form/Button">
 			<script type="dojo/connect" data-dojo-event="onClick">
@@ -82,32 +82,33 @@ frm1.submit();
 		</div>
 
 		<!-- 
-		Message and error tags
+		Message
 	 -->
 		<br> <br> Message from the server:
-		<div data-dojo-type="dojox/mvc/Output"
-			data-dojo-props="value: at('rel:', 'message')"></div>
+		<span data-dojo-type="dojox/mvc/Output"
+			data-dojo-props="value: at('rel:', 'message')"></span>
+
+		<!-- 
+Error
+ -->
 
 		<br> <br>
-		<div data-dojo-type="dojox/mvc/Output"
-			data-dojo-props="value: at('rel:', 'error'), style: 'color: red;'"></div>
+		<span data-dojo-type="dojox/mvc/Output"
+			data-dojo-props="value: at('rel:', 'error'), style: 'color: red;'"></span>
 
 	</div>
 
-	<!-- 
-	End of form
- -->
-
-
-
+		<!-- 
+	Form
+	 -->
 
 	<script>
 		require([ "dojotags/Form", "dojo/_base/kernel" ],
 				function(Form, kernel) {
 					kernel.global["frm2"] = new Form({
-						actionPath : "/form/submit",
+						actionPath : "/submit/frm2/addNewItem",
 						modelData : {
-							data : [ {
+							grd1_data : [ {
 								col1 : "toto",
 								col2 : "tata"
 							}, {
@@ -124,12 +125,21 @@ frm1.submit();
 	<div data-dojo-type="dojox/mvc/Group"
 		data-dojo-props="target: frm2.model">
 
+		<!-- 
+	Button
+ -->
+
+		<div data-dojo-type="dijit/form/Button">
+			<script type="dojo/connect" data-dojo-event="onClick">
+frm2.submit();
+	</script>
+			Add new item
+		</div>
 
 
 		<!-- 
  	Grid
   -->
-
 
 		<table id="grd1" data-dojo-type="dojox/grid/DataGrid"
 			style="width: 400px; height: 20em;">
@@ -141,19 +151,19 @@ frm1.submit();
 			</thead>
 		</table>
 		<script>
-			var grid, dataStore;
-			require([ "dojo/ready", "dijit/registry", "dojox/mvc/sync", "dojo/Stateful", "dojo/data/ObjectStore",
+			require([ "dojo/ready", "dijit/registry", "dojox/mvc/sync",
+					"dojo/Stateful", "dojo/data/ObjectStore",
 					"dojo/store/Memory" ], function(ready, registry, sync,
-							Stateful, ObjectStore, Memory) {
+					Stateful, ObjectStore, Memory) {
 				ready(function() {
-					grid = registry.byId("grd1");
-					
-					dataStore = new Memory({
+					var grid = registry.byId("grd1");
+
+					var dataStore = new Memory({
 						data : []
 					});
 
-					sync(frm2.model, "data", dataStore, "data");
-					frm2.model.watch("data", function(){
+					sync(frm2.model, "grd1_data", dataStore, "data");
+					frm2.model.watch("grd1_data", function() {
 						console.debug("Store data changed: ", frm2.model);
 						//refresh the grid
 						grid.sort();
@@ -164,21 +174,11 @@ frm1.submit();
 					});
 
 					grid.setStore(store);
-
-					
 				});
 			});
 		</script>
-	
-	
-	<div data-dojo-type="dijit/form/Button">
-			<script type="dojo/connect" data-dojo-event="onClick">
-frm2.submit();
-	</script>
-			Submit
-		</div>
-	
-		</div>
+
+	</div>
 
 </body>
 </html>
