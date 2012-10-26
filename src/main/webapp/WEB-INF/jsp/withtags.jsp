@@ -1,4 +1,4 @@
-<%@taglib prefix="d" uri="http://unil.ch/dojotags"%>
+<%@taglib prefix="d" uri="dojotags"%>
 
 <!DOCTYPE html>
 <html>
