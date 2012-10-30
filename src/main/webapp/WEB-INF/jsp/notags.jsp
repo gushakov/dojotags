@@ -106,7 +106,7 @@ Error
 		require([ "dojotags/Form", "dojo/_base/kernel" ],
 				function(Form, kernel) {
 					kernel.global["frm2"] = new Form({
-						actionPath : "/submit/frm2/addNewItem",
+						actionPath : "/submit/frm2",
 						modelData : {
 							grd1_data : [ {
 								col1 : "toto",
@@ -131,7 +131,7 @@ Error
 
 		<div data-dojo-type="dijit/form/Button">
 			<script type="dojo/connect" data-dojo-event="onClick">
-frm2.submit();
+frm2.submit("addNewItem");
 	</script>
 			Add new item
 		</div>
@@ -149,14 +149,19 @@ frm2.submit();
 					<th field="col2" width="200px">Second Column</th>
 				</tr>
 			</thead>
-		</table>
+			<script type="dojo/connect" data-dojo-event="onSelectionChanged">
+				console.debug("Grid selection changed: ", grid.selection.getSelected());
+				frm2.model["grd1_selection"] = grid.selection.getSelected();
+				frm2.submit("select");
+			</script>
 		<script>
+		var grid;
 			require([ "dojo/ready", "dijit/registry", "dojox/mvc/sync",
 					"dojo/Stateful", "dojo/data/ObjectStore",
 					"dojo/store/Memory" ], function(ready, registry, sync,
 					Stateful, ObjectStore, Memory) {
 				ready(function() {
-					var grid = registry.byId("grd1");
+					grid = registry.byId("grd1");
 
 					var dataStore = new Memory({
 						data : []
@@ -173,7 +178,7 @@ frm2.submit();
 						objectStore : dataStore
 					});
 
-					grid.setStore(store);
+					grid.setStore(store);										
 				});
 			});
 		</script>

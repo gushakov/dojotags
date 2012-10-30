@@ -47,5 +47,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	// set up the redirection to the main view if the root URL is accessed
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/").setViewName("index");
+		registry.addViewController("/notags").setViewName("notags");
+		registry.addViewController("/withtags").setViewName("withtags");
 	}
 }

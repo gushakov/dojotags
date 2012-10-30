@@ -55,10 +55,15 @@ public class FormController {
 			data.add(item);
 
 			model.put("message", "Added new item to the data of the grid grd1.");
+		} else if (action != null && action.equals("select")) {
+			List<Map<String, Object>> selection = (List<Map<String, Object>>) model
+					.get("grd1_selection");
+			logger.debug("Current selection {}", selection);
+			model.put("message", "Processed selection changed event.");
+		} else {
+			model.put("message", "Processed request /submit/" + formName + "/"
+					+ action + ".");
 		}
-
-		model.put("message", "Processed request /submit/" + formName + "/"
-				+ action + ".");
 		return model;
 	}
 

@@ -1,3 +1,9 @@
+	<script type="dojo/connect" data-dojo-event="onSelectionChanged">
+		$formName$.model["$gridName$_$selectedVar$"] = this.selection.getSelected();		
+		if($submitOnSelect$){
+			$formName$.submit("$selectAction$");
+		}
+	</script>
 </table>
 <script>
 	require([ "dojo/ready", "dijit/registry", "dojox/mvc/sync", "dojo/Stateful", "dojo/data/ObjectStore",

@@ -16,9 +16,12 @@ public class Constants {
 	public static final String GRID_WIDTH_DEFAULT = "400px";
 	public static final String GRID_HEIGHT_DEFAULT = "20em";
 	public static final String GRID_COLUMN_WIDTH_DEFAULT = "200px";
+
+	// Common
+	public static final String SELECT_ACTION_DEFAULT = "select";
+	public static final String SELECTED_VARIABLE_DEFAULT = "selection";
 	
 	// Events
 	public static final String DOJO_EVENT_ON_CLICK = "onClick";
-
 
 }

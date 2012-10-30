@@ -24,7 +24,13 @@ public class GridTag extends SimpleTagSupport {
 	private String width;
 
 	private String height;
-
+	
+	private String selectedVar;
+	
+	private String selectAction;
+	
+	private boolean submitOnSelect;
+	
 	public String getName() {
 		return name;
 	}
@@ -41,6 +47,22 @@ public class GridTag extends SimpleTagSupport {
 		this.height = height;
 	}
 
+	public void setSelectedVar(String selectedVar) {
+		this.selectedVar = selectedVar;
+	}
+
+	public void setSelectedAction(String selectAction) {
+		this.selectAction = selectAction;
+	}
+
+	public void setSubmitOnSelect(boolean submitOnSelect) {
+		this.submitOnSelect = submitOnSelect;
+	}
+	
+	public GridTag(){
+		submitOnSelect = true;
+	}
+	
 	@Override
 	public void doTag() throws JspException, IOException {
 		logger.debug("Parsing grid tag with name {}, width {}, and height {}.",
@@ -75,12 +97,29 @@ public class GridTag extends SimpleTagSupport {
 		} else {
 			heightText = Constants.GRID_HEIGHT_DEFAULT;
 		}
+		
+		String selectActionText = null;
+		if (selectAction != null) {
+			selectActionText = width.trim();
+		} else {
+			selectActionText = Constants.SELECT_ACTION_DEFAULT;
+		}
+		
+		String selectedVarText = null;
+		if (selectedVar != null) {
+			selectedVarText = width.trim();
+		} else {
+			selectedVarText = Constants.SELECTED_VARIABLE_DEFAULT;
+		}
 
 		Map<String, Object> attrs = new HashMap<String, Object>();
 		attrs.put("gridName", name);
 		attrs.put("gridWidth", widthText);
 		attrs.put("gridHeight", heightText);
 		attrs.put("formName", formName);
+		attrs.put("selectAction", selectActionText);
+		attrs.put("selectedVar", selectedVarText);
+		attrs.put("submitOnSelect", Boolean.toString(submitOnSelect));		
 		StringWriter writer = new StringWriter();
 		writer.append(TagTemplates.substitute("grid-begin", attrs));
 		body.invoke(writer);
