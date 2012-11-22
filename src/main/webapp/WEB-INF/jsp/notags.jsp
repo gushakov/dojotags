@@ -5,7 +5,7 @@
 <title>Page without tags</title>
 
 <!-- 
-	Config
+	Dojo configuration
  -->
 
 <link rel="stylesheet" type="text/css"
@@ -16,174 +16,78 @@
 	data-dojo-config="async: true,
 	packages: [{name: 'dojotags', location: '<%=request.getContextPath()%>/resources/dojotags'}]"></script>
 
-
 </head>
 
 <body class="claro">
 
 	<!-- 
-	Parse
+	Parse directive
  -->
 
-	<script type="dojo/require">at: "dojox/mvc/at"</script>
 	<script>
-		require([ "dojo/_base/window", "dojo/dom-attr", "dojo/parser" ],
-				function(win, domAttr, parser) {
+/* 		require([ "dojo/parser" ],
+				function(parser) {
 					parser.parse();
 				});
-	</script>
+ */	</script>
 
-		<!-- 
-	Form
-	 -->
 
-	<script>
-		require([ "dojotags/Form", "dojo/_base/kernel" ],
-				function(Form, kernel) {
-					if (kernel.global["frm1"] === undefined) {
-						kernel.global["frm1"] = new Form({
-							actionPath : "/submit/frm1"
-						});
-					} else {
-						throw new Error(
-								"Form with name \"frm1\" exists already.");
-					}
-				});
-	</script>
-	<div data-dojo-type="dojox/mvc/Group"
-		data-dojo-props="target: frm1.model">
-
-		<!-- 
-		Input
-	 -->
-
-		First name:
-		<div data-dojo-type="dijit/form/TextBox"
-			data-dojo-props="value: at('rel:', 'firstName')"></div>
-
-		<br> <br>
-		<!-- 
-		Input
-	 -->
-		Last name:
-		<div data-dojo-type="dijit/form/TextBox"
-			data-dojo-props="value: at('rel:', 'lastName')"></div>
-
-		<br> <br>
-
-		<!-- 
-		Button
-	 -->
-		<div data-dojo-type="dijit/form/Button">
-			<script type="dojo/connect" data-dojo-event="onClick">
-frm1.submit();
-	</script>
-			Submit
-		</div>
-
-		<!-- 
-		Message
-	 -->
-		<br> <br> Message from the server:
-		<span data-dojo-type="dojox/mvc/Output"
-			data-dojo-props="value: at('rel:', 'message')"></span>
-
-		<!-- 
-Error
+	<!-- 
+Page
  -->
-
-		<br> <br>
-		<span data-dojo-type="dojox/mvc/Output"
-			data-dojo-props="value: at('rel:', 'error'), style: 'color: red;'"></span>
-
-	</div>
-
-		<!-- 
-	Form
-	 -->
-
 	<script>
-		require([ "dojotags/Form", "dojo/_base/kernel" ],
-				function(Form, kernel) {
-					kernel.global["frm2"] = new Form({
-						actionPath : "/submit/frm2",
-						modelData : {
-							grd1_data : [ {
-								col1 : "toto",
-								col2 : "tata"
-							}, {
-								col1 : "bla",
-								col2 : "hehe"
-							}, {
-								col1 : "foo",
-								col2 : "bar"
-							} ]
-						}
-					});
+		require([ "dojotags/Page" ],
+				function(Page) {
+			
+			var page1 = new Page({id: "page1"});
+			console.debug("Created page ", page1);
+					
 				});
 	</script>
-	<div data-dojo-type="dojox/mvc/Group"
-		data-dojo-props="target: frm2.model">
 
-		<!-- 
-	Button
+	<!-- 
+Button
  -->
-
-		<div data-dojo-type="dijit/form/Button">
-			<script type="dojo/connect" data-dojo-event="onClick">
-frm2.submit("addNewItem");
-	</script>
-			Add new item
-		</div>
-
-
-		<!-- 
- 	Grid
-  -->
-
-		<table id="grd1" data-dojo-type="dojox/grid/DataGrid"
-			style="width: 400px; height: 20em;">
-			<thead>
-				<tr>
-					<th field="col1" width="200px">First Column</th>
-					<th field="col2" width="200px">Second Column</th>
-				</tr>
-			</thead>
-			<script type="dojo/connect" data-dojo-event="onSelectionChanged">
-				console.debug("Grid selection changed: ", grid.selection.getSelected());
-				frm2.model["grd1_selection"] = grid.selection.getSelected();
-				frm2.submit("select");
-			</script>
-		<script>
-		var grid;
-			require([ "dojo/ready", "dijit/registry", "dojox/mvc/sync",
-					"dojo/Stateful", "dojo/data/ObjectStore",
-					"dojo/store/Memory" ], function(ready, registry, sync,
-					Stateful, ObjectStore, Memory) {
-				ready(function() {
-					grid = registry.byId("grd1");
-
-					var dataStore = new Memory({
-						data : []
-					});
-
-					sync(frm2.model, "grd1_data", dataStore, "data");
-					frm2.model.watch("grd1_data", function() {
-						console.debug("Store data changed: ", frm2.model);
-						//refresh the grid
-						grid.sort();
-					});
-
-					var store = new ObjectStore({
-						objectStore : dataStore
-					});
-
-					grid.setStore(store);										
+	<script>
+		require([ "dojotags/Button", ],
+				function(Button) {
+					var btn1 = new Button({id: "btn1", parent: page1, label: "Button 1"});
+					console.debug("Created button ", btn1);
 				});
-			});
-		</script>
+	</script>
 
-	</div>
+<!-- 
+Label
+ -->
+	<script>
+		require([ "dojotags/Label", ],
+				function(Label) {
+					var lbl1 = new Label({id: "lbl1", parent: page1, text: "Empty label"});
+					console.debug("Created label ", lbl1);
+				});
+	</script>
+
+	<!-- 
+Button
+ -->
+	<script>
+		require([ "dojotags/Button", ],
+				function(Button) {
+					var btn2 = new Button({id: "btn2", parent: page1, label: "Button 2"});
+					console.debug("Created button ", btn2);
+				});
+	</script>
+
+	<!-- 
+Button
+ -->
+	<script>
+		require([ "dojotags/Button", ],
+				function(Button) {
+					var btn3 = new Button({id: "btn3", parent: page1, label: "Button 3"});
+					console.debug("Created button ", btn3);
+				});
+	</script>
 
 </body>
 </html>

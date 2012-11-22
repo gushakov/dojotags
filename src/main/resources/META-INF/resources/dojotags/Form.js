@@ -1,7 +1,7 @@
-define([ "./utils", "dojo/_base/declare", "dojo/_base/lang", "dojo/when",
-		"dojo/Deferred", "dojo/json", "dojo/Stateful",
-		"dojox/mvc/ModelRefController" ], function(utils, declare, lang, when,
-		Deferred, json, Stateful, ModelRefController) {
+define([ "./utils", "dojo/_base/declare", "dojo/_base/lang", "dojo/when", "dojo/Deferred", "dojo/json",
+		"dojo/Stateful", "dojox/mvc/ModelRefController" ], function(utils,
+		declare, lang, when, Deferred, json, Stateful,
+		ModelRefController) {
 	return declare("dojotags.Form", [], {
 
 		/** Form model, visible to the page script */
@@ -50,15 +50,14 @@ define([ "./utils", "dojo/_base/declare", "dojo/_base/lang", "dojo/when",
 		submit : function(action, sync) {
 			var def = new Deferred();
 			var path = this._actionPath;
-			if (action){
+			if (action) {
 				path = path + "/" + action;
 			}
-			when(utils.ajaxRequest(path,
-					json.stringify(this.model), sync || false), lang.hitch(
-					this, function(data) {
-						this._controller.set(new Stateful(data));
-						def.resolve(data);
-					}), lang.hitch(this, function(error) {
+			when(utils.ajaxRequest(path, json.stringify(this.model),
+					sync || false), lang.hitch(this, function(data) {
+				this._controller.set(new Stateful(data));
+				def.resolve(data);
+			}), lang.hitch(this, function(error) {
 				// set the error in the model and reject
 				this.model.set("error", error);
 				def.reject(error);
