@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Dojo Tags Demo</title>
+<title>Demo</title>
 </head>
 
 <body>
