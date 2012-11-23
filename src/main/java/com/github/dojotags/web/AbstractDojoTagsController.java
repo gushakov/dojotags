@@ -3,18 +3,19 @@ package com.github.dojotags.web;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.github.dojotags.web.annotation.DojoTag;
+import com.github.dojotags.model.Response;
+import com.github.dojotags.model.Widget;
+import com.github.dojotags.web.annotation.WidgetBody;
+import com.github.dojotags.web.annotation.WidgetEventMapping;
 
 @RequestMapping(value = "/dojotags", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 public abstract class AbstractDojoTagsController {
@@ -22,18 +23,15 @@ public abstract class AbstractDojoTagsController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(AbstractDojoTagsController.class);
 
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/widget/{widgetId}/event/{event}")
 	public @ResponseBody
-	Map<String, Object> processWidgetEvent(
-			@PathVariable("widgetId") String widgetId,
-			@PathVariable("event") String event,
-			@RequestBody Map<String, Object> model) {
+	Response processWidgetEvent(@PathVariable("widgetId") String widgetId,
+			@PathVariable("event") String event, @WidgetBody Widget widgetModel) {
 		logger.debug(
-				"Processing dojotags Ajax request with widgetId {},  event {}, and model {}.",
-				new Object[] { widgetId, event, model });
+				"Processing dojotags Ajax request with widget id {}, event {} and widget model {}",
+				new Object[] { widgetId, event, widgetModel });
 
-		Map<String, Object> data = null;
+		Response data = null;
 
 		// find an appropriate handler method by reading @DojoTag
 		// method annotations for matching value (widget id)
@@ -41,12 +39,12 @@ public abstract class AbstractDojoTagsController {
 		Method[] methods = getClass().getDeclaredMethods();
 		for (Method method : methods) {
 			Annotation annot = AnnotationUtils.findAnnotation(method,
-					DojoTag.class);
+					WidgetEventMapping.class);
 			if (annot == null) {
 				continue;
 			}
 
-			String annotWidgetId = (String) AnnotationUtils.getValue(annot);
+			String annotWidgetId = (String) AnnotationUtils.getValue(annot, "widgetId");
 			String annotEvent = (String) AnnotationUtils.getValue(annot,
 					"event");
 			if (!annotWidgetId.equals(widgetId) || !annotEvent.equals(event)) {
@@ -59,7 +57,7 @@ public abstract class AbstractDojoTagsController {
 
 			// execute the handler method
 			try {
-				data = (Map<String, Object>) method.invoke(this, model);
+				data = (Response) method.invoke(this, widgetModel);
 				break;
 			} catch (IllegalArgumentException e) {
 				logger.error(e.getMessage(), e);

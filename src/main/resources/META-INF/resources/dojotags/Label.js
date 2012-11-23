@@ -1,18 +1,34 @@
-define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/html", "./Widget", ], function(declare, lang, html, Widget) {
-	return declare("dojotags.Label", [ Widget ], {
+define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/html", "./Widget", ],
+		function(declare, lang, html, Widget) {
+			return declare("dojotags.Label", [ Widget ], {
+				initialize : function(args) {
+					this.model.text = args.text || "";
 
-		text : null,
+					// when model's text changes, update the content of the dom
+					// node
+					// for this label
+					this.model.watch("text", lang.hitch(this, function(name,
+							oldVal, newVal) {
+						html.set(this.domNode, newVal);
+					}));
+				},
 
-		initialize : function(args) {
-			this.text = args.text || "";
-		},
+				createDijit : function(node) {
+					html.set(node, this.model.text);
+					console.debug("Created Label node with text ", this
+							.getText());
+				},
 
-		createDijit : function(node) {
-			
-			html.set(node, this.text);
-			
-			console.debug("Created Label node with text ", this.text);
+				// /////
+				// Model getters/setters
+				// /////
 
-		}
-	});
-});
+				getText : function() {
+					return this.model.get("text");
+				},
+
+				setText : function(text) {
+					this.model.set("text", text);
+				}
+			});
+		});
