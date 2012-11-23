@@ -29,5 +29,6 @@ public class WebConfig extends DojoTagsWebMvcConfigurerAdapter {
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/").setViewName("index");
 		registry.addViewController("/notags").setViewName("notags");
+		registry.addViewController("/withtags").setViewName("withtags");
 	}
 }

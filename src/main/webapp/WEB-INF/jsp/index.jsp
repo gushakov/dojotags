@@ -6,9 +6,10 @@
 </head>
 
 <body>
-	Examples of views with and without the dojotags library.
+	Examples using dojotags JavaScript library directly and using JSP tags.
 	<ul>
 		<li><a href="<%=request.getContextPath()%>/notags">Without tags</a></li>
+		<li><a href="<%=request.getContextPath()%>/withtags">With tags</a></li>
 	</ul>
 </body>
 

@@ -8,184 +8,23 @@
 	<uri>dojotags</uri>
 
 	<tag>
-		<description>Configures link to the CSS for the chosen theme.
-		Outputs sript element for Dojo source. Allows addition of custom packages.
-		Should be declared in the "head" section of the HTML document.
-		</description>
-		<name>config</name>
-		<tag-class>com.github.dojotags.tags.ConfigTag</tag-class>
-		<body-content>empty</body-content>
+		<description>A Top-level tag which configures Dojo and generates a main Page widget.</description>
+		<name>page</name>
+		<tag-class>com.github.dojotags.tags.PageTag</tag-class>
+		<body-content>scriptless</body-content>
 		<attribute>
-			<description>Theme name, one of "claro", "tundra".</description>
+			<description>Page widget id, must be unique in the global scope.</description>
+			<name>widgetId</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Dijit theme name: "claro", "tundra".</description>
 			<name>theme</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 	</tag>
 
-	<tag>
-		<description>Parses the body of the current HTML document for Dojo widgets.
-		Also outputs the "dojox.mvc.at" function declaration element. Should be declared
-		on the top of the "body" section of the HTML document.
-		</description>
-		<name>parse</name>
-		<tag-class>com.github.dojotags.tags.ParseTag</tag-class>
-		<body-content>empty</body-content>
-	</tag>
-
-	<tag>
-		<description>Outputs "dojox.mvc.Group" element with "target" reference to
-		a new "dojotags.Form" object assigned to the global variable specified
-		via "name" attribute.
-		</description>
-		<name>form</name>
-		<tag-class>com.github.dojotags.tags.FormTag</tag-class>
-		<body-content>scriptless</body-content>
-		<attribute>
-			<description>Name of the global variable where a dojotags.Form object will be stored.
-			Must be unique within the page.
-			</description>
-			<name>name</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-		<attribute>
-			<description>Path for the submit action of this form. Will be automatically added to
-			the context path of the current request. Default value is "/".
-			</description>
-			<name>actionPath</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<description>Outputs "dijit.form.TextBox" element with "value" property
-		bound to the surrounding form's model property specified by the "path"
-		attribute.
-		</description>
-		<name>textbox</name>
-		<tag-class>com.github.dojotags.tags.TextBoxTag</tag-class>
-		<body-content>empty</body-content>
-		<attribute>
-			<description>Form's model property name to be used as "value" of this component.
-			</description>
-			<name>path</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<description>Outputs "dijit.form.Button" element with "data-dojo-event" attribute set to "onClick".
-		When activated submits an Ajax request to the server with the form's model serialized as a Json string.
-		By default, will update the form's model with the data received as the response from the server.
-		The contents of the tags body will be used to set the button's label.
-		</description>
-		<name>button</name>
-		<tag-class>com.github.dojotags.tags.ButtonTag</tag-class>
-		<body-content>empty</body-content>
-		<attribute>
-			<description>Action string appended to the request path of this submit. Empty string by default.
-			</description>
-			<name>action</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-		<attribute>
-			<description>Label text for the button.
-			</description>
-			<name>label</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<description>Outputs "dojox.mvc.Output" element with "value" property
-		bound to the surrounding form's model property specified by the "path"
-		attribute.
-		</description>
-		<name>output</name>
-		<tag-class>com.github.dojotags.tags.OutputTag</tag-class>
-		<body-content>empty</body-content>
-		<attribute>
-			<description>Form's model property name to be used as "value" of this component.
-			</description>
-			<name>path</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<description>Outputs a "th" element representing a column in a grid's component structure.
-		Must be embedded inside a gridLayout tag.
-		</description>
-		<name>gridColumn</name>
-		<tag-class>com.github.dojotags.tags.GridColumnTag</tag-class>
-		<body-content>empty</body-content>
-		<attribute>
-			<description>Field name fot the grid column. Must be unique for the grid.
-			</description>
-			<name>field</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-		<attribute>
-			<description>Name text of the column.
-			</description>
-			<name>name</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-		<attribute>
-			<description>Width of the column.
-			</description>
-			<name>width</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<description>Outputs a "tbody" element with one row representing the column structure
-		for the surrounding grid component.
-		</description>
-		<name>gridLayout</name>
-		<tag-class>com.github.dojotags.tags.GridLayoutTag</tag-class>
-		<body-content>scriptless</body-content>
-	</tag>
-
-	<tag>
-		<description>Outputs "dojox/grid/DataGrid" element and wires its object store data to
-		the form's model property with the name "gridName_data" where gridName is the name of
-		the grid. Must be embedded inside a form tag.
-		</description>
-		<name>grid</name>
-		<tag-class>com.github.dojotags.tags.GridTag</tag-class>
-		<body-content>scriptless</body-content>
-		<attribute>
-			<description>Name for the grid component. Must be unique within the page.
-			</description>
-			<name>name</name>
-			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-		<attribute>
-			<description>Width of the grid.
-			</description>
-			<name>width</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-		<attribute>
-			<description>Height of the grid.
-			</description>
-			<name>height</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
-		</attribute>
-	</tag>
 
 </taglib>

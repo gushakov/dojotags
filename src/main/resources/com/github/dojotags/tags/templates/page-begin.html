@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Page without tags</title>
+
+<!-- 
+	Dojo configuration
+ -->
+
+<link rel="stylesheet" type="text/css"
+	href="$contextPath$/resources/dijit/themes/$theme$/$theme$.css">
+<link rel="stylesheet" type="text/css"
+	href="$contextPath$/resources/dojox/grid/resources/$theme$Grid.css">
+<script src="$contextPath$/resources/dojo/dojo.js"
+	data-dojo-config="async: true,
+	packages: [{name: 'dojotags', location: '$contextPath$/resources/dojotags'}]"></script>
+
+</head>
+
+<body class="$theme$">
+
+	<!-- 
+Page
+ -->
+	<script>
+		require([ "dojo/ready", "dojotags/Page" ], function(ready, Page) {
+
+			var $pageId$ = new Page({
+				id : "$pageId$"
+			});
+			console.debug("Created page ", $pageId$);
+
+			ready(function() {
+				console.debug("DOM is ready");
+				$pageId$.startup();
+			});
+
+		});
+	</script>
