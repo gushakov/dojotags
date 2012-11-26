@@ -24,7 +24,7 @@ public class TestController extends AbstractDojoTagsController {
 		Response response = new Response();
 		Label labelUpdate = new Label();
 		labelUpdate.setId("lbl1");
-		labelUpdate.setText("This is updted by a click on a button "
+		labelUpdate.setText("This label was updated by a click on a button "
 				+ buttonModel.getLabel());
 		response.getUpdates().add(labelUpdate);
 		return response;

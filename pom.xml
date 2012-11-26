@@ -69,6 +69,8 @@
 			<groupId>local</groupId>
 			<artifactId>dojotoolkit</artifactId>
 			<version>${dojo.version}</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/dojotoolkit-${dojo.version}.jar</systemPath>
 		</dependency>
 
 		<dependency>
@@ -96,6 +98,7 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>

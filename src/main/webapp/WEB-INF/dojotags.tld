@@ -8,7 +8,7 @@
 	<uri>dojotags</uri>
 
 	<tag>
-		<description>A Top-level tag which configures Dojo and generates a main Page widget.</description>
+		<description>A top-level tag which configures Dojo and generates a main Page widget.</description>
 		<name>page</name>
 		<tag-class>com.github.dojotags.tags.PageTag</tag-class>
 		<body-content>scriptless</body-content>
@@ -19,12 +19,30 @@
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Dijit theme name: "claro", "tundra".</description>
+			<description>Dijit theme name: "claro", "tundra", "nihilo".</description>
 			<name>theme</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 	</tag>
 
+	<tag>
+		<description>Generates a simple Label widget. Must be embedded in a container widget.</description>
+		<name>label</name>
+		<tag-class>com.github.dojotags.tags.LabelTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>Page widget id, must be unique in the global scope.</description>
+			<name>widgetId</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Text to be displayed as a label.</description>
+			<name>text</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
 
 </taglib>

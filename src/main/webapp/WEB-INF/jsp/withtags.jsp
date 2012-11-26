@@ -2,6 +2,10 @@
 
 <d:page widgetId="page1">
 
-<p>hello</p>
+<d:label widgetId="lbl1" text="Hello"/>
+
+<d:label widgetId="lbl2" text="World"/>
 
 </d:page>
+
+<d:label widgetId="lbl3"/>

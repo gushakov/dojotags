@@ -47,11 +47,11 @@ define([ "dojo/_base/declare", "dojo/_base/kernel", "dojo/_base/lang",
 		 */
 		constructor : function(args) {
 			if (args.id === undefined) {
-				throw new Error("Widget ID cannot be null.");
+				throw new Error("Widget id cannot be null.");
 			}
 
 			if (kernel.global[args.id] !== undefined) {
-				throw new Error("Widget with ID " + args.id
+				throw new Error("Widget with id " + args.id
 						+ " exists already.");
 			}
 
