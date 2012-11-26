@@ -7,5 +7,3 @@
 <d:label widgetId="lbl2" text="World"/>
 
 </d:page>
-
-<d:label widgetId="lbl3"/>
