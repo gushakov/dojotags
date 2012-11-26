@@ -40,18 +40,34 @@ Page
 	</script>
 
 	<!-- 
+Row layout
+ -->
+	<script>
+		require([ "dojotags/Rows", ], function(Rows) {
+			var rows1 = new Rows({
+				id : "rows1",
+				parent : page1
+			});
+			console.debug("Created row layout ", rows1);
+		});
+	</script>
+
+
+	<!-- 
 Button
  -->
 	<script>
 		require([ "dojotags/Button", ], function(Button) {
 			var btn1 = new Button({
 				id : "btn1",
-				parent : page1,
+				parent : rows1,
 				label : "Button 1"
 			});
 			console.debug("Created button ", btn1);
 		});
 	</script>
+
+
 
 	<!-- 
 Label
@@ -60,12 +76,28 @@ Label
 		require([ "dojotags/Label", ], function(Label) {
 			var lbl1 = new Label({
 				id : "lbl1",
-				parent : page1,
+				parent : rows1,
 				text : "Label 1"
 			});
 			console.debug("Created label ", lbl1);
 		});
 	</script>
+
+
+	<!-- 
+Label
+ -->
+	<script>
+		require([ "dojotags/Label", ], function(Label) {
+			var lbl2 = new Label({
+				id : "lbl2",
+				parent : page1,
+				text : "Label 2"
+			});
+			console.debug("Created label ", lbl2);
+		});
+	</script>
+
 
 	<!-- 
 Button

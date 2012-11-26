@@ -45,4 +45,23 @@
 		</attribute>
 	</tag>
 
+	<tag>
+		<description>Generates a simple Button widget. Must be embedded in a container widget.</description>
+		<name>button</name>
+		<tag-class>com.github.dojotags.tags.ButtonTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>Page widget id, must be unique in the global scope.</description>
+			<name>widgetId</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Text to be displayed as a label for the button widget.</description>
+			<name>label</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+
 </taglib>

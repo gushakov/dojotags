@@ -6,4 +6,6 @@
 
 <d:label widgetId="lbl2" text="World"/>
 
+<d:button widgetId="btn1" label="Click me"/>
+
 </d:page>

@@ -27,15 +27,19 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/_base/array",
 			this.widgets.push(widget);
 		},
 
+		placeChildWidgetDomNode: function(node){
+			domConstruct.place(node, this.domNode, "last");
+		},
+		
 		startup : function() {
 			array.forEach(this.widgets, lang.hitch(this, function(widget) {
 				if (widget.dijit){
 					// append the dijit's dom node to the container's dom node
-					domConstruct.place(widget.dijit.domNode, this.domNode, "last");
+					this.placeChildWidgetDomNode(widget.dijit.domNode);
 				}
 				else {
 					// append the widget's dom node to the container's dom node
-					domConstruct.place(widget.domNode, this.domNode, "last");					
+					this.placeChildWidgetDomNode(widget.domNode);					
 				}
 				// start up the widget
 				widget.startup();
