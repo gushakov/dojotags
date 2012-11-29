@@ -6,6 +6,8 @@ import javax.servlet.jsp.JspException;
 
 public class LabelTag extends AbstractEmptyBodyWidgetTag {
 
+	public static final String WIDGET_NAME = "label";
+
 	private String text;
 
 	public void setText(String text) {
@@ -13,6 +15,7 @@ public class LabelTag extends AbstractEmptyBodyWidgetTag {
 	}
 
 	public LabelTag() {
+		setWidgetName(WIDGET_NAME);
 		setTagTemplate("label");
 		setAssertHasParentTag(true);
 	}
@@ -20,14 +23,13 @@ public class LabelTag extends AbstractEmptyBodyWidgetTag {
 	@Override
 	protected void addTemplateAttributes(Map<String, Object> attrs)
 			throws JspException {
-		// get text
-		String textStr = null;
+		// add text attribute
 		if (text != null) {
-			textStr = text.trim();
+			text = text.trim();
 		} else {
-			textStr = "";
+			text = "";
 		}
-		attrs.put("text", textStr);
+		attrs.put("text", text);
 	}
 
 }

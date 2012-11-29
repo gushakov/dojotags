@@ -1,8 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Page without tags</title>
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>Page without tags</title>
 
 <!-- 
 	Dojo configuration
@@ -46,7 +46,8 @@ Row layout
 		require([ "dojotags/Rows", ], function(Rows) {
 			var rows1 = new Rows({
 				id : "rows1",
-				parent : page1
+				parent : page1,
+				spacerHeight: "3em"
 			});
 			console.debug("Created row layout ", rows1);
 		});

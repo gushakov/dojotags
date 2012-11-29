@@ -15,12 +15,31 @@
 		<attribute>
 			<description>Page widget id, must be unique in the global scope.</description>
 			<name>widgetId</name>
-			<required>true</required>
+			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>Dijit theme name: "claro", "tundra", "nihilo".</description>
 			<name>theme</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<description>Tag which creates a layout in rows.</description>
+		<name>rows</name>
+		<tag-class>com.github.dojotags.tags.RowsTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Page widget id, must be unique in the global scope.</description>
+			<name>widgetId</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Height of the spacer between the rows.</description>
+			<name>spacerHeight</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -34,7 +53,7 @@
 		<attribute>
 			<description>Page widget id, must be unique in the global scope.</description>
 			<name>widgetId</name>
-			<required>true</required>
+			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
@@ -53,7 +72,7 @@
 		<attribute>
 			<description>Page widget id, must be unique in the global scope.</description>
 			<name>widgetId</name>
-			<required>true</required>
+			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>

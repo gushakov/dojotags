@@ -1,11 +1,20 @@
 <%@taglib prefix="d" uri="dojotags"%>
 
-<d:page widgetId="page1">
+<d:page>
 
-<d:label widgetId="lbl1" text="Hello"/>
+	<d:rows>
+		<d:label widgetId="lbl1" text="Hello" />
 
-<d:label widgetId="lbl2" text="World"/>
+		<d:label text="Hello" />
+		<d:label text="Hello" />
+		<d:label text="Hello" />
+		<d:label text="Hello" />
+		<d:label text="Hello" />
+		<d:label text="Hello" />
 
-<d:button widgetId="btn1" label="Click me"/>
+		<d:button widgetId="btn1" label="Click me" />
+	</d:rows>
+	
+	
 
 </d:page>

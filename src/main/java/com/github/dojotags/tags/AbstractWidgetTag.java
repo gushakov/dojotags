@@ -19,12 +19,22 @@ public abstract class AbstractWidgetTag extends SimpleTagSupport {
 	private static final Logger logger = LoggerFactory
 			.getLogger(AbstractWidgetTag.class);
 
+	protected String widgetName;
+	
 	protected String widgetId;
 
 	protected boolean assertHasParentTag;
 
 	public AbstractWidgetTag() {
 		assertHasParentTag = false;
+	}
+
+	public String getWidgetName() {
+		return widgetName;
+	}
+
+	public void setWidgetName(String widgetName) {
+		this.widgetName = widgetName;
 	}
 
 	public String getWidgetId() {
@@ -54,14 +64,26 @@ public abstract class AbstractWidgetTag extends SimpleTagSupport {
 		Map<String, Object> attrs = new HashMap<String, Object>();
 
 		// add context attribute
-		String contextPath = ((HttpServletRequest) pageContext.getRequest())
+		String contextPathAttr = ((HttpServletRequest) pageContext.getRequest())
 				.getContextPath();
-		attrs.put("contextPath", contextPath);
+		attrs.put("contextPath", contextPathAttr);
 
 		// add widget id attribute
-		String widgetId = getWidgetId().trim();
-		if (widgetId.equals("")) {
-			throw new JspException("Tag's widgetId attribute is empty.");
+		if (widgetId != null && ! widgetId.matches("\\s*")){
+			widgetId = widgetId.trim();			
+		}
+		else {
+			// set this widget id automatically, get next counter value from page context
+			Integer counter = (Integer) pageContext.getAttribute("widgetIdCounter");
+			if (counter == null){
+				counter = 1;
+			}
+			else {
+				counter++;
+			}
+			widgetId = widgetName + "_" + (System.currentTimeMillis() + counter);
+			// store the next value of widget id counter in page context
+			pageContext.setAttribute("widgetIdCounter", counter);
 		}
 		attrs.put("widgetId", widgetId);
 
@@ -74,7 +96,7 @@ public abstract class AbstractWidgetTag extends SimpleTagSupport {
 						+ this.getClass().getName()
 						+ " should be embedded in a container tag.");
 			} else {
-				// add parent widget attribute
+				// add parent widget id attribute
 				AbstractWidgetTag parentWidgetTag = (AbstractWidgetTag) parentTag;
 				attrs.put("parentId", parentWidgetTag.getWidgetId());
 
