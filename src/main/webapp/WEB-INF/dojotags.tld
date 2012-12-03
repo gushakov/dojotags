@@ -27,7 +27,7 @@
 	</tag>
 	
 	<tag>
-		<description>Tag which creates a layout in rows.</description>
+		<description>Tag which creates a rows layout.</description>
 		<name>rows</name>
 		<tag-class>com.github.dojotags.tags.RowsTag</tag-class>
 		<body-content>scriptless</body-content>
@@ -40,6 +40,25 @@
 		<attribute>
 			<description>Height of the spacer between the rows.</description>
 			<name>spacerHeight</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<description>Tag which creates a flow layout.</description>
+		<name>flow</name>
+		<tag-class>com.github.dojotags.tags.FlowTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>Page widget id, must be unique in the global scope.</description>
+			<name>widgetId</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Width of the spacer between the elements of the flow.</description>
+			<name>spacerWidth</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>

@@ -86,13 +86,28 @@ Label
 
 
 	<!-- 
+Flow layout
+ -->
+	<script>
+		require([ "dojotags/Flow", ], function(Flow) {
+			var flow1 = new Flow({
+				id : "flow1",
+				parent : page1,
+				spacerWidth: "1em"
+			});
+			console.debug("Created flow layout ", flow1);
+		});
+	</script>
+
+
+	<!-- 
 Label
  -->
 	<script>
 		require([ "dojotags/Label", ], function(Label) {
 			var lbl2 = new Label({
 				id : "lbl2",
-				parent : page1,
+				parent : flow1,
 				text : "Label 2"
 			});
 			console.debug("Created label ", lbl2);
@@ -107,7 +122,7 @@ Button
 		require([ "dojotags/Button", ], function(Button) {
 			var btn2 = new Button({
 				id : "btn2",
-				parent : page1,
+				parent : flow1,
 				label : "Button 2"
 			});
 			console.debug("Created button ", btn2);

@@ -18,7 +18,6 @@ public class RowsTag extends AbstractScriptlessBodyWidgetTag {
 	public RowsTag() {
 		setWidgetName(WIDGET_NAME);
 		setTagBeginTemplate("rows-begin");
-		setTagEndTemplate("rows-end");
 		setAssertHasParentTag(true);
 	}
 

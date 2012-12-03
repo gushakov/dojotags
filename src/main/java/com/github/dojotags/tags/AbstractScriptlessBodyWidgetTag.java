@@ -28,7 +28,9 @@ public abstract class AbstractScriptlessBodyWidgetTag extends AbstractWidgetTag 
 			StringWriter writer = new StringWriter();
 			writer.append(TagTemplates.substitute(tagBeginTemplate, attrs));
 			body.invoke(writer);
-			writer.append(TagTemplates.substitute(tagEndTemplate, attrs));
+			if (tagEndTemplate != null) {
+				writer.append(TagTemplates.substitute(tagEndTemplate, attrs));
+			}
 			out.println(writer);
 
 		} catch (Exception e) {
