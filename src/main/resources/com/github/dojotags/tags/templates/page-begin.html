@@ -1,40 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Page without tags</title>
+<script>		
+require([ "dojo/ready", "dojotags/Page" #requireModules# ], function(ready, Page #requireArgs#) {
 
-<!-- 
-	Dojo configuration
- -->
-
-<link rel="stylesheet" type="text/css"
-	href="$contextPath$/resources/dijit/themes/$theme$/$theme$.css">
-<link rel="stylesheet" type="text/css"
-	href="$contextPath$/resources/dojox/grid/resources/$theme$Grid.css">
-<script src="$contextPath$/resources/dojo/dojo.js"
-	data-dojo-config="async: true,
-	packages: [{name: 'dojotags', location: '$contextPath$/resources/dojotags'}]"></script>
-
-</head>
-
-<body class="$theme$">
-
-	<!-- 
-Page
- -->
-	<script>
-		require([ "dojo/ready", "dojotags/Page" ], function(ready, Page) {
-
-			var $widgetId$ = new Page({
-				id : "$widgetId$"
-			});
-			console.debug("Created page ", $widgetId$);
-
-			ready(function() {
-				console.debug("DOM is ready");
-				$widgetId$.startup();
-			});
-
-		});
-	</script>
+	var $widgetId$ = new Page({
+		id : "$widgetId$"
+	});
+	console.debug("Created page ", $widgetId$);

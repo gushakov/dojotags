@@ -1,52 +1,65 @@
 package com.github.dojotags.tags;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
-
-import javax.servlet.jsp.JspException;
+import java.util.TreeMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PageTag extends AbstractScriptlessBodyWidgetTag {
+/**
+ * Tag handler for {@code Page} widget container. Maintains a map of all nested
+ * widget tags used when creating Dojo {@code require} directive.
+ * 
+ * @author George Ushakov
+ * 
+ */
+public class PageTag extends AbstractJspBodyWidgetTag {
+	private static final long serialVersionUID = 1L;
+
 	private static final Logger logger = LoggerFactory.getLogger(PageTag.class);
 
 	public static final String WIDGET_NAME = "page";
+	public static final String WIDGET_MODULE_NAME = "Page";
 
-	private String theme;
-
-	public String getTheme() {
-		return theme;
-	}
-
-	public void setTheme(String theme) {
-		this.theme = theme;
-	}
+	protected TreeMap<String, AbstractWidgetTag> nestedTags;
 
 	public PageTag() {
 		setWidgetName(WIDGET_NAME);
+		setWidgetModuleName(WIDGET_MODULE_NAME);
 		setTagBeginTemplate("page-begin");
 		setTagEndTemplate("page-end");
+		nestedTags = new TreeMap<String, AbstractWidgetTag>();
 	}
 
+	public void registerNestedTag(AbstractWidgetTag tag) {
+		this.nestedTags.put(tag.widgetId, tag);
+	}
+
+	/**
+	 * Overrides default to substitute palaceholders in Dojo require statement
+	 * (modules and arguments) with values constructed from the names of the
+	 * widget tags in {@code nestedTags} map.
+	 */
 	@Override
-	protected void addTemplateAttributes(Map<String, Object> attrs)
-			throws JspException {
-		// add theme attribute
-		if (theme == null || theme.matches("\\s*")) {
-			theme = Constants.THEME_DEFAULT;
-			logger.debug("Using default Dojo theme {}", theme);
-		} else {
-			try {
-				theme = Enum.valueOf(Constants.Theme.class,
-						theme.trim().toLowerCase()).name();
-			} catch (IllegalArgumentException e) {
-				theme = Constants.THEME_DEFAULT;
-				logger.error(
-						"Cannot configure Dojo theme {}, will use default {}",
-						theme, theme);
-			}
+	protected String modifyBodyContentBeforeOutput() {
+		String requireModules = "";
+		String requireArgs = "";
+		Iterator<AbstractWidgetTag> tagIter = nestedTags.values().iterator();
+		while (tagIter.hasNext()) {
+			AbstractWidgetTag tag = tagIter.next();
+			requireModules += ", \"dojotags/" + tag.widgetModuleName + "\"";
+			requireArgs += ", " + tag.widgetModuleName;
 		}
-		attrs.put("theme", theme);
-	}
+		logger.debug("Adding require modules {} and arguments {}",
+				requireModules, requireArgs);
+		Map<String, Object> requireAttrs = new HashMap<String, Object>();
+		requireAttrs.put("requireModules", requireModules);
+		requireAttrs.put("requireArgs", requireArgs);
+		String content = TagTemplates.replace(getBodyContent().getString(),
+				'#', requireAttrs);
 
+		return content;
+	}
 }

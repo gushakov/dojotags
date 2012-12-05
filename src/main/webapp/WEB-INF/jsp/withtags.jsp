@@ -1,36 +1,23 @@
 <%@taglib prefix="d" uri="dojotags"%>
+<%@ taglib prefix="g" uri="http://granule.com/tags"%>
 
-<d:page>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Dojotags Demo</title>
 
-	<d:rows>
-		<d:label widgetId="lbl1" text="Hello World" />
+<d:config />
 
-		<d:label text="These" />
-		<d:label text="labels" />
-		<d:label text="should" />
-		<d:label text="be" />
-		<d:label text="layed" />
-		<d:label text="out" />
-		<d:label text="in" />
-		<d:label text="rows" />
+</head>
 
-		<d:button widgetId="btn1" label="Click me" />
-	</d:rows>
-	
-	<d:flow>
-	
-		<d:label text="These" />
-		<d:label text="labels" />
-		<d:label text="should" />
-		<d:label text="be" />
-		<d:label text="layed" />
-		<d:label text="out" />
-		<d:label text="in" />
-		<d:label text="a" />
-		<d:label text="flow" />
-	
-	</d:flow>
-	
-	
-
-</d:page>
+<body class="${dijitTheme}">
+	<!-- g:compress -->
+	<d:page>
+		<d:flow spacerWidth="3em">
+			<d:label widgetId="lbl1" text="Hello" />
+			<d:button widgetId="btn1" label="Button" />
+		</d:flow>
+	</d:page>
+	<!-- /g:compress -->
+</body>
+</html>

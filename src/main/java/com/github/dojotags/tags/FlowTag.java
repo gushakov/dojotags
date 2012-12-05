@@ -1,13 +1,15 @@
 package com.github.dojotags.tags;
 
-import java.util.Map;
-
 import javax.servlet.jsp.JspException;
 
 import com.github.dojotags.utils.Assert;
 
-public class FlowTag extends AbstractScriptlessBodyWidgetTag {
+public class FlowTag extends AbstractJspBodyWidgetTag {
+
+	private static final long serialVersionUID = 1L;
+	
 	public static final String WIDGET_NAME = "flow";
+	public static final String WIDGET_MODULE_NAME = "Flow";
 
 	private String spacerWidth;
 
@@ -17,13 +19,14 @@ public class FlowTag extends AbstractScriptlessBodyWidgetTag {
 
 	public FlowTag() {
 		setWidgetName(WIDGET_NAME);
+		setWidgetModuleName(WIDGET_MODULE_NAME);
 		setTagBeginTemplate("flow-begin");
 		setAssertHasParentTag(true);
 	}
-
+	
 	@Override
-	protected void addTemplateAttributes(Map<String, Object> attrs)
-			throws JspException {
+	public int doStartTag() throws JspException {
+		int result = super.doStartTag();
 		if (spacerWidth != null) {
 			spacerWidth = spacerWidth.trim();
 			if (!Assert.assertValidCssUnitOfMeasure(spacerWidth)) {
@@ -34,7 +37,8 @@ public class FlowTag extends AbstractScriptlessBodyWidgetTag {
 		} else {
 			spacerWidth = "";
 		}
-		attrs.put("spacerWidth", spacerWidth);
+		templateAttrs.put("spacerWidth", spacerWidth);
+		return result;
 	}
 
 }

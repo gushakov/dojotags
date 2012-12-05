@@ -1,12 +1,17 @@
 package com.github.dojotags.tags;
 
-import java.util.Map;
-
 import javax.servlet.jsp.JspException;
 
-public class LabelTag extends AbstractEmptyBodyWidgetTag {
-
+/**
+ * Tag handler for {@code Label} widget.
+ * 
+ * @author George Ushakov
+ * 
+ */
+public class LabelTag extends AbstractWidgetTag {
+	private static final long serialVersionUID = 1L;
 	public static final String WIDGET_NAME = "label";
+	public static final String WIDGET_MODULE_NAME = "Label";
 
 	private String text;
 
@@ -16,20 +21,21 @@ public class LabelTag extends AbstractEmptyBodyWidgetTag {
 
 	public LabelTag() {
 		setWidgetName(WIDGET_NAME);
-		setTagTemplate("label");
+		setWidgetModuleName(WIDGET_MODULE_NAME);
+		setTagBeginTemplate("label");
 		setAssertHasParentTag(true);
 	}
-	
+
 	@Override
-	protected void addTemplateAttributes(Map<String, Object> attrs)
-			throws JspException {
+	public int doStartTag() throws JspException {
+		int result = super.doStartTag();
 		// add text attribute
 		if (text != null) {
 			text = text.trim();
 		} else {
 			text = "";
 		}
-		attrs.put("text", text);
+		templateAttrs.put("text", text);
+		return result;
 	}
-
 }

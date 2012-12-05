@@ -11,6 +11,7 @@
 	<properties>
 		<spring.version>3.1.0.RELEASE</spring.version>
 		<dojo.version>1.8.1</dojo.version>
+		<granule.version>1.0.9</granule.version>
 		<cglib.version>2.2</cglib.version>
 		<jackson.version>1.9.10</jackson.version>
 		<slf4j.version>1.6.4</slf4j.version>
@@ -71,6 +72,14 @@
 			<version>${dojo.version}</version>
 			<scope>system</scope>
 			<systemPath>${basedir}/lib/dojotoolkit-${dojo.version}.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>local</groupId>
+			<artifactId>granule</artifactId>
+			<version>${granule.version}</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/granule-${granule.version}.jar</systemPath>
 		</dependency>
 
 		<dependency>

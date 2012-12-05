@@ -41,7 +41,7 @@ public class TagTemplates {
 						.toURI());
 				File[] files = dir.listFiles();
 				for (File file : files) {
-					String name = file.getName().replaceFirst("\\.html$", "");
+					String name = file.getName().replaceFirst("\\.\\w+$", "");
 					String template = IOUtils.toString(new FileReader(file));
 					templateRegistry.put(name, template);
 				}
@@ -56,6 +56,28 @@ public class TagTemplates {
 				throw new RuntimeException(e);
 			}
 		}
+	}
+
+	/**
+	 * Replaces all placeholders delimited by {@code delimiterChar} character
+	 * with the values of the corresponding attributes.
+	 * 
+	 * @param text
+	 *            template text with placeholders
+	 * @param delimiterChar
+	 *            delimiter character
+	 * @param attrs
+	 *            name/value pairs for placeholders
+	 * @return text with the corresponding placeholders replaced by values from
+	 *         the map
+	 */
+	public static String replace(String text, char delimiterChar,
+			Map<String, Object> attrs) {
+		ST st = new ST(text, delimiterChar, delimiterChar);
+		for (String key : attrs.keySet()) {
+			st.add(key, attrs.get(key));
+		}
+		return st.render();
 	}
 
 	/**

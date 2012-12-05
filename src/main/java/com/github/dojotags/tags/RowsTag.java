@@ -1,13 +1,20 @@
 package com.github.dojotags.tags;
 
-import java.util.Map;
-
 import javax.servlet.jsp.JspException;
 
 import com.github.dojotags.utils.Assert;
 
-public class RowsTag extends AbstractScriptlessBodyWidgetTag {
+/**
+ * Tag handler for {@code Rows} widget container.
+ * 
+ * @author George Ushakov
+ * 
+ */
+public class RowsTag extends AbstractJspBodyWidgetTag {
+
+	private static final long serialVersionUID = 1L;
 	public static final String WIDGET_NAME = "rows";
+	public static final String WIDGET_MODULE_NAME = "Rows";
 
 	private String spacerHeight;
 
@@ -17,25 +24,25 @@ public class RowsTag extends AbstractScriptlessBodyWidgetTag {
 
 	public RowsTag() {
 		setWidgetName(WIDGET_NAME);
+		setWidgetModuleName(WIDGET_MODULE_NAME);
 		setTagBeginTemplate("rows-begin");
 		setAssertHasParentTag(true);
 	}
 
 	@Override
-	protected void addTemplateAttributes(Map<String, Object> attrs)
-			throws JspException {
-		String spacerHeightStr = null;
+	public int doStartTag() throws JspException {
+		int result = super.doStartTag();
 		if (spacerHeight != null) {
-			spacerHeightStr = spacerHeight.trim();
-			if (!Assert.assertValidCssUnitOfMeasure(spacerHeightStr)) {
+			spacerHeight = spacerHeight.trim();
+			if (!Assert.assertValidCssUnitOfMeasure(spacerHeight)) {
 				throw new JspException(new IllegalArgumentException("Spacer "
-						+ spacerHeightStr
+						+ spacerHeight
 						+ " height is not a CSS unit of measure."));
 			}
 		} else {
-			spacerHeightStr = "";
+			spacerHeight = "";
 		}
-		attrs.put("spacerHeight", spacerHeightStr);
+		templateAttrs.put("spacerHeight", spacerHeight);
+		return result;
 	}
-
 }

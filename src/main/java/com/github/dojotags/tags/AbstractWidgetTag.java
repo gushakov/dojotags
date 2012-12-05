@@ -1,26 +1,32 @@
 package com.github.dojotags.tags;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.naming.OperationNotSupportedException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.JspTag;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class AbstractWidgetTag extends SimpleTagSupport {
+import com.github.dojotags.utils.WidgetUtils;
+
+/**
+ * Superclass for all widget tags. Specifies attributes common to all widget
+ * tags. Registers this tag with the ancestor tag of type {@code Page}.
+ * Automatically assigns a unique id to the missing {@code widgetId} attribute.
+ * 
+ * @author George Ushakov
+ * @see PageTag#registerNestedTag(AbstractWidgetTag)
+ * 
+ */
+public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
+	private static final long serialVersionUID = 1L;
+
 	private static final Logger logger = LoggerFactory
 			.getLogger(AbstractWidgetTag.class);
 
 	protected String widgetName;
-	
+
+	protected String widgetModuleName;
+
 	protected String widgetId;
 
 	protected boolean assertHasParentTag;
@@ -29,16 +35,12 @@ public abstract class AbstractWidgetTag extends SimpleTagSupport {
 		assertHasParentTag = false;
 	}
 
-	public String getWidgetName() {
-		return widgetName;
-	}
-
 	public void setWidgetName(String widgetName) {
 		this.widgetName = widgetName;
 	}
 
-	public String getWidgetId() {
-		return widgetId;
+	public void setWidgetModuleName(String widgetModuleName) {
+		this.widgetModuleName = widgetModuleName;
 	}
 
 	public void setWidgetId(String widgetId) {
@@ -54,42 +56,36 @@ public abstract class AbstractWidgetTag extends SimpleTagSupport {
 	}
 
 	@Override
-	public void doTag() throws JspException, IOException {
-		logger.debug("Parsing a widget tag {}", this.getClass().getName());
-
-		PageContext pageContext = (PageContext) getJspContext();
-		JspWriter out = pageContext.getOut();
-
-		// construct a map of attributes to be substituted in the templates
-		Map<String, Object> attrs = new HashMap<String, Object>();
-
-		// add context attribute
-		String contextPathAttr = ((HttpServletRequest) pageContext.getRequest())
-				.getContextPath();
-		attrs.put("contextPath", contextPathAttr);
+	public int doStartTag() throws JspException {
+		int result = super.doStartTag();
 
 		// add widget id attribute
-		if (widgetId != null && ! widgetId.matches("\\s*")){
-			widgetId = widgetId.trim();			
+		if (widgetId != null && !widgetId.matches("\\s*")) {
+			widgetId = widgetId.trim();
+		} else {
+			// create a unique widget id attribute automatically
+			widgetId = WidgetUtils.getWidgetGuid(widgetName);
 		}
-		else {
-			// set this widget id automatically, get next counter value from page context
-			Integer counter = (Integer) pageContext.getAttribute("widgetIdCounter");
-			if (counter == null){
-				counter = 1;
+		templateAttrs.put("widgetId", widgetId);
+
+		// do for all tags nested in a page tag
+		if (!widgetName.equals(PageTag.WIDGET_NAME)) {
+			// find the ancestor page tag and register this tag as a nested tag
+			PageTag pageTag = (PageTag) findAncestorWithClass(this,
+					PageTag.class);
+			if (pageTag == null) {
+				throw new JspException("No ancestor page tag found for tag "
+						+ this);
 			}
-			else {
-				counter++;
-			}
-			widgetId = widgetName + "_" + (System.currentTimeMillis() + counter);
-			// store the next value of widget id counter in page context
-			pageContext.setAttribute("widgetIdCounter", counter);
+			pageTag.registerNestedTag(this);
+			logger.debug(
+					"Registered nested tag {} in the ancestor page tag {}",
+					this, pageTag);
 		}
-		attrs.put("widgetId", widgetId);
 
 		// check if this tag is embedded into a parent form tag
 		JspTag parentTag = getParent();
-		if (assertHasParentTag) {
+		if (isAssertHasParentTag()) {
 
 			if (parentTag == null) {
 				throw new JspException("Tag of type "
@@ -98,27 +94,23 @@ public abstract class AbstractWidgetTag extends SimpleTagSupport {
 			} else {
 				// add parent widget id attribute
 				AbstractWidgetTag parentWidgetTag = (AbstractWidgetTag) parentTag;
-				attrs.put("parentId", parentWidgetTag.getWidgetId());
-
+				templateAttrs.put("parentId", parentWidgetTag.widgetId);
 			}
 		}
 
-		// add other template attributes
-		addTemplateAttributes(attrs);
-
-		// output the contents of this tag
-		doTagContentOutput(out, attrs);
-
+		return result;
 	}
 
-	protected void addTemplateAttributes(Map<String, Object> attrs)
-			throws JspException {
-		// add custom tag attributes
+	protected void resetWidgetAttributes() {
+		// reset widget id to null so that it is automatically generated for the
+		// next widget with no widget id attribute set
+		widgetId = null;
 	}
 
-	protected void doTagContentOutput(JspWriter out, Map<String, Object> attrs)
-			throws JspException {
-		throw new JspException(new OperationNotSupportedException());
+	@Override
+	public int doEndTag() throws JspException {
+		resetWidgetAttributes();
+		return super.doEndTag();
 	}
 
 }

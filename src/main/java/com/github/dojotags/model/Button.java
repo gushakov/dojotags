@@ -1,8 +1,8 @@
 package com.github.dojotags.model;
 
-@SuppressWarnings("serial")
 public class Button extends Widget {
 
+	private static final long serialVersionUID = 1L;
 	private String label;
 
 	public String getLabel() {

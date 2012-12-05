@@ -1,12 +1,18 @@
 package com.github.dojotags.tags;
 
-import java.util.Map;
-
 import javax.servlet.jsp.JspException;
 
-public class ButtonTag extends AbstractEmptyBodyWidgetTag {
+/**
+ * Tag handler for {@code Button} widget.
+ * 
+ * @author George Ushakov
+ * 
+ */
+public class ButtonTag extends AbstractWidgetTag {
+	private static final long serialVersionUID = 1L;
 	public static final String WIDGET_NAME = "button";
-	
+	public static final String WIDGET_MODULE_NAME = "Button";
+
 	private String label;
 
 	public void setLabel(String label) {
@@ -15,21 +21,21 @@ public class ButtonTag extends AbstractEmptyBodyWidgetTag {
 
 	public ButtonTag() {
 		setWidgetName(WIDGET_NAME);
-		setTagTemplate("button");
+		setWidgetModuleName(WIDGET_MODULE_NAME);
+		setTagBeginTemplate("button");
 		setAssertHasParentTag(true);
 	}
-	
+
 	@Override
-	protected void addTemplateAttributes(Map<String, Object> attrs)
-			throws JspException {
-		// get label
-		String labelStr = null;
+	public int doStartTag() throws JspException {
+		int result = super.doStartTag();
 		if (label != null) {
-			labelStr = label.trim();
+			label = label.trim();
 		} else {
-			labelStr = "";
+			label = "";
 		}
-		attrs.put("label", labelStr);
+		templateAttrs.put("label", label);
+		return result;
 	}
 
 }
