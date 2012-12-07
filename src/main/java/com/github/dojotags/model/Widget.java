@@ -1,11 +1,13 @@
 package com.github.dojotags.model;
 
 import java.io.Serializable;
+import java.util.Map;
 
 public class Widget implements Serializable {
-	
 	private static final long serialVersionUID = 1L;
-	private String id;
+	protected String id;
+
+	protected Map<String, Object> model;
 
 	public String getId() {
 		return id;
@@ -15,9 +17,12 @@ public class Widget implements Serializable {
 		this.id = id;
 	}
 
-	@Override
-	public String toString() {
-		return "Widget [id=" + id + "]";
+	public Map<String, Object> getModel() {
+		return model;
 	}
-	
+
+	public void setModel(Map<String, Object> model) {
+		this.model = model;
+	}
+
 }

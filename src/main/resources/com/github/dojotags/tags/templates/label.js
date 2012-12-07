@@ -3,4 +3,3 @@ var $widgetId$ = new Label({
 	parent : $parentId$,
 	text : "$text$"
 });
-console.debug("Created label ", $widgetId$);

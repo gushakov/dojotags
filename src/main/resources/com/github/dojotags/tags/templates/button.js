@@ -1,6 +1,6 @@
 var $widgetId$ = new Button({
 	id : "$widgetId$",
 	parent : $parentId$,
-	label : "$label$"
+	label : "$label$",
+	onClick: "$onClick$"
 });
-console.debug("Created button ", $widgetId$);

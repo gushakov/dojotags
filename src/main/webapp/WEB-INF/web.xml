@@ -26,7 +26,7 @@
 	</servlet-mapping>
 
 	<!-- Granule minifier servlet -->
-
+	<!-- 
 	<servlet>
 		<servlet-name>CompressServlet</servlet-name>
 		<servlet-class>com.granule.CompressServlet</servlet-class>
@@ -40,4 +40,5 @@
 		<servlet-name>CompressServlet</servlet-name>
 		<url-pattern>/combined.css</url-pattern>
 	</servlet-mapping>
+	 -->
 </web-app>

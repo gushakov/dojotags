@@ -4,7 +4,7 @@ define([ "dojo/_base/declare", "dojo/_base/window", "dojo/dom-construct", "./Con
 
 				spacerHeight : null,
 
-				constructor : function(args) {
+				initialize : function(args) {
 					this.spacerHeight = args.spacerHeight || "1em";
 				},
 

@@ -10,6 +10,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 import com.github.dojotags.model.Button;
+import com.github.dojotags.model.Input;
 import com.github.dojotags.model.Label;
 import com.github.dojotags.model.Widget;
 import com.github.dojotags.web.annotation.WidgetBody;
@@ -61,7 +62,11 @@ public class WidgetBodyHandlerMethodArgumentResolver implements
 			widgetType = Label.class;
 		} else if (widgetClassHeader.equals("dojotags.Button")) {
 			widgetType = Button.class;
-		} else {
+		} 
+		else if(widgetClassHeader.equals("dojotags.Input")){
+			widgetType = Input.class;
+		}
+		else {
 			widgetType = Widget.class;
 		}
 

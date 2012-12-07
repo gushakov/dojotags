@@ -39,7 +39,7 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/_base/array",
 				}
 				else {
 					// append the widget's dom node to the container's dom node
-					this.placeChildWidgetDomNode(widget.domNode);					
+					this.placeChildWidgetDomNode(widget.domNode);
 				}
 				// start up the widget
 				widget.startup();

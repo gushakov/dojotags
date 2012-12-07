@@ -1,8 +1,8 @@
-define([ "dojo/_base/declare", "dojo/_base/kernel", "dojo/_base/lang",
-		"dojo/_base/array", "dojo/dom-construct", "dojo/json", "dojo/when",
-		"dojo/Stateful", "./utils" ], function(declare, kernel, lang, array,
-		domConstruct, json, when, Stateful, utils) {
+define([ "dojo/_base/declare", "dojo/_base/kernel", "dojo/_base/lang", "dojo/_base/array",
+		"dojo/dom-construct", "dojo/json", "dojo/when", "dojo/Stateful", "./utils" ], function(
+		declare, kernel, lang, array, domConstruct, json, when, Stateful, utils) {
 	return declare("dojotags.Widget", [], {
+
 		/**
 		 * Id of the widget, should be unique in the global scope.
 		 * 
@@ -38,6 +38,13 @@ define([ "dojo/_base/declare", "dojo/_base/kernel", "dojo/_base/lang",
 		parent : null,
 
 		/**
+		 * Nearest ancestor form widget.
+		 * 
+		 * @type Form
+		 */
+		form : null,
+
+		/**
 		 * Initializes this widget and registers it in the global scope.
 		 * 
 		 * @param {String}
@@ -51,27 +58,38 @@ define([ "dojo/_base/declare", "dojo/_base/kernel", "dojo/_base/lang",
 			}
 
 			if (kernel.global[args.id] !== undefined) {
-				throw new Error("Widget with id " + args.id
-						+ " exists already.");
+				throw new Error("Widget with id " + args.id + " exists already.");
 			}
 
 			this.id = args.id;
 			this.model = new Stateful({});
 
+			// let subclasses to perform custom initialization before
+			// the creation of this widget's dijit
+			this.initialize(args);
+
 			// if the parent widget was specified check that it is
 			// really a container, then add this widget to the container
 			if (args.parent !== undefined) {
 				if (!(args.parent instanceof dojotags.Container)) {
-					throw new Error(
-							"Parent widget should be of type Container.");
+					throw new Error("Parent widget should be of type Container.");
 				}
 				this.parent = args.parent;
 				this.parent.addWidget(this);
 			}
 
-			// let subclasses to perform custom initialization before
-			// the creation of this widget's dijit
-			this.initialize(args);
+			// if this widget has a path model attribute set, bind it to the
+			// nearest parent form
+			if (this.model.get("path")) {
+				var form = this.findAncestorOfType("dojotags.Form");
+				if (form) {
+					form.bindPath(this);
+					// register the form handle
+					this.form = form;
+				} else {
+					throw new Error("Cannot find ancestor form element for widget " + this.id);
+				}
+			}
 
 			// create a dom node and a dijit for this widget
 			var node = this.domNode = domConstruct.create("span", null);
@@ -146,20 +164,20 @@ define([ "dojo/_base/declare", "dojo/_base/kernel", "dojo/_base/lang",
 		processCallback : function(sourceWidget, event, response) {
 			console.debug("Processing callback for widget ", sourceWidget, event, response);
 			// process updates
-			array.forEach(response.updates, function(update){
+			array.forEach(response.updates, function(update) {
 				console.debug("Processing update: ", update);
-				
+
 				// get target widget from the global scope
 				var targetWidget = kernel.global[update.id];
-				if (targetWidget === undefined){
+				if (targetWidget === undefined) {
 					throw new Error("Cannot find a widget with id " + update.id + ".");
 				}
-				
+
 				// update target widget model attributes
-				for(var attr in update){
-					// skip id attribute 
-					if (attr != "id"){
-						targetWidget.model.set(attr, update[attr]);						
+				for ( var attr in update) {
+					// skip id attribute
+					if (attr != "id") {
+						targetWidget.model.set(attr, update[attr]);
 					}
 				}
 			});
@@ -171,8 +189,11 @@ define([ "dojo/_base/declare", "dojo/_base/kernel", "dojo/_base/lang",
 		 * @return String Widget's model serialized to a Json string
 		 */
 		serializeModel : function() {
-			this.model["id"] = this.id;
-			return json.stringify(this.model);
+
+			return json.stringify({
+				id : this.id,
+				model : this.model
+			});
 		},
 
 		/**
@@ -185,6 +206,26 @@ define([ "dojo/_base/declare", "dojo/_base/kernel", "dojo/_base/lang",
 			if (this.dijit) {
 				this.dijit.startup();
 			}
+		},
+
+		/**
+		 * Returns this or ancestor widget with matching type.
+		 * 
+		 * @param {String}
+		 *            type Value of declaredClass to match.
+		 * @return Widget This or ancestor widget with matching type.
+		 */
+		findAncestorOfType : function(type) {
+			var widget = null;
+			if (this.declaredClass == type) {
+				widget = this;
+			} else {
+				if (this.parent) {
+					widget = this.parent.findAncestorOfType(type);
+				}
+			}
+			return widget;
 		}
+
 	});
 });

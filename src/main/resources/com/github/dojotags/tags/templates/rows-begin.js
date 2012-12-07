@@ -3,4 +3,3 @@ var $widgetId$ = new Rows({
 	parent : $parentId$,
 	spacerHeight : "$spacerHeight$"
 });
-console.debug("Created row layout ", $widgetId$);

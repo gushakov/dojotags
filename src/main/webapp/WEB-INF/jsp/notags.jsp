@@ -24,35 +24,42 @@ Page
  -->
 	<script>
 		require([ "dojo/ready", "dojotags/Page", "dojotags/Button", "dojotags/Label",
-				"dojotags/Rows" ], function(ready, Page, Button, Label, Rows) {
+				"dojotags/Rows", "dojotags/Input", "dojotags/Form" ], function(ready, Page, Button,
+				Label, Rows, Input, Form) {
 
-			var page_1354615034125 = new Page({
-				id : "page_1354615034125"
+			var pag1 = new Page({
+				id : "pag1"
 			});
-			console.debug("Created page ", page_1354615034125);
+			console.debug("Created page ", pag1);
+
+			var frm1 = new Form({
+				id : "frm1",
+				parent : pag1
+			});
+
+			var row1 = new Rows({
+				id : "row1",
+				parent : frm1
+			});
+						
+			var inp1 = new Input({
+				id : "inp1",
+				parent : row1,
+				value : "toto",
+				path : "firstName"
+			});
+
+			var inp2 = new Input({
+				id : "inp2",
+				parent : row1,
+				value : "tata",
+				path : "lastName"
+			});
 
 			ready(function() {
 				console.debug("DOM is ready");
-				page_1354615034125.startup();
+				pag1.startup();
 			});
 
-			var rows_1354615034131 = new Rows({
-				id : "rows_1354615034131",
-				parent : page_1354615034125,
-				spacerHeight : ""
-			});
-			console.debug("Created row layout ", rows_1354615034131);
-			var lbl1 = new Label({
-				id : "label_1354615034134",
-				parent : rows_1354615034131,
-				text : "toto"
-			});
-			console.debug("Created label ", label_1354615034134);
-			var button_1354615034137 = new Button({
-				id : "button_1354615034137",
-				parent : rows_1354615034131,
-				label : "toto"
-			});
-			console.debug("Created button ", button_1354615034137);
 		});
 	</script>
