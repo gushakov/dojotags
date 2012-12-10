@@ -49,14 +49,14 @@
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>${jackson.version}</version>
-			<scope>runtime</scope>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${slf4j.version}</version>
-			<scope>runtime</scope>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
