@@ -18,10 +18,14 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/on", "dojo/keys",
 			}, node);
 
 			on(dijit, "keypress", lang.hitch(this, function(evt) {
-				if (this.onEnter) {
-					if (this.onEnter == "default" && evt.charOrCode == keys.ENTER) {
-						console.debug(this.id, " enter");
+				if (this.onEnter && evt.charOrCode == keys.ENTER) {
+					if (this.onEnter == "default") {
+						console.debug(this.id, " enter (default)");
 						this.processEvent(this, "enter");
+					}
+					else if (this.onEnter == "submit") {
+					    console.debug(this.id, " enter (submit)");
+					    this.processEvent(this.findAncestorOrType("dojotags.Form"), "submit");
 					}
 				}
 			}));

@@ -1,5 +1,4 @@
 <%@taglib prefix="d" uri="dojotags"%>
-<%--@ taglib prefix="g" uri="http://granule.com/tags"--%>
 
 <html>
 <head>
@@ -12,7 +11,11 @@
 
 <body class="${dijitTheme}">
 	<d:page>
-	<d:input value="george" onEnter=""/>
+
+	<d:form>
+	<d:input value="hello world"/>
+	</d:form>
+
 	</d:page>
 </body>
 </html>
