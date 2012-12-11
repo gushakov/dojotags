@@ -38,7 +38,7 @@ public class PageTag extends AbstractJspBodyWidgetTag {
 	}
 
 	/**
-	 * Overrides default to substitute palaceholders in Dojo require statement
+	 * Overrides default to substitute placeholders in Dojo require statement
 	 * (modules and arguments) with values constructed from the names of the
 	 * widget tags in {@code nestedTags} map.
 	 */

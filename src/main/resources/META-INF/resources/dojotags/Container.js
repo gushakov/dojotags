@@ -30,6 +30,25 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/_base/array", "dojo/dom-
 			domConstruct.place(node, this.domNode, "last");
 		},
 
+        findDescendantsOfType: function(type){
+            var list = [];        //test
+            console.debug("test");
+            // process children widgets
+            array.forEach(this.widgets, lang.hitch(this, function(widget){
+                if (widget.declaredClass == type){
+                    list.push(widget);
+                    // process descendants
+                    if (widget.widgets){
+                        array.forEach(this.findDescendantsOfType(type), function(w){
+                            list.push(w);
+                        });
+                    }
+                }
+            }));
+
+            return list;
+        },
+
 		startup : function() {
 			array.forEach(this.widgets, lang.hitch(this, function(widget) {
 				if (widget.dijit) {

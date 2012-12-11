@@ -9,13 +9,6 @@ define([ "dojo/_base/declare", "dojo/_base/array", "dojo/Stateful", "dojox/mvc/s
 		 */
 		errors : null,
 
-		/**
-		 * List of widgets of type Error.
-		 * 
-		 * @type Widget[]
-		 */
-		errorWidgets : null,
-
 		initialize : function(args) {
 			this.inherited(arguments);
 			this.errors = new Stateful({});
@@ -54,19 +47,13 @@ define([ "dojo/_base/declare", "dojo/_base/array", "dojo/Stateful", "dojox/mvc/s
 			}
 			this.errors.set(widget.path, widget.model.get("value"));
 			sync(widget.model, "value", this.errors, widget.path);
-			this.errorWidgets,push(widget);
 		},
 
 		processCallback : function(event, response) {
 			this.inherited(arguments);
-			// clear old errors
-			var global = kernel.global;
-			for ( var widget in global) {
-				console.debug("==>", widget);
-				if (widget.declaredClass == "dojotags.Error") {
-					widget.model.set("value", "");
-				}
-			}
+
+			//TODO: clear the previous errors
+
 			// set new errors
 			var errs = response.errors;
 			console.debug("Processing form errors ", errs);

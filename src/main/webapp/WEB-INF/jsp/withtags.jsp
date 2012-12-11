@@ -24,7 +24,7 @@
 
 <body class="${dijitTheme}">
 
-	<d:page>
+	<d:page widgetId="pag1">
 		<d:form widgetId="frm1" widgetClass="form">
 			<d:rows>
 				<d:flow>
