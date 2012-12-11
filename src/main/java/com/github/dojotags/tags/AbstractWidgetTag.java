@@ -29,6 +29,8 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 
 	protected String widgetId;
 
+	protected String widgetClass;
+
 	protected boolean assertHasParentTag;
 
 	public AbstractWidgetTag() {
@@ -47,6 +49,10 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 		this.widgetId = widgetId;
 	}
 
+	public void setWidgetClass(String widgetClass) {
+		this.widgetClass = widgetClass;
+	}
+
 	public boolean isAssertHasParentTag() {
 		return assertHasParentTag;
 	}
@@ -58,15 +64,13 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 	@Override
 	public int doStartTag() throws JspException {
 		int result = super.doStartTag();
-
-		// add widget id attribute
-		if (widgetId != null && !widgetId.matches("\\s*")) {
-			widgetId = widgetId.trim();
-		} else {
+		if (widgetId == null) {
 			// create a unique widget id attribute automatically
 			widgetId = WidgetUtils.getWidgetGuid(widgetName);
 		}
 		templateAttrs.put("widgetId", widgetId);
+
+		templateAttrs.put("widgetClass", widgetClass);
 
 		// do for all tags nested in a page tag
 		if (!widgetName.equals(PageTag.WIDGET_NAME)) {

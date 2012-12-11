@@ -27,17 +27,10 @@ public class FlowTag extends AbstractJspBodyWidgetTag {
 	@Override
 	public int doStartTag() throws JspException {
 		int result = super.doStartTag();
-		if (spacerWidth != null) {
-			spacerWidth = spacerWidth.trim();
-			if (!Assert.assertValidCssUnitOfMeasure(spacerWidth)) {
-				throw new JspException(new IllegalArgumentException("Spacer "
-						+ spacerWidth
-						+ " width is not a CSS unit of measure."));
-			}
-		} else {
+		if (!Assert.assertValidCssUnitOfMeasure(spacerWidth)) {
 			spacerWidth = "";
 		}
-		templateAttrs.put("spacerWidth", spacerWidth);
+		templateAttrs.put("spacerWidth", spacerWidth);			
 		return result;
 	}
 

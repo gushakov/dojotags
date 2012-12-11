@@ -1,14 +1,13 @@
 define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/on", "dojo/keys",
-		"dijit/form/ValidationTextBox", "dojox/mvc/at", "./Widget", ], function(declare, lang, on,
-		keys, ValidationTextBox, at, Widget) {
-	return declare("dojotags.Input", [ Widget ], {
+		"dijit/form/ValidationTextBox", "dojox/mvc/at", "./FormElement", ], function(declare, lang, on,
+		keys, ValidationTextBox, at, FormElement) {
+	return declare("dojotags.Input", [ FormElement ], {
 
 		onEnter : null,
-
+		
 		initialize : function(args) {
-			this.model.set("value", args.value || "");
-			this.model.set("path", args.path || "");
-			this.onEnter = args.onEnter || "default";
+			this.inherited(arguments);
+			this.onEnter = args.onEnter || "ignore";
 		},
 
 		createDijit : function(node) {
@@ -21,11 +20,10 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/on", "dojo/keys",
 				if (this.onEnter && evt.charOrCode == keys.ENTER) {
 					if (this.onEnter == "default") {
 						console.debug(this.id, " enter (default)");
-						this.processEvent(this, "enter");
-					}
-					else if (this.onEnter == "submit") {
-					    console.debug(this.id, " enter (submit)");
-					    this.processEvent(this.findAncestorOrType("dojotags.Form"), "submit");
+						this.processEvent("enter");
+					} else if (this.onEnter == "submit") {
+						console.debug(this.id, " enter (submit)");
+						this.form.processEvent("submit");
 					}
 				}
 			}));

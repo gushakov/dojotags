@@ -36,9 +36,7 @@ public class ConfigTag extends AbstractTemplatedTag {
 	@Override
 	public int doStartTag() throws JspException {
 		int result = super.doStartTag();
-
-		// add theme attribute
-		if (theme == null || theme.matches("\\s*")) {
+		if (theme == null) {
 			theme = Constants.THEME_DEFAULT;
 			logger.debug("Using default Dojo theme {}", theme);
 		} else {

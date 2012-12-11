@@ -29,12 +29,6 @@ public class LabelTag extends AbstractWidgetTag {
 	@Override
 	public int doStartTag() throws JspException {
 		int result = super.doStartTag();
-		// add text attribute
-		if (text != null) {
-			text = text.trim();
-		} else {
-			text = "";
-		}
 		templateAttrs.put("text", text);
 		return result;
 	}

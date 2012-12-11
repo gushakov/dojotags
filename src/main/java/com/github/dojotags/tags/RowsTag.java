@@ -32,14 +32,7 @@ public class RowsTag extends AbstractJspBodyWidgetTag {
 	@Override
 	public int doStartTag() throws JspException {
 		int result = super.doStartTag();
-		if (spacerHeight != null) {
-			spacerHeight = spacerHeight.trim();
-			if (!Assert.assertValidCssUnitOfMeasure(spacerHeight)) {
-				throw new JspException(new IllegalArgumentException("Spacer "
-						+ spacerHeight
-						+ " height is not a CSS unit of measure."));
-			}
-		} else {
+		if (!Assert.assertValidCssUnitOfMeasure(spacerHeight)) {
 			spacerHeight = "";
 		}
 		templateAttrs.put("spacerHeight", spacerHeight);

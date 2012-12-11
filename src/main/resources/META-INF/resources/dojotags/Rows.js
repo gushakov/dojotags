@@ -15,7 +15,9 @@ define([ "dojo/_base/declare", "dojo/_base/window", "dojo/dom-construct", "./Con
 					domConstruct.place(node, div, "last");
 					// add spacer div
 					domConstruct.create("div", {
-						style : "height: " + this.spacerHeight + ";"
+						style : {
+							height : this.spacerHeight
+						}
 					}, this.domNode);
 				}
 

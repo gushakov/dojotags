@@ -30,4 +30,18 @@ public class TestController extends AbstractDojoTagsController {
 		return response;
 	}
 
+	@WidgetEventMapping(widgetId = "frm1", event = "submit")
+	public Response formSubmit(Widget widgetModel) {
+		Response response = new Response();
+		String firstName = (String) widgetModel.getModel().get("firstName");
+		
+		logger.debug("Processing from submit: firstName {}", firstName);
+		
+		if(! firstName.matches("\\p{Alpha}+")){
+			response.getErrors().put("firstName", "Name should contain letter characters only.");			
+		}
+		
+		return response;
+	}
+
 }

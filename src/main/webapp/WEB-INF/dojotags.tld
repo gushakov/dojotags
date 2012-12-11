@@ -33,6 +33,12 @@
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
+			<description>CSS Class to be applied to the widget DOM element.</description>
+			<name>widgetClass</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
 			<description>Dijit theme name: "claro", "tundra", "nihilo".</description>
 			<name>theme</name>
 			<required>false</required>
@@ -48,6 +54,12 @@
 		<attribute>
 			<description>Widget id, must be unique in the global scope.</description>
 			<name>widgetId</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>CSS Class to be applied to the widget DOM element.</description>
+			<name>widgetClass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -71,6 +83,12 @@
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
+			<description>CSS Class to be applied to the widget DOM element.</description>
+			<name>widgetClass</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
 			<description>Width of the spacer between the elements of the flow.</description>
 			<name>spacerWidth</name>
 			<required>false</required>
@@ -89,6 +107,12 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
         </attribute>
+        <attribute>
+			<description>CSS Class to be applied to the widget DOM element.</description>
+			<name>widgetClass</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
     </tag>
 
 	<tag>
@@ -99,6 +123,12 @@
 		<attribute>
 			<description>Widget id, must be unique in the global scope.</description>
 			<name>widgetId</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>CSS Class to be applied to the widget DOM element.</description>
+			<name>widgetClass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -122,6 +152,12 @@
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
+			<description>CSS Class to be applied to the widget DOM element.</description>
+			<name>widgetClass</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
 			<description>Text to be displayed as a label for the button.</description>
 			<name>label</name>
 			<required>false</required>
@@ -136,13 +172,25 @@
 	</tag>
 
 	<tag>
-		<description>Generates a Input widget declaration. Must be embedded in a container widget.</description>
+		<description>Generates an Input widget declaration. Must be embedded in a container widget.</description>
 		<name>input</name>
 		<tag-class>com.github.dojotags.tags.InputTag</tag-class>
 		<body-content>empty</body-content>
 		<attribute>
 			<description>Widget id, must be unique in the global scope.</description>
 			<name>widgetId</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>CSS Class to be applied to the widget DOM element.</description>
+			<name>widgetClass</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Name of the Form attribute to bind this input's value to.</description>
+			<name>path</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -159,5 +207,29 @@
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 	</tag>
-
+	
+	<tag>
+		<description>Generates an Error widget declaration. Must be embedded in a container widget.</description>
+		<name>error</name>
+		<tag-class>com.github.dojotags.tags.ErrorTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>Widget id, must be unique in the global scope.</description>
+			<name>widgetId</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>CSS Class to be applied to the widget DOM element.</description>
+			<name>widgetClass</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Name of the Form attribute to bind this input's value to.</description>
+			<name>path</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
 </taglib>

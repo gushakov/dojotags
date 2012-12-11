@@ -1,6 +1,6 @@
-var $widgetId$ = new Rows({
+var $widgetId$ = new Error({
 	id : "$widgetId$",
 	widgetClass : "$widgetClass$",
 	parent : $parentId$,
-	spacerHeight : "$spacerHeight$"
+	path : "$path$",
 });

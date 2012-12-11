@@ -40,24 +40,7 @@ public class ButtonTag extends AbstractWidgetTag {
 	@Override
 	public int doStartTag() throws JspException {
 		int result = super.doStartTag();
-		if (label != null) {
-			label = label.trim();
-		} else {
-			label = "";
-		}
 		templateAttrs.put("label", label);
-		if (onClick != null) {
-			if (onClick.trim().equals("submit")) {
-				onClick = onClick.trim();
-			} else {
-				logger.warn(
-						"Unknown value for onClick attribute {}, setting attribute value to default instead.",
-						onClick);
-				onClick = "default";
-			}
-		} else {
-			onClick = "default";
-		}
 		templateAttrs.put("onClick", onClick);
 		return result;
 	}

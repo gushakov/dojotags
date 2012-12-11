@@ -1,11 +1,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Page without tags</title>
-
-<!-- 
-	Dojo configuration
- -->
+<title>Dojo Tags Demo (no tags)</title>
 
 <link rel="stylesheet" type="text/css"
 	href="/resources/dijit/themes/claro/claro.css">
@@ -15,17 +11,20 @@
 	data-dojo-config="async: true,
 	packages: [{name: 'dojotags', location: '/resources/dojotags'}]"></script>
 
+<style type="text/css">
+.errors {
+	color: maroon;
+}
+</style>
+
 </head>
 
 <body class="claro">
 
-	<!-- 
-Page
- -->
 	<script>
 		require([ "dojo/ready", "dojotags/Page", "dojotags/Button", "dojotags/Label",
-				"dojotags/Rows", "dojotags/Input", "dojotags/Form" ], function(ready, Page, Button,
-				Label, Rows, Input, Form) {
+				"dojotags/Rows", "dojotags/Input", "dojotags/Form", "dojotags/Error" ], function(
+				ready, Page, Button, Label, Rows, Input, Form, Error) {
 
 			var pag1 = new Page({
 				id : "pag1"
@@ -37,23 +36,26 @@ Page
 				parent : pag1
 			});
 
-			var row1 = new Rows({
-				id : "row1",
-				parent : frm1
-			});
-						
 			var inp1 = new Input({
 				id : "inp1",
-				parent : row1,
+				parent : frm1,
 				value : "toto",
-				path : "firstName"
+				path : "firstName",
+				onEnter : "ignore"
 			});
 
-			var inp2 = new Input({
-				id : "inp2",
-				parent : row1,
-				value : "tata",
-				path : "lastName"
+			var btn2 = new Button({
+				id : "btn2",
+				parent : frm1,
+				label : "Button",
+				onClick : "submit"
+			});
+
+			var err1 = new Error({
+				id : "err1",
+				parent : frm1,
+				path : "firstName",
+				errorClass : "errors"
 			});
 
 			ready(function() {
