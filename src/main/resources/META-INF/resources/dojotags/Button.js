@@ -1,5 +1,5 @@
 define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/on", "dijit/form/Button", "dojox/mvc/at",
-		"./FormElement", ], function(declare, lang, on, Button, at, FormElement) {
+		"./FormElement" ], function(declare, lang, on, Button, at, FormElement) {
 	return declare("dojotags.Button", [ FormElement ], {
 
 		onClick : null,
