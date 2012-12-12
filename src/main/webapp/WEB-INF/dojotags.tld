@@ -1,237 +1,243 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
-        version="2.0">
-    <description>Library of JSP tags for Dojo MVC.</description>
-    <tlib-version>2.0</tlib-version>
-    <short-name>dojotags</short-name>
-    <uri>dojotags</uri>
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+	<description>Library of JSP tags for Dojo MVC.</description>
+	<tlib-version>2.0</tlib-version>
+	<short-name>dojotags</short-name>
+	<uri>dojotags</uri>
 
-    <tag>
-        <description>Dojo configuration directive. Must be specified inside head html element.
+	<tag>
+		<description>Dojo configuration directive. Must be specified inside head html element.
         </description>
-        <name>config</name>
-        <tag-class>com.github.dojotags.tags.ConfigTag</tag-class>
-        <body-content>empty</body-content>
-        <attribute>
-            <description>Dijit theme name: "claro", "tundra", "nihilo".</description>
-            <name>theme</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-    </tag>
+		<name>config</name>
+		<tag-class>com.github.dojotags.tags.ConfigTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>Dijit theme name: "claro", "tundra", "nihilo".</description>
+			<name>theme</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
 
-    <tag>
-        <description>Generates a Page widget scriplet.</description>
-        <name>page</name>
-        <tag-class>com.github.dojotags.tags.PageTag</tag-class>
-        <body-content>JSP</body-content>
-        <attribute>
-            <description>Widget id, must be unique in the global scope.</description>
-            <name>widgetId</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>CSS Class to be applied to the widget DOM element.</description>
-            <name>widgetClass</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>Dijit theme name: "claro", "tundra", "nihilo".</description>
-            <name>theme</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-    </tag>
+	<tag>
+		<description>Generates a Page widget scriplet.</description>
+		<name>page</name>
+		<tag-class>com.github.dojotags.tags.PageTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>Widget id, must be unique in the global scope.</description>
+			<name>widgetId</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>CSS Class to be applied to the widget DOM element.</description>
+			<name>widgetClass</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Dijit theme name: "claro", "tundra", "nihilo".</description>
+			<name>theme</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
 
-    <tag>
-        <description>Generates Rows widget container which lays out its children widgets vertically in rows.
+	<tag>
+		<description>Generates Rows widget container which lays out its children widgets vertically in rows.
         </description>
-        <name>rows</name>
-        <tag-class>com.github.dojotags.tags.RowsTag</tag-class>
-        <body-content>JSP</body-content>
-        <attribute>
-            <description>Widget id, must be unique in the global scope.</description>
-            <name>widgetId</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>CSS Class to be applied to the widget DOM element.</description>
-            <name>widgetClass</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>Height of the spacer between the rows.</description>
-            <name>spacerHeight</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-    </tag>
+		<name>rows</name>
+		<tag-class>com.github.dojotags.tags.RowsTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>Widget id, must be unique in the global scope.</description>
+			<name>widgetId</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>CSS Class to be applied to the widget DOM element.</description>
+			<name>widgetClass</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Height of the spacer between the rows.</description>
+			<name>spacerHeight</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
 
-    <tag>
-        <description>Generates Flows widget container which lays out its children widgets horizontally in a flow.
+	<tag>
+		<description>Generates Flows widget container which lays out its children widgets horizontally in a flow.
         </description>
-        <name>flow</name>
-        <tag-class>com.github.dojotags.tags.FlowTag</tag-class>
-        <body-content>JSP</body-content>
-        <attribute>
-            <description>Page widget id, must be unique in the global scope.</description>
-            <name>widgetId</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>CSS Class to be applied to the widget DOM element.</description>
-            <name>widgetClass</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>Width of the spacer between the elements of the flow.</description>
-            <name>spacerWidth</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-    </tag>
+		<name>flow</name>
+		<tag-class>com.github.dojotags.tags.FlowTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>Page widget id, must be unique in the global scope.</description>
+			<name>widgetId</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>CSS Class to be applied to the widget DOM element.</description>
+			<name>widgetClass</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Width of the spacer between the elements of the flow.</description>
+			<name>spacerWidth</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
 
-    <tag>
-        <description>Generates Form widget container.</description>
-        <name>form</name>
-        <tag-class>com.github.dojotags.tags.FormTag</tag-class>
-        <body-content>JSP</body-content>
-        <attribute>
-            <description>Page widget id, must be unique in the global scope.</description>
-            <name>widgetId</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>CSS Class to be applied to the widget DOM element.</description>
-            <name>widgetClass</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-    </tag>
+	<tag>
+		<description>Generates Form widget container.</description>
+		<name>form</name>
+		<tag-class>com.github.dojotags.tags.FormTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>Page widget id, must be unique in the global scope.</description>
+			<name>widgetId</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>CSS Class to be applied to the widget DOM element.</description>
+			<name>widgetClass</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Class name for the form backing object.</description>
+			<name>formClass</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
 
-    <tag>
-        <description>Generates a Label widget declaration. Must be embedded in a container widget.</description>
-        <name>label</name>
-        <tag-class>com.github.dojotags.tags.LabelTag</tag-class>
-        <body-content>empty</body-content>
-        <attribute>
-            <description>Widget id, must be unique in the global scope.</description>
-            <name>widgetId</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>CSS Class to be applied to the widget DOM element.</description>
-            <name>widgetClass</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>Text to be displayed.</description>
-            <name>text</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-    </tag>
+	<tag>
+		<description>Generates a Label widget declaration. Must be embedded in a container widget.</description>
+		<name>label</name>
+		<tag-class>com.github.dojotags.tags.LabelTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>Widget id, must be unique in the global scope.</description>
+			<name>widgetId</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>CSS Class to be applied to the widget DOM element.</description>
+			<name>widgetClass</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Text to be displayed.</description>
+			<name>text</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
 
-    <tag>
-        <description>Generates a Button widget declaration. Must be embedded in a container widget.</description>
-        <name>button</name>
-        <tag-class>com.github.dojotags.tags.ButtonTag</tag-class>
-        <body-content>empty</body-content>
-        <attribute>
-            <description>Widget id, must be unique in the global scope.</description>
-            <name>widgetId</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>CSS Class to be applied to the widget DOM element.</description>
-            <name>widgetClass</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>Text to be displayed as a label for the button.</description>
-            <name>label</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>Type of onClick event triggered: default or submit.</description>
-            <name>onClick</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-    </tag>
+	<tag>
+		<description>Generates a Button widget declaration. Must be embedded in a container widget.</description>
+		<name>button</name>
+		<tag-class>com.github.dojotags.tags.ButtonTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>Widget id, must be unique in the global scope.</description>
+			<name>widgetId</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>CSS Class to be applied to the widget DOM element.</description>
+			<name>widgetClass</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Text to be displayed as a label for the button.</description>
+			<name>label</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Type of onClick event triggered: default or submit.</description>
+			<name>onClick</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
 
-    <tag>
-        <description>Generates an Input widget declaration. Must be embedded in a container widget.</description>
-        <name>input</name>
-        <tag-class>com.github.dojotags.tags.InputTag</tag-class>
-        <body-content>empty</body-content>
-        <attribute>
-            <description>Widget id, must be unique in the global scope.</description>
-            <name>widgetId</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>CSS Class to be applied to the widget DOM element.</description>
-            <name>widgetClass</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>Name of the Form attribute to bind this input's value to.</description>
-            <name>path</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>Value to be assigned to the input element.</description>
-            <name>value</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>Type of onEnter event triggered: default or submit.</description>
-            <name>onEnter</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-    </tag>
+	<tag>
+		<description>Generates an Input widget declaration. Must be embedded in a container widget.</description>
+		<name>input</name>
+		<tag-class>com.github.dojotags.tags.InputTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>Widget id, must be unique in the global scope.</description>
+			<name>widgetId</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>CSS Class to be applied to the widget DOM element.</description>
+			<name>widgetClass</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Name of the Form attribute to bind this input's value to.</description>
+			<name>path</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Value to be assigned to the input element.</description>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Type of onEnter event triggered: default or submit.</description>
+			<name>onEnter</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
 
-    <tag>
-        <description>Generates an Error widget declaration. Must be embedded in a container widget.</description>
-        <name>error</name>
-        <tag-class>com.github.dojotags.tags.ErrorTag</tag-class>
-        <body-content>empty</body-content>
-        <attribute>
-            <description>Widget id, must be unique in the global scope.</description>
-            <name>widgetId</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>CSS Class to be applied to the widget DOM element.</description>
-            <name>widgetClass</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>Name of the Form attribute to bind this input's value to.</description>
-            <name>path</name>
-            <required>true</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-    </tag>
+	<tag>
+		<description>Generates an Error widget declaration. Must be embedded in a container widget.</description>
+		<name>error</name>
+		<tag-class>com.github.dojotags.tags.ErrorTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>Widget id, must be unique in the global scope.</description>
+			<name>widgetId</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>CSS Class to be applied to the widget DOM element.</description>
+			<name>widgetClass</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Name of the Form attribute to bind this input's value to.</description>
+			<name>path</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
 </taglib>

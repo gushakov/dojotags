@@ -4,12 +4,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 
-import com.github.dojotags.model.Button;
-import com.github.dojotags.model.Label;
-import com.github.dojotags.model.Response;
-import com.github.dojotags.model.Widget;
+import com.github.dojotags.json.Response;
+import com.github.dojotags.test.form.Person;
 import com.github.dojotags.web.AbstractDojoTagsController;
 import com.github.dojotags.web.annotation.WidgetEventMapping;
+import com.github.dojotags.widgets.Button;
+import com.github.dojotags.widgets.Label;
+import com.github.dojotags.widgets.Widget;
 
 @Controller
 public class TestController extends AbstractDojoTagsController {
@@ -17,10 +18,10 @@ public class TestController extends AbstractDojoTagsController {
 			.getLogger(TestController.class);
 
 	@WidgetEventMapping(widgetId = "btn1", event = "click")
-	public Response changeLabelText(Widget widgetModel) {
+	public Response changeLabelText(Widget widget) {
 		logger.debug("Processing click event on btn1 with widget model {}",
-				widgetModel);
-		Button buttonModel = (Button) widgetModel;
+				widget);
+		Button buttonModel = (Button) widget;
 		Response response = new Response();
 		Label labelUpdate = new Label();
 		labelUpdate.setId("lbl1");
@@ -31,16 +32,14 @@ public class TestController extends AbstractDojoTagsController {
 	}
 
 	@WidgetEventMapping(widgetId = "frm1", event = "submit")
-	public Response formSubmit(Widget widgetModel) {
+	public Response formSubmit(Person form) {
 		Response response = new Response();
-		String firstName = (String) widgetModel.getModel().get("firstName");
-		
+		String firstName = form.getFirstName();
 		logger.debug("Processing from submit: firstName {}", firstName);
-		
-		if(! firstName.matches("\\p{Alpha}+")){
-			response.getErrors().put("firstName", "Name should contain letter characters only.");			
+		if (!firstName.matches("\\p{Alpha}+")) {
+			response.getErrors().put("firstName",
+					"Name should contain letter characters only.");
 		}
-		
 		return response;
 	}
 

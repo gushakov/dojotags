@@ -1,23 +1,27 @@
-package com.github.dojotags.model;
+package com.github.dojotags.widgets;
 
-public class Input extends Widget {
+public class Input extends FormElement {
 
 	private static final long serialVersionUID = 1L;
 
+	private String value;
+	
+	private String path;
+
 	public String getValue() {
-		return (String) model.get("value");
+		return value;
 	}
 
 	public void setValue(String value) {
-		model.put("value", value);
+		this.value = value;
 	}
 
 	public String getPath() {
-		return (String) model.get("path");
+		return path;
 	}
 
 	public void setPath(String path) {
-		model.put("path", path);
+		this.path = path;
 	}
 
 }

@@ -1,14 +1,16 @@
-package com.github.dojotags.model;
+package com.github.dojotags.widgets;
 
 public class Label extends Widget {
 	private static final long serialVersionUID = 1L;
 
+	private String text;
+
 	public String getText() {
-		return (String) model.get("text");
+		return text;
 	}
 
 	public void setText(String text) {
-		model.put("text", text);
+		this.text = text;
 	}
 	
 }

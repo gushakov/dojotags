@@ -1,5 +1,6 @@
 var $widgetId$ = new Form({
-    id : "$widgetId$",
+	id : "$widgetId$",
 	widgetClass : "$widgetClass$",
-    parent : $parentId$
+	formClass : "$formClass$",
+	parent : $parentId$
 });

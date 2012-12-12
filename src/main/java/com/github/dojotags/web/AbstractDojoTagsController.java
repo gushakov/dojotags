@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.github.dojotags.model.Response;
-import com.github.dojotags.model.Widget;
+import com.github.dojotags.json.Response;
 import com.github.dojotags.web.annotation.WidgetBody;
 import com.github.dojotags.web.annotation.WidgetEventMapping;
 
@@ -26,10 +25,10 @@ public abstract class AbstractDojoTagsController {
 	@RequestMapping(value = "/widget/{widgetId}/event/{event}")
 	public @ResponseBody
 	Response processWidgetEvent(@PathVariable("widgetId") String widgetId,
-			@PathVariable("event") String event, @WidgetBody Widget widgetModel) {
+			@PathVariable("event") String event, @WidgetBody Object widget) {
 		logger.debug(
 				"Processing dojotags Ajax request with widget id {}, event {} and widget model {}",
-				new Object[] { widgetId, event, widgetModel });
+				new Object[] { widgetId, event, widget });
 
 		Response data = null;
 
@@ -44,7 +43,8 @@ public abstract class AbstractDojoTagsController {
 				continue;
 			}
 
-			String annotWidgetId = (String) AnnotationUtils.getValue(annot, "widgetId");
+			String annotWidgetId = (String) AnnotationUtils.getValue(annot,
+					"widgetId");
 			String annotEvent = (String) AnnotationUtils.getValue(annot,
 					"event");
 			if (!annotWidgetId.equals(widgetId) || !annotEvent.equals(event)) {
@@ -57,7 +57,7 @@ public abstract class AbstractDojoTagsController {
 
 			// execute the handler method
 			try {
-				data = (Response) method.invoke(this, widgetModel);
+				data = (Response) method.invoke(this, widget);
 				break;
 			} catch (IllegalArgumentException e) {
 				logger.error(e.getMessage(), e);

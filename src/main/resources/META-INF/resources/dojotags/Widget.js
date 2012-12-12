@@ -5,18 +5,19 @@ define(
 				when, Stateful, utils) {
 			return declare("dojotags.Widget", [], {
 
-                /**
-                 * Id of the widget, should be unique in the global scope.
-                 *
-                 * @type {String}
-                 */
+				/**
+				 * Id of the widget, should be unique in the global scope.
+				 * 
+				 * @type {String}
+				 */
 				id : null,
-				
+
 				/**
 				 * CSS class of the root DOM node for this widget.
+				 * 
 				 * @type String
 				 */
-				widgetClass: null,
+				widgetClass : null,
 
 				/**
 				 * Model map for this widget. Will be serialized upon Ajax
@@ -55,11 +56,12 @@ define(
 				 *            args.parent Parent widget of this widget
 				 */
 
-
-                /**
-                 * Initializes this widget and registers it in the global scope.
-                 * @param args {Object}
-                 */
+				/**
+				 * Initializes this widget and registers it in the global scope.
+				 * 
+				 * @param args
+				 *            {Object}
+				 */
 				constructor : function(args) {
 					if (args.id === undefined) {
 						throw new Error("Widget id cannot be null.");
@@ -71,7 +73,7 @@ define(
 
 					this.id = args.id;
 					var widgetClass = this.widgetClass = args.widgetClass;
-					
+
 					this.model = new Stateful({});
 
 					// if the parent widget was specified check that it is
@@ -89,10 +91,10 @@ define(
 					this.initialize(args);
 
 					// create a dom node and a dijit for this widget
-					
+
 					var node = this.domNode = domConstruct.create("div", null);
-					if (widgetClass){
-						domAttr.set(node, "class", this.widgetClass);						
+					if (widgetClass) {
+						domAttr.set(node, "class", this.widgetClass);
 					}
 					this.createDijit(node);
 
@@ -105,8 +107,8 @@ define(
 				 * initialization before the creation of the dijit for this
 				 * widget.
 				 * 
-				 * @param args {Object}
-				 *            Constructor arguments
+				 * @param args
+				 *            {Object} Constructor arguments
 				 */
 				initialize : function(args) {
 					// nothing by default
@@ -116,7 +118,8 @@ define(
 				 * Subclasses should implement to create a Dojo dijit
 				 * representing this widget.
 				 * 
-				 * @param node {Object} DOM node for the dijit
+				 * @param node
+				 *            {Object} DOM node for the dijit
 				 */
 				createDijit : function(node) {
 					// not implemented
@@ -139,13 +142,17 @@ define(
 					when(utils.ajaxRequest({
 						path : uri,
 						data : this.serializeModel(),
-						headers : {
-							"Widget-Class" : this.declaredClass
-						}
+						headers : this.getRequestHeaders()
 					}), lang.hitch(this, function(response) {
 						this.processCallback(event, response);
 						return response;
 					}));
+				},
+
+				getRequestHeaders : function() {
+					return {
+						"Widget-Class" : this.declaredClass
+					};
 				},
 
 				/**
@@ -186,11 +193,10 @@ define(
 				 * @return String Widget's model serialized to a Json string
 				 */
 				serializeModel : function() {
-
-					return json.stringify({
-						id : this.id,
-						model : this.model
-					});
+//					var copy = lang.clone(this.model);
+//					copy["id"] = this.id;
+//					return json.stringify(copy);
+					return json.stringify(this.model);
 				},
 
 				/**
@@ -213,10 +219,6 @@ define(
 				 * @return Widget This or ancestor widget with matching type.
 				 */
 				findAncestorOfType : function(type) {
-					
-					
-					
-					
 					var widget = null;
 					if (this.declaredClass == type) {
 						widget = this;

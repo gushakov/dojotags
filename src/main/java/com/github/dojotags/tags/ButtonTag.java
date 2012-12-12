@@ -2,9 +2,6 @@ package com.github.dojotags.tags;
 
 import javax.servlet.jsp.JspException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Tag handler for {@code Button} widget.
  * 
@@ -13,8 +10,6 @@ import org.slf4j.LoggerFactory;
  */
 public class ButtonTag extends AbstractWidgetTag {
 	private static final long serialVersionUID = 1L;
-	private static final Logger logger = LoggerFactory
-			.getLogger(ButtonTag.class);
 	public static final String WIDGET_NAME = "button";
 	public static final String WIDGET_MODULE_NAME = "Button";
 
