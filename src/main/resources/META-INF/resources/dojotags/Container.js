@@ -30,21 +30,25 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/_base/array", "dojo/dom-
         },
 
         findDescendantsOfType: function (type) {
-            var list = null;
+        	var list = null;
             list = [];
+            // check if the right type 
+            if (this.declaredClass == type){
+            	list.push(this);
+            }
+            
             // process children widgets
             array.forEach(this.widgets, lang.hitch(this, function (widget) {
-                if (widget.declaredClass == type) {
-                    list.push(widget);
-                    // process descendants
-                    if (widget.instanceOf(dojotags.Container)) {
-                        array.forEach(widget.findDescendantsOfType(type), function (w) {
-                            list.push(w);
-                        });
-                    }
-                }
+            	if (widget.declaredClass == type){
+            		list.push(widget);
+            	}
+            	// recurse if child widget is a Container
+            	if (widget.isInstanceOf(dojotags.Container)){
+                	array.forEach(widget.findDescendantsOfType(type), function (w) {
+                        list.push(w);
+                    });            		
+            	}
             }));
-
             return list;
         },
 

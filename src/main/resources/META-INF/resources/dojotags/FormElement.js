@@ -1,4 +1,4 @@
-define([ "dojo/_base/declare", "./Widget", ], function(declare, Widget) {
+define([ "dojo/_base/declare", "./Widget"], function(declare, Widget) {
 	return declare("dojotags.FormElement", [ Widget ], {
 
 		/**
@@ -25,7 +25,7 @@ define([ "dojo/_base/declare", "./Widget", ], function(declare, Widget) {
 				if (args.path) {
 					this.path = args.path;
 					console.debug("Initializing binding to ", this.path);
-					if (this.declaredClass == "dojotags.Error") {
+					if (this.declaredClass == dojotags.Error.prototype.declaredClass) {
 						// bind path to the form's errors attribute
 						form.bindErrorPath(this);
 					} else {

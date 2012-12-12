@@ -68,7 +68,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!--
         <dependency>
             <groupId>local</groupId>
             <artifactId>dojotoolkit</artifactId>
@@ -76,7 +75,6 @@
             <scope>system</scope>
             <systemPath>${basedir}/lib/dojotoolkit-${dojo.version}.jar</systemPath>
         </dependency>
-            -->
 
         <!--
         <dependency>
@@ -87,6 +85,7 @@
             <systemPath>${basedir}/lib/granule-${granule.version}.jar</systemPath>
         </dependency>
             -->
+
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>

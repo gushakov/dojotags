@@ -1,5 +1,5 @@
 define([ "dojo/_base/declare", "dojo/_base/array", "dojo/Stateful", "dojox/mvc/sync",
-		"./Container" ], function(declare, array, Stateful, sync, Container) {
+		"./Container"], function(declare, array, Stateful, sync, Container) {
 	return declare("dojotags.Form", [ Container ], {
 
 		/**
@@ -52,7 +52,11 @@ define([ "dojo/_base/declare", "dojo/_base/array", "dojo/Stateful", "dojox/mvc/s
 		processCallback : function(event, response) {
 			this.inherited(arguments);
 
-			//TODO: clear the previous errors
+			// clear the previous errors
+			var old = this.findDescendantsOfType(dojotags.Error.prototype.declaredClass);
+			array.forEach(old, function(err) {
+				err.clear();
+			});
 
 			// set new errors
 			var errs = response.errors;

@@ -8,7 +8,7 @@ define(
                 /**
                  * Id of the widget, should be unique in the global scope.
                  *
-                 * @type String
+                 * @type {String}
                  */
 				id : null,
 				
@@ -213,6 +213,10 @@ define(
 				 * @return Widget This or ancestor widget with matching type.
 				 */
 				findAncestorOfType : function(type) {
+					
+					
+					
+					
 					var widget = null;
 					if (this.declaredClass == type) {
 						widget = this;
