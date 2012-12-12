@@ -5,11 +5,11 @@ define(
 				when, Stateful, utils) {
 			return declare("dojotags.Widget", [], {
 
-				/**
-				 * Id of the widget, should be unique in the global scope.
-				 * 
-				 * @type String
-				 */
+                /**
+                 * Id of the widget, should be unique in the global scope.
+                 *
+                 * @type String
+                 */
 				id : null,
 				
 				/**
@@ -54,6 +54,12 @@ define(
 				 * @param {Widget}
 				 *            args.parent Parent widget of this widget
 				 */
+
+
+                /**
+                 * Initializes this widget and registers it in the global scope.
+                 * @param args {Object}
+                 */
 				constructor : function(args) {
 					if (args.id === undefined) {
 						throw new Error("Widget id cannot be null.");
@@ -99,7 +105,7 @@ define(
 				 * initialization before the creation of the dijit for this
 				 * widget.
 				 * 
-				 * @param args
+				 * @param args {Object}
 				 *            Constructor arguments
 				 */
 				initialize : function(args) {
@@ -110,8 +116,7 @@ define(
 				 * Subclasses should implement to create a Dojo dijit
 				 * representing this widget.
 				 * 
-				 * @param {DomNode}
-				 *            node DOM node for the dijit
+				 * @param node {Object} DOM node for the dijit
 				 */
 				createDijit : function(node) {
 					// not implemented
