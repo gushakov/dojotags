@@ -69,6 +69,7 @@ define(
 				 *            {Object}
 				 */
 				constructor : function(args) {
+					var widgetClass, node;
 					if (args.id === undefined) {
 						throw new Error("Widget id cannot be null.");
 					}
@@ -79,7 +80,7 @@ define(
 
 					this.id = args.id;
 					this.bind = args.bind;
-					var widgetClass = this.widgetClass = args.widgetClass;
+					widgetClass = this.widgetClass = args.widgetClass;
 
 					this.model = new Stateful({});
 
@@ -99,7 +100,7 @@ define(
 
 					// create a dom node and a dijit for this widget
 
-					var node = this.domNode = domConstruct.create("div", null);
+					node = this.domNode = domConstruct.create("div", null);
 					if (widgetClass) {
 						domAttr.set(node, "class", this.widgetClass);
 					}
@@ -176,18 +177,19 @@ define(
 					console.debug("Processing callback for widget ", this, event, response);
 					// process updates
 					array.forEach(response.updates, function(update) {
+						var targetWidget, attr = null;
 						console.debug("Processing update: ", update);
 
 						// get target widget from the global scope
-						var targetWidget = kernel.global[update.id];
+						targetWidget = kernel.global[update.id];
 						if (targetWidget === undefined) {
 							throw new Error("Cannot find a widget with id " + update.id + ".");
 						}
 
 						// update target widget model attributes
-						for ( var attr in update) {
+						for ( attr in update) {
 							// skip id attribute
-							if (attr != "id") {
+							if (update.hasOwnProperty(attr) && attr !== "id"){
 								targetWidget.model.set(attr, update[attr]);
 							}
 						}
@@ -201,7 +203,7 @@ define(
 				 */
 				serializeModel : function() {
 					var copy = lang.clone(this.model);
-					copy["id"] = this.id;
+					copy.id = this.id;
 					return json.stringify(copy);
 				},
 
@@ -226,7 +228,7 @@ define(
 				 */
 				findAncestorOfType : function(type) {
 					var widget = null;
-					if (this.declaredClass == type) {
+					if (this.declaredClass === type) {
 						widget = this;
 					} else {
 						if (this.parent) {

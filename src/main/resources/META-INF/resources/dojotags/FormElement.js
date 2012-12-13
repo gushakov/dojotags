@@ -1,4 +1,4 @@
-define([ "dojo/_base/declare", "./Widget"], function(declare, Widget) {
+define([ "dojo/_base/declare", "./Widget" ], function(declare, Widget) {
 	return declare("dojotags.FormElement", [ Widget ], {
 
 		/**
@@ -25,7 +25,7 @@ define([ "dojo/_base/declare", "./Widget"], function(declare, Widget) {
 				if (args.path) {
 					this.path = args.path;
 					console.debug("Initializing binding to ", this.path);
-					if (this.declaredClass == dojotags.Error.prototype.declaredClass) {
+					if (this.declaredClass === dojotags.FormError.prototype.declaredClass) {
 						// bind path to the form's errors attribute
 						form.bindErrorPath(this);
 					} else {
@@ -35,6 +35,19 @@ define([ "dojo/_base/declare", "./Widget"], function(declare, Widget) {
 				}
 			}
 			this.model.set("value", args.value || "");
+		},
+
+		/**
+		 * Overrides to update the model's "value" attribute from the current
+		 * value of the "value" property of the dijit. Needed for some events,
+		 * such as "onkeypress" in ValidationTextBox dijit before the "onchange"
+		 * is triggered.
+		 */
+		processEvent : function(event, sync) {
+			if (this.dijit) {
+				this.model.set("value", this.dijit.getValue());
+			}
+			this.inherited(arguments);
 		}
 
 	});

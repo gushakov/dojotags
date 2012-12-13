@@ -12,3 +12,20 @@
 .error {
 	color: maroon;
 }
+
+.box {
+	background-color: silver;
+	width: 400px;
+}
+
+.line {
+	background-color: cornsilk;
+}
+
+.first {
+	background-color: lightblue;
+}
+
+.second {
+	background-color: gold;
+}

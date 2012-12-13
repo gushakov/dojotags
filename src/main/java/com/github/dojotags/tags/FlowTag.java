@@ -30,7 +30,7 @@ public class FlowTag extends AbstractJspBodyWidgetTag {
 		if (!WidgetUtils.assertValidCssUnitOfMeasure(spacer)) {
 			spacer = "";
 		}
-		templateAttrs.put("spacerWidth", spacer);
+		templateAttrs.put("spacer", spacer);
 		return result;
 	}
 

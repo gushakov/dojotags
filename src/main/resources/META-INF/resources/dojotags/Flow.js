@@ -11,7 +11,7 @@ define([ "dojo/_base/declare", "dojo/_base/window", "dojo/dom-construct", "dojo/
 		createDijit : function(node) {
 			domStyle.set(node, {
 				overflow : "auto",
-				width : "100%",
+				width : "100%"
 			});
 		},
 
@@ -20,13 +20,13 @@ define([ "dojo/_base/declare", "dojo/_base/window", "dojo/dom-construct", "dojo/
 			// node, separated by a spacer (except if this is the last widget)
 			domStyle.set(node, {
 				display : "block",
-				float : "left"
+				"float" : "left"
 			});
 			domConstruct.place(node, this.domNode, "last");
 			domConstruct.create("div", {
 				style : {
 					display : "block",
-					float : "left",
+					"float" : "left",
 					width : this.spacerWidth
 				},
 				innerHTML : "&nbsp;"

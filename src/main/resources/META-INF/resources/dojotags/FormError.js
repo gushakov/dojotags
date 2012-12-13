@@ -1,5 +1,5 @@
-define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/html", "./FormElement", ], function(
-		declare, lang, html, FormElement) {
+define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/html", "./FormElement" ], function(declare,
+		lang, html, FormElement) {
 	return declare("dojotags.FormError", [ FormElement ], {
 
 		initialize : function(args) {

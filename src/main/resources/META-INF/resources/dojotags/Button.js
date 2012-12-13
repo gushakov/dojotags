@@ -18,10 +18,10 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/on", "dijit/form/Button"
 
 			if (this.onClick) {
 				on(dijit, "click", lang.hitch(this, function() {
-					if (this.onClick == "default") {
+					if (this.onClick === "default") {
 						console.debug(this.id, " clicked (default)");
 						this.processEvent("click");
-					} else if (this.onClick == "submit") {
+					} else if (this.onClick === "submit") {
 						console.debug(this.id, " clicked (submit)");
 						this.form.processEvent("submit");
 					}

@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Dojo Tags Demo (with tags)</title>
+<title>Dojo Tags Demo</title>
 
 <d:config />
 

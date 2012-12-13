@@ -35,7 +35,7 @@ public class RowsTag extends AbstractJspBodyWidgetTag {
 		if (!WidgetUtils.assertValidCssUnitOfMeasure(spacer)) {
 			spacer = "";
 		}
-		templateAttrs.put("spacerHeight", spacer);
+		templateAttrs.put("spacer", spacer);
 		return result;
 	}
 }

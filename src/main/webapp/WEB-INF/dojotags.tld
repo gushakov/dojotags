@@ -39,8 +39,10 @@
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Dijit theme name: "claro", "tundra", "nihilo".</description>
-			<name>theme</name>
+			<description>Indicates whether the generated JavaScript should be compressed.
+			Defaults to "false".
+			</description>
+			<name>compress</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
