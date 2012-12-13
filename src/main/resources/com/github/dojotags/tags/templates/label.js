@@ -1,6 +1,6 @@
-var $widgetId$ = new Label({
-	id : "$widgetId$",
-	widgetClass : "$widgetClass$",
-	parent : $parentId$,
+var $wid$ = new Label({
+	id : "$wid$",
+	widgetClass : "$wclass$",
+	parent : $parent$,
 	text : "$text$"
 });

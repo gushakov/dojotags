@@ -1,6 +1,5 @@
-<script>		
 require([ "dojo/ready", "dojotags/Page" #requireModules# ], function(ready, Page #requireArgs#) {
-	var $widgetId$ = new Page({
-		id : "$widgetId$",
-		widgetClass : "$widgetClass$"
+	var $wid$ = new Page({
+		id : "$wid$",
+		widgetClass : "$wclass$"
 	});

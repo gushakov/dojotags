@@ -61,12 +61,6 @@ define(
 					sync(widget.model, "value", this.errors, widget.path);
 				},
 
-				getRequestHeaders : function() {
-					var headers = this.inherited(arguments);
-					headers["Form-Class"] = this.formClass;
-					return headers;
-				},
-
 				processCallback : function(event, response) {
 					this.inherited(arguments);
 
@@ -83,5 +77,14 @@ define(
 						this.errors.set(attr, errs[attr]);
 					}
 				},
+
+				/**
+				 * Override to serialize without the widget id, since it is not
+				 * expected to be present as an attribute of the form backing
+				 * object.
+				 */
+				serializeModel : function() {
+					return json.stringify(this.model);
+				}
 			});
 		});

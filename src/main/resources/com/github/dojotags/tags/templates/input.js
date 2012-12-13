@@ -1,8 +1,9 @@
-var $widgetId$ = new Input({
-	id : "$widgetId$",
-	widgetClass : "$widgetClass$",
-	parent : $parentId$,
+var $wid$ = new Input({
+	id : "$wid$",
+	bind : "$bind$",
+	widgetClass : "$wclass$",
+	parent : $parent$,
 	path: "$path$",
 	value : "$value$",
-	onEnter : "$onEnter$"
+	onEnter : "$onenter$"
 });

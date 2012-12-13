@@ -9,27 +9,42 @@ import com.github.dojotags.test.form.Person;
 import com.github.dojotags.web.AbstractDojoTagsController;
 import com.github.dojotags.web.annotation.WidgetEventMapping;
 import com.github.dojotags.widgets.Button;
+import com.github.dojotags.widgets.Input;
 import com.github.dojotags.widgets.Label;
-import com.github.dojotags.widgets.Widget;
 
 @Controller
 public class TestController extends AbstractDojoTagsController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(TestController.class);
 
+	// page 1
+
 	@WidgetEventMapping(widgetId = "btn1", event = "click")
-	public Response changeLabelText(Widget widget) {
-		logger.debug("Processing click event on btn1 with widget model {}",
-				widget);
-		Button buttonModel = (Button) widget;
+	public Response changeLabelText(Button button) {
+		logger.debug("Processing click event on button {}", button.getId());
 		Response response = new Response();
-		Label labelUpdate = new Label();
-		labelUpdate.setId("lbl1");
-		labelUpdate.setText("This label was updated by a click on a button "
-				+ buttonModel.getLabel());
-		response.getUpdates().add(labelUpdate);
+		Label label = new Label();
+		label.setId("lbl1");
+		label.setText("This label was updated by a click on a button "
+				+ button.getId());
+		response.getUpdates().add(label);
 		return response;
 	}
+
+	// page 2
+
+	@WidgetEventMapping(widgetId = "inp1", event = "enter")
+	public Response processOnEnter(Input input) {
+		logger.debug("Processing enter event on input {}", input.getId());
+		Response response = new Response();
+		Label label = new Label();
+		label.setId("lbl1");
+		label.setText("Hello, " + input.getValue());
+		response.getUpdates().add(label);
+		return response;
+	}
+
+	// page 3
 
 	@WidgetEventMapping(widgetId = "frm1", event = "submit")
 	public Response formSubmit(Person form) {

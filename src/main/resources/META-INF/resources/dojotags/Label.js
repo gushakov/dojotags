@@ -1,5 +1,5 @@
-define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/html", "./Widget", ], function(declare,
-		lang, html, Widget) {
+define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/html", "dojo/dom-style", "./Widget", ], function(declare,
+		lang, html, domStyle, Widget) {
 	return declare("dojotags.Label", [ Widget ], {
 		initialize : function(args) {
 			this.model.set("text", args.text || "");

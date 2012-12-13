@@ -6,10 +6,10 @@
 </head>
 
 <body>
-	Examples using dojotags JavaScript library directly and using JSP tags.
+	Examples using Dojo Tags library.
 	<ul>
-		<li><a href="<%=request.getContextPath()%>/notags">Without tags</a></li>
-		<li><a href="<%=request.getContextPath()%>/withtags">With tags</a></li>
+		<li><a href="<%=request.getContextPath()%>/notags">No tags, just JavaScript</a></li>
+		<li><a href="<%=request.getContextPath()%>/page1">Simple label and a button</a></li>
 	</ul>
 </body>
 

@@ -8,9 +8,10 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Tag handler for {@code config} tag responsible outputting links to Dojo
- * stylesheets and the main Dojo configuration directive in the {@code head}
+ * stylesheets and the main Dojo configuration directive in the {@code HEAD}
  * element of the page. Declares {@code theme} attribute used to specify Dijit
- * theme for the document.
+ * theme for the document. Will set the current Dijit theme as a variable
+ * {@code dijitTheme} in the page scope.
  * 
  * @author George Ushakov
  * 
@@ -51,10 +52,10 @@ public class ConfigTag extends AbstractTemplatedTag {
 			}
 		}
 		templateAttrs.put("theme", theme);
-		
+
 		// set theme as a page context variable
 		pageContext.setAttribute("dijitTheme", theme, PageContext.PAGE_SCOPE);
-		
+
 		return result;
 	}
 

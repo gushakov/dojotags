@@ -12,9 +12,6 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 import com.github.dojotags.web.annotation.WidgetBody;
-import com.github.dojotags.widgets.Button;
-import com.github.dojotags.widgets.Input;
-import com.github.dojotags.widgets.Label;
 
 public class WidgetBodyHandlerMethodArgumentResolver implements
 		HandlerMethodArgumentResolver {
@@ -56,36 +53,37 @@ public class WidgetBodyHandlerMethodArgumentResolver implements
 					+ " is not instance of HttpServletRequest.");
 		}
 
-		String widgetClassHeader = webRequest.getHeader("Widget-Class");
-		if (widgetClassHeader == null) {
+		String bindClassHeader = webRequest.getHeader("Bind-Class");
+		if (bindClassHeader == null) {
 			throw new IllegalArgumentException(
-					"Request does not have Widget-Class header.");
+					"Request does not have Bind-Class header.");
 		}
 
-		// determine the widget type corresponding to the value of the
-		// request header
-		Class<?> widgetType = null;
-		if (widgetClassHeader.equals("dojotags.Label")) {
-			widgetType = Label.class;
-		} else if (widgetClassHeader.equals("dojotags.Button")) {
-			widgetType = Button.class;
-		} else if (widgetClassHeader.equals("dojotags.Input")) {
-			widgetType = Input.class;
-		} else if (widgetClassHeader.equals("dojotags.Form")) {
-			String formClassHeader = webRequest.getHeader("Form-Class");
-			if (formClassHeader == null) {
-				throw new IllegalArgumentException(
-						"Request does not have Form-Class header.");
-			}
-			widgetType = Class.forName(formClassHeader);
-		} else {
-			throw new IllegalArgumentException(
-					"Cannot resolve web argument for the Widget-Class header value "
-							+ widgetClassHeader + ".");
-		}
+		// // determine the widget type corresponding to the value of the
+		// // request header
+		// Class<?> widgetType = null;
+		// if (bindClassHeader.equals("dojotags.Label")) {
+		// widgetType = Label.class;
+		// } else if (bindClassHeader.equals("dojotags.Button")) {
+		// widgetType = Button.class;
+		// } else if (bindClassHeader.equals("dojotags.Input")) {
+		// widgetType = Input.class;
+		// } else if (bindClassHeader.equals("dojotags.Form")) {
+		// String formClassHeader = webRequest.getHeader("Form-Class");
+		// if (formClassHeader == null) {
+		// throw new IllegalArgumentException(
+		// "Request does not have Form-Class header.");
+		// }
+		// widgetType = Class.forName(formClassHeader);
+		// } else {
+		// throw new IllegalArgumentException(
+		// "Cannot resolve web argument for the Widget-Class header value "
+		// + bindClassHeader + ".");
+		// }
 
 		// unmarshall request body (Json) to an widget instance
-		return jacksonMapper.readValue(servletRequest.getReader(), widgetType);
+		return jacksonMapper.readValue(servletRequest.getReader(),
+				Class.forName(bindClassHeader));
 	}
 
 }

@@ -1,0 +1,14 @@
+.text {
+	color: green;
+}
+
+.form {
+	border: lightblue thin solid;
+	background-color: azure;
+	width: 50%;
+	padding: 5px;
+}
+
+.error {
+	color: maroon;
+}

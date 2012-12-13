@@ -1,6 +1,6 @@
-var $widgetId$ = new Rows({
-	id : "$widgetId$",
-	widgetClass : "$widgetClass$",
-	parent : $parentId$,
-	spacerHeight : "$spacerHeight$"
+var $wid$ = new Rows({
+	id : "$wid$",
+	widgetClass : "$wclass$",
+	parent : $parent$,
+	spacerHeight : "spacer"
 });

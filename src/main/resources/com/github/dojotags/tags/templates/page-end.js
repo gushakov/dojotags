@@ -1,6 +1,5 @@
 	ready(function() {
 		console.debug("DOM is ready");
-		$widgetId$.startup();
+		$wid$.startup();
 	});		
 });
-</script>

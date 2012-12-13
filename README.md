@@ -3,7 +3,6 @@ dojotags
 
 JSP tag library implementation which uses Dojo toolkit on the client side and Spring MVC on the server side.
 
-
 Getting Dojo web JAR
 --------------------
 
@@ -14,14 +13,6 @@ it in a JAR with the following structure:
 
 The path /META-INF/resources/ is referenced in DojoTagsWebMvcConfigurerAdapter.java when declaring a resource
 handler for the static resources.
-
-Minify JavaScript
------------------
-
-It could be done with the help of "granule" library, see http://code.google.com/p/granule/
-and https://github.com/JonathanWalsh/Granule for more details. To use the library one only needs to embed the <d:page>
-dojotags into granule's <g:compress> tag.
-
 
 Testing
 -------

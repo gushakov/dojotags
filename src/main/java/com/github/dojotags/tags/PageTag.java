@@ -34,7 +34,7 @@ public class PageTag extends AbstractJspBodyWidgetTag {
 	}
 
 	public void registerNestedTag(AbstractWidgetTag tag) {
-		this.nestedTags.put(tag.widgetId, tag);
+		this.nestedTags.put(tag.wid, tag);
 	}
 
 	/**
@@ -59,7 +59,6 @@ public class PageTag extends AbstractJspBodyWidgetTag {
 		requireAttrs.put("requireArgs", requireArgs);
 		String content = TagTemplates.replace(getBodyContent().getString(),
 				'#', requireAttrs);
-
-		return content;
+		return "<script>" + content + "</script>";
 	}
 }

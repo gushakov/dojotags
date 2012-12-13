@@ -27,9 +27,9 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 
 	protected String widgetModuleName;
 
-	protected String widgetId;
+	protected String wid;
 
-	protected String widgetClass;
+	protected String wclass;
 
 	protected boolean assertHasParentTag;
 
@@ -45,12 +45,12 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 		this.widgetModuleName = widgetModuleName;
 	}
 
-	public void setWidgetId(String widgetId) {
-		this.widgetId = widgetId;
+	public void setWid(String wid) {
+		this.wid = wid;
 	}
 
-	public void setWidgetClass(String widgetClass) {
-		this.widgetClass = widgetClass;
+	public void setWclass(String wclass) {
+		this.wclass = wclass;
 	}
 
 	public boolean isAssertHasParentTag() {
@@ -64,13 +64,13 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 	@Override
 	public int doStartTag() throws JspException {
 		int result = super.doStartTag();
-		if (widgetId == null) {
-			// create a unique widget id attribute automatically
-			widgetId = WidgetUtils.getWidgetGuid(widgetName);
+		if (wid == null) {
+			// get the value for widget id automatically
+			wid = WidgetUtils.getWidgetGuid(widgetName, pageContext);
 		}
-		templateAttrs.put("widgetId", widgetId);
+		templateAttrs.put("wid", wid);
 
-		templateAttrs.put("widgetClass", widgetClass);
+		templateAttrs.put("wclass", wclass);
 
 		// do for all tags nested in a page tag
 		if (!widgetName.equals(PageTag.WIDGET_NAME)) {
@@ -98,17 +98,22 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 			} else {
 				// add parent widget id attribute
 				AbstractWidgetTag parentWidgetTag = (AbstractWidgetTag) parentTag;
-				templateAttrs.put("parentId", parentWidgetTag.widgetId);
+				templateAttrs.put("parent", parentWidgetTag.wid);
 			}
 		}
 
+		// if this is a bindable tag set the bind attribute
+		if (this instanceof BindableWidgetTag){
+			templateAttrs.put("bind", ((BindableWidgetTag)this).getBindClassName());
+		}
+		
 		return result;
 	}
 
 	protected void resetWidgetAttributes() {
 		// reset widget id to null so that it is automatically generated for the
 		// next widget with no widget id attribute set
-		widgetId = null;
+		wid = null;
 	}
 
 	@Override

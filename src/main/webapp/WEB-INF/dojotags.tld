@@ -28,13 +28,13 @@
 		<body-content>JSP</body-content>
 		<attribute>
 			<description>Widget id, must be unique in the global scope.</description>
-			<name>widgetId</name>
+			<name>wid</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>CSS Class to be applied to the widget DOM element.</description>
-			<name>widgetClass</name>
+			<name>wclass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -54,19 +54,19 @@
 		<body-content>JSP</body-content>
 		<attribute>
 			<description>Widget id, must be unique in the global scope.</description>
-			<name>widgetId</name>
+			<name>wid</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>CSS Class to be applied to the widget DOM element.</description>
-			<name>widgetClass</name>
+			<name>wclass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>Height of the spacer between the rows.</description>
-			<name>spacerHeight</name>
+			<name>spacer</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -80,19 +80,19 @@
 		<body-content>JSP</body-content>
 		<attribute>
 			<description>Page widget id, must be unique in the global scope.</description>
-			<name>widgetId</name>
+			<name>wid</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>CSS Class to be applied to the widget DOM element.</description>
-			<name>widgetClass</name>
+			<name>wclass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>Width of the spacer between the elements of the flow.</description>
-			<name>spacerWidth</name>
+			<name>spacer</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -105,22 +105,22 @@
 		<body-content>JSP</body-content>
 		<attribute>
 			<description>Page widget id, must be unique in the global scope.</description>
-			<name>widgetId</name>
+			<name>wid</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>CSS Class to be applied to the widget DOM element.</description>
-			<name>widgetClass</name>
+			<name>wclass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>Class name for the form backing object.</description>
-			<name>formClass</name>
+			<name>bind</name>
 			<required>true</required>
 			<rtexprvalue>false</rtexprvalue>
-		</attribute>
+		</attribute>		
 	</tag>
 
 	<tag>
@@ -130,13 +130,13 @@
 		<body-content>empty</body-content>
 		<attribute>
 			<description>Widget id, must be unique in the global scope.</description>
-			<name>widgetId</name>
+			<name>wid</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>CSS Class to be applied to the widget DOM element.</description>
-			<name>widgetClass</name>
+			<name>wclass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -155,13 +155,13 @@
 		<body-content>empty</body-content>
 		<attribute>
 			<description>Widget id, must be unique in the global scope.</description>
-			<name>widgetId</name>
+			<name>wid</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>CSS Class to be applied to the widget DOM element.</description>
-			<name>widgetClass</name>
+			<name>wclass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -173,7 +173,7 @@
 		</attribute>
 		<attribute>
 			<description>Type of onClick event triggered: default or submit.</description>
-			<name>onClick</name>
+			<name>onclick</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -186,13 +186,13 @@
 		<body-content>empty</body-content>
 		<attribute>
 			<description>Widget id, must be unique in the global scope.</description>
-			<name>widgetId</name>
+			<name>wid</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>CSS Class to be applied to the widget DOM element.</description>
-			<name>widgetClass</name>
+			<name>wclass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -210,7 +210,7 @@
 		</attribute>
 		<attribute>
 			<description>Type of onEnter event triggered: default or submit.</description>
-			<name>onEnter</name>
+			<name>onenter</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -219,17 +219,17 @@
 	<tag>
 		<description>Generates an Error widget declaration. Must be embedded in a container widget.</description>
 		<name>error</name>
-		<tag-class>com.github.dojotags.tags.ErrorTag</tag-class>
+		<tag-class>com.github.dojotags.tags.FormErrorTag</tag-class>
 		<body-content>empty</body-content>
 		<attribute>
 			<description>Widget id, must be unique in the global scope.</description>
-			<name>widgetId</name>
+			<name>wid</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>CSS Class to be applied to the widget DOM element.</description>
-			<name>widgetClass</name>
+			<name>wclass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>

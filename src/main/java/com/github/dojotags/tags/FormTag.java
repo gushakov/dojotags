@@ -1,22 +1,21 @@
 package com.github.dojotags.tags;
 
-import javax.servlet.jsp.JspException;
-
 /**
- * Tag handler for Form widget.
+ * Tag handler for {@code Form} widget.
  * 
  * @author George Ushakov
  */
-public class FormTag extends AbstractJspBodyWidgetTag {
+public class FormTag extends AbstractJspBodyWidgetTag implements
+		BindableWidgetTag {
 	private static final long serialVersionUID = 1L;
 
 	public static final String WIDGET_NAME = "form";
 	public static final String WIDGET_MODULE_NAME = "Form";
 
-	private String formClass;
+	private String bind;
 
-	public void setFormClass(String formClass) {
-		this.formClass = formClass;
+	public void setBind(String bind) {
+		this.bind = bind;
 	}
 
 	public FormTag() {
@@ -27,9 +26,7 @@ public class FormTag extends AbstractJspBodyWidgetTag {
 	}
 
 	@Override
-	public int doStartTag() throws JspException {
-		int result = super.doStartTag();
-		templateAttrs.put("formClass", formClass);
-		return result;
+	public String getBindClassName() {
+		return bind;
 	}
 }

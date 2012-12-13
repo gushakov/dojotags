@@ -15,7 +15,7 @@ public abstract class DojoTagsWebMvcConfigurerAdapter extends WebMvcConfigurerAd
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**")
-				.addResourceLocations("classpath:/META-INF/resources/")
+				.addResourceLocations("classpath:/META-INF/resources/", "/resources/**")
 				.setCachePeriod(31556926);
 	}
 	

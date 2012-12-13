@@ -2,7 +2,7 @@ package com.github.dojotags.tags;
 
 import javax.servlet.jsp.JspException;
 
-import com.github.dojotags.utils.Assert;
+import com.github.dojotags.utils.WidgetUtils;
 
 /**
  * Tag handler for {@code Rows} widget container.
@@ -16,10 +16,10 @@ public class RowsTag extends AbstractJspBodyWidgetTag {
 	public static final String WIDGET_NAME = "rows";
 	public static final String WIDGET_MODULE_NAME = "Rows";
 
-	private String spacerHeight;
+	private String spacer;
 
-	public void setSpacerHeight(String spacerHeight) {
-		this.spacerHeight = spacerHeight;
+	public void setSpacer(String height) {
+		this.spacer = height;
 	}
 
 	public RowsTag() {
@@ -32,10 +32,10 @@ public class RowsTag extends AbstractJspBodyWidgetTag {
 	@Override
 	public int doStartTag() throws JspException {
 		int result = super.doStartTag();
-		if (!Assert.assertValidCssUnitOfMeasure(spacerHeight)) {
-			spacerHeight = "";
+		if (!WidgetUtils.assertValidCssUnitOfMeasure(spacer)) {
+			spacer = "";
 		}
-		templateAttrs.put("spacerHeight", spacerHeight);
+		templateAttrs.put("spacerHeight", spacer);
 		return result;
 	}
 }

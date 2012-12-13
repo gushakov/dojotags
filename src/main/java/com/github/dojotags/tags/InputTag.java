@@ -2,13 +2,15 @@ package com.github.dojotags.tags;
 
 import javax.servlet.jsp.JspException;
 
+import com.github.dojotags.widgets.Input;
+
 /**
- * Tag handler for Input widget.
+ * Tag handler for {@code Input} widget.
  * 
  * @author George Ushakov
  * 
  */
-public class InputTag extends AbstractWidgetTag {
+public class InputTag extends AbstractWidgetTag implements BindableWidgetTag {
 
 	private static final long serialVersionUID = 1L;
 	public static final String WIDGET_NAME = "input";
@@ -18,7 +20,7 @@ public class InputTag extends AbstractWidgetTag {
 
 	private String value;
 
-	private String onEnter;
+	private String onenter;
 
 	public void setPath(String path) {
 		this.path = path;
@@ -28,8 +30,8 @@ public class InputTag extends AbstractWidgetTag {
 		this.value = value;
 	}
 
-	public void setOnEnter(String onEnter) {
-		this.onEnter = onEnter;
+	public void setOnenter(String onenter) {
+		this.onenter = onenter;
 	}
 
 	public InputTag() {
@@ -44,9 +46,13 @@ public class InputTag extends AbstractWidgetTag {
 		int result = super.doStartTag();
 		templateAttrs.put("path", path);
 		templateAttrs.put("value", value);
-		templateAttrs.put("onEnter", onEnter);
-
+		templateAttrs.put("onenter", onenter);
 		return result;
+	}
+
+	@Override
+	public String getBindClassName() {
+		return Input.class.getName();
 	}
 
 }

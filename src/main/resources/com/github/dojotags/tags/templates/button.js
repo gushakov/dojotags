@@ -1,7 +1,8 @@
-var $widgetId$ = new Button({
-	id : "$widgetId$",
-	widgetClass : "$widgetClass$",	
-	parent : $parentId$,
+var $wid$ = new Button({
+	id : "$wid$",
+	bind : "$bind$",
+	widgetClass : "$wclass$",	
+	parent : $parent$,
 	label : "$label$",
-	onClick: "$onClick$"
+	onClick: "$onclick$"
 });

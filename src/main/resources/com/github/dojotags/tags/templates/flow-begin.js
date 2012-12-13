@@ -1,7 +1,6 @@
-var $widgetId$ = new Flow({
-	id : "$widgetId$",
-	widgetClass : "$widgetClass$",
-	parent : $parentId$,
-	spacerWidth : "$spacerWidth$"
+var $wid$ = new Flow({
+	id : "$wid$",
+	widgetClass : "$wclass$",
+	parent : $parent$,
+	spacerWidth : "$spacer$"
 });
-console.debug("Created flow layout ", $widgetId$);

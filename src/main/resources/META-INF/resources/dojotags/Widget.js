@@ -31,6 +31,12 @@ define(
 				model : null,
 
 				/**
+				 * Class name for the POJO corresponding to this widget on the
+				 * server side.
+				 */
+				bind : null,
+
+				/**
 				 * DOM node to witch this widget's dijit will be attached.
 				 */
 				domNode : null,
@@ -72,6 +78,7 @@ define(
 					}
 
 					this.id = args.id;
+					this.bind = args.bind;
 					var widgetClass = this.widgetClass = args.widgetClass;
 
 					this.model = new Stateful({});
@@ -151,7 +158,7 @@ define(
 
 				getRequestHeaders : function() {
 					return {
-						"Widget-Class" : this.declaredClass
+						"Bind-Class" : this.bind
 					};
 				},
 
@@ -193,10 +200,9 @@ define(
 				 * @return String Widget's model serialized to a Json string
 				 */
 				serializeModel : function() {
-//					var copy = lang.clone(this.model);
-//					copy["id"] = this.id;
-//					return json.stringify(copy);
-					return json.stringify(this.model);
+					var copy = lang.clone(this.model);
+					copy["id"] = this.id;
+					return json.stringify(copy);
 				},
 
 				/**

@@ -2,11 +2,11 @@ package com.github.dojotags.tags;
 
 import javax.servlet.jsp.JspException;
 
-public class ErrorTag extends AbstractWidgetTag {
+public class FormErrorTag extends AbstractWidgetTag {
 
 	private static final long serialVersionUID = 1L;
 	public static final String WIDGET_NAME = "error";
-	public static final String WIDGET_MODULE_NAME = "Error";
+	public static final String WIDGET_MODULE_NAME = "FormError";
 
 	private String path;
 
@@ -14,7 +14,7 @@ public class ErrorTag extends AbstractWidgetTag {
 		this.path = path;
 	}
 
-	public ErrorTag() {
+	public FormErrorTag() {
 		setWidgetName(WIDGET_NAME);
 		setWidgetModuleName(WIDGET_MODULE_NAME);
 		setTagBeginTemplate("error");
