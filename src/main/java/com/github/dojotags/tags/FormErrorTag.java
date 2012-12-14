@@ -1,7 +1,5 @@
 package com.github.dojotags.tags;
 
-import javax.servlet.jsp.JspException;
-
 public class FormErrorTag extends AbstractFormElementWidgetTag {
 
 	private static final long serialVersionUID = 1L;
