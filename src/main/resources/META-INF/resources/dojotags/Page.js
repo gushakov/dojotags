@@ -1,6 +1,6 @@
-define([ "dojo/_base/declare", "dojo/_base/window", "dojo/dom-construct", "./Container" ],
-		function(declare, win, domConstruct, Container) {
-			return declare("dojotags.Page", [ Container ], {
+define([ "dojo/_base/declare", "dojo/_base/window", "dojo/dom-construct", "./_Container" ],
+		function(declare, win, domConstruct, _Container) {
+			return declare("dojotags.Page", [ _Container ], {
 
 				startup : function() {
 					// do layout, start all the children dijits

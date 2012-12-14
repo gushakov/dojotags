@@ -118,10 +118,10 @@
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Class name for the form backing object.</description>
-			<name>bind</name>
+			<description>Form backing bean.</description>
+			<name>bean</name>
 			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 		</attribute>		
 	</tag>
 

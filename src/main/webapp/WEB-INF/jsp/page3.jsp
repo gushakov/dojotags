@@ -16,7 +16,7 @@
 
 	<p>Rows and flow layouts with custom CSS.</p>
 
-	<d:page compress="true">
+	<d:page>
 		<d:rows wclass="box" spacer="2em">
 			<d:flow wclass="line" spacer="4em">
 				<d:label wclass="first" text="lorem"/>

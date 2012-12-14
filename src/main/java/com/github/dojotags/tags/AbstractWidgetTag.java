@@ -63,6 +63,7 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 
 	@Override
 	public int doStartTag() throws JspException {
+
 		int result = super.doStartTag();
 		if (wid == null) {
 			// get the value for widget id automatically
@@ -103,10 +104,11 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 		}
 
 		// if this is a bindable tag set the bind attribute
-		if (this instanceof BindableWidgetTag){
-			templateAttrs.put("bind", ((BindableWidgetTag)this).getBindClassName());
+		if (this instanceof BindableWidgetTag) {
+			templateAttrs.put("bind",
+					((BindableWidgetTag) this).getBindClassName());
 		}
-		
+
 		return result;
 	}
 

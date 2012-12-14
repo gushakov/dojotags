@@ -39,7 +39,7 @@ public class PageTag extends AbstractJspBodyWidgetTag {
 	protected TreeMap<String, AbstractWidgetTag> nestedTags;
 
 	public PageTag() {
-		compress = false;
+		setCompress(false);
 		setWidgetName(WIDGET_NAME);
 		setWidgetModuleName(WIDGET_MODULE_NAME);
 		setTagBeginTemplate("page-begin");

@@ -3,7 +3,7 @@ define(
 				"dojo/dom-construct", "dojo/dom-attr", "dojo/json", "dojo/when", "dojo/Stateful",
 				"./utils" ], function(declare, kernel, lang, array, domConstruct, domAttr, json,
 				when, Stateful, utils) {
-			return declare("dojotags.Widget", [], {
+			return declare("dojotags._Widget", [], {
 
 				/**
 				 * Id of the widget, should be unique in the global scope.
@@ -31,12 +31,6 @@ define(
 				model : null,
 
 				/**
-				 * Class name for the POJO corresponding to this widget on the
-				 * server side.
-				 */
-				bind : null,
-
-				/**
 				 * DOM node to witch this widget's dijit will be attached.
 				 */
 				domNode : null,
@@ -54,19 +48,31 @@ define(
 				parent : null,
 
 				/**
-				 * Initializes this widget and registers it in the global scope.
+				 * Context path of the application (servlet path).
 				 * 
-				 * @param {String}
-				 *            args.id Id of the widget
-				 * @param {Widget}
-				 *            args.parent Parent widget of this widget
+				 * @type String
 				 */
+				contextPath : null,
+
+				/**
+				 * Actual path of the requested URL.
+				 * 
+				 * @type String
+				 */
+				pagePath : null,
+
+				/**
+				 * Ancestor page widget.
+				 * 
+				 * @type Page
+				 */
+				page : null,
 
 				/**
 				 * Initializes this widget and registers it in the global scope.
 				 * 
 				 * @param args
-				 *            {Object}
+				 *            {Object} Constructor arguments
 				 */
 				constructor : function(args) {
 					var widgetClass, node;
@@ -78,6 +84,8 @@ define(
 						throw new Error("Widget with id " + args.id + " exists already.");
 					}
 
+					this.contextPath = args.contextPath;
+					this.pagePath = args.pagePath;
 					this.id = args.id;
 					this.bind = args.bind;
 					widgetClass = this.widgetClass = args.widgetClass;
@@ -87,7 +95,7 @@ define(
 					// if the parent widget was specified check that it is
 					// really a container, then add this widget to the container
 					if (args.parent !== undefined) {
-						if (!(args.parent instanceof dojotags.Container)) {
+						if (!(args.parent.isInstanceOf(dojotags._Container))) {
 							throw new Error("Parent widget should be of type Container.");
 						}
 						this.parent = args.parent;
@@ -99,12 +107,14 @@ define(
 					this.initialize(args);
 
 					// create a dom node and a dijit for this widget
-
 					node = this.domNode = domConstruct.create("div", null);
 					if (widgetClass) {
 						domAttr.set(node, "class", this.widgetClass);
 					}
 					this.createDijit(node);
+
+					// register the ancestor page widget
+					this.page = this.findAncestorOfType(dojotags.Page.prototype.declaredClass);
 
 					// register this widget in the global scope
 					kernel.global[this.id] = this;
@@ -146,7 +156,8 @@ define(
 				 *            sync Set to true for a synchronous request
 				 */
 				processEvent : function(event, sync) {
-					var uri = "/dojotags/widget/" + this.id + "/event/" + event;
+					var uri = this.page.contextPath + this.page.pagePath + "/dojotags/widget/"
+							+ this.id + "/event/" + event;
 					when(utils.ajaxRequest({
 						path : uri,
 						data : this.serializeModel(),
@@ -158,9 +169,8 @@ define(
 				},
 
 				getRequestHeaders : function() {
-					return {
-						"Bind-Class" : this.bind
-					};
+					// no headers by default
+					return {};
 				},
 
 				/**
@@ -187,9 +197,9 @@ define(
 						}
 
 						// update target widget model attributes
-						for ( attr in update) {
+						for (attr in update) {
 							// skip id attribute
-							if (update.hasOwnProperty(attr) && attr !== "id"){
+							if (update.hasOwnProperty(attr) && attr !== "id") {
 								targetWidget.model.set(attr, update[attr]);
 							}
 						}

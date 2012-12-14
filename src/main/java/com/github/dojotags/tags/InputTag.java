@@ -10,25 +10,14 @@ import com.github.dojotags.widgets.Input;
  * @author George Ushakov
  * 
  */
-public class InputTag extends AbstractWidgetTag implements BindableWidgetTag {
+public class InputTag extends AbstractFormElementWidgetTag implements
+		BindableWidgetTag {
 
 	private static final long serialVersionUID = 1L;
 	public static final String WIDGET_NAME = "input";
 	public static final String WIDGET_MODULE_NAME = "Input";
 
-	private String path;
-
-	private String value;
-
 	private String onenter;
-
-	public void setPath(String path) {
-		this.path = path;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
 
 	public void setOnenter(String onenter) {
 		this.onenter = onenter;
@@ -44,8 +33,6 @@ public class InputTag extends AbstractWidgetTag implements BindableWidgetTag {
 	@Override
 	public int doStartTag() throws JspException {
 		int result = super.doStartTag();
-		templateAttrs.put("path", path);
-		templateAttrs.put("value", value);
 		templateAttrs.put("onenter", onenter);
 		return result;
 	}

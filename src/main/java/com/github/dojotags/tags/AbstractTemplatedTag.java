@@ -44,9 +44,11 @@ public abstract class AbstractTemplatedTag extends BodyTagSupport {
 		// add context attribute
 		if (HttpServletRequest.class.isAssignableFrom(pageContext.getRequest()
 				.getClass())) {
-			String contextPathAttr = ((HttpServletRequest) pageContext
-					.getRequest()).getContextPath();
-			templateAttrs.put("contextPath", contextPathAttr);
+			HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+			String contextPath = request.getContextPath();
+			templateAttrs.put("contextPath", contextPath);
+			String pagePath = request.getAttribute("javax.servlet.forward.servlet_path").toString();
+			templateAttrs.put("pagePath", pagePath);
 		} else {
 			throw new JspException("Not implemented for request of type "
 					+ pageContext.getRequest().getClass().getName());

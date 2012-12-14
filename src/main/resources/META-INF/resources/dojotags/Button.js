@@ -1,6 +1,7 @@
 define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/on", "dijit/form/Button", "dojox/mvc/at",
-		"./FormElement" ], function(declare, lang, on, Button, at, FormElement) {
-	return declare("dojotags.Button", [ FormElement ], {
+		"./_FormElement", "./_BindableWidgetMixin" ], function(declare, lang, on, Button, at,
+		_FormElement, _BindableWidgetMixin) {
+	return declare("dojotags.Button", [ _FormElement, _BindableWidgetMixin ], {
 
 		onClick : null,
 

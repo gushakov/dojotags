@@ -1,6 +1,7 @@
 define([ "dojo/_base/declare", "dojo/_base/array", "dojo/json", "dojo/Stateful", "dojox/mvc/sync",
-		"./Container" ], function(declare, array, json, Stateful, sync, Container) {
-	return declare("dojotags.Form", [ Container ], {
+		"./_Container", "./_BindableWidgetMixin" ], function(declare, array, json, Stateful, sync,
+		_Container, _BindableWidgetMixin) {
+	return declare("dojotags.Form", [ _Container, _BindableWidgetMixin ], {
 
 		/**
 		 * Map of validation errors for this form.
@@ -15,29 +16,29 @@ define([ "dojo/_base/declare", "dojo/_base/array", "dojo/json", "dojo/Stateful",
 		},
 
 		/**
-		 * Creates a new model attribute with name specified by the value of the
-		 * "path" attribute of the target widget and value corresponding to the
-		 * value of the target widget's "value" attribute. Also creates a
-		 * two-way binding between these attributes.
+		 * Creates binding between this form's model attribute corresponding to
+		 * the "path" property of the target widget and the target widget's
+		 * "value" model attribute.
 		 * 
 		 * @param {Widget}
 		 *            widget Target widget
 		 */
 		bindPath : function(widget) {
+			// set the form's model attribute
 			this.model.set(widget.path, widget.model.get("value"));
+
+			// synchronize the form's model attribute and the target
+			// widget "value"
 			sync(widget.model, "value", this.model, widget.path);
 		},
 
 		/**
-		 * Creates a new error attribute with name specified by the value of the
-		 * "path" attribute of the target widget and value corresponding to the
-		 * value of the target widget's "value" attribute. Also creates a
-		 * two-way binding between these attributes.
+		 * Creates binding between this form's errors model attribute
+		 * corresponding to the "path" property of the target widget and the
+		 * target widget's "value" model attribute.
 		 * 
-		 * @param {Widget}
-		 *            widget Target widget (Error)
-		 * @throws Error
-		 *             If there is no attribute in the model under the same name
+		 * @param {FormError}
+		 *            widget Target widget
 		 */
 		bindErrorPath : function(widget) {
 			if (this.model[widget.path] === undefined) {
@@ -59,7 +60,7 @@ define([ "dojo/_base/declare", "dojo/_base/array", "dojo/json", "dojo/Stateful",
 			// set new errors
 			errs = response.errors;
 			console.debug("Processing form errors ", errs);
-			for ( attr in errs) {
+			for (attr in errs) {
 				if (errs.hasOwnProperty(attr)) {
 					this.errors.set(attr, errs[attr]);
 				}

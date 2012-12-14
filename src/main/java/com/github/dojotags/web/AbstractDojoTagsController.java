@@ -16,13 +16,12 @@ import com.github.dojotags.json.Response;
 import com.github.dojotags.web.annotation.WidgetBody;
 import com.github.dojotags.web.annotation.WidgetEventMapping;
 
-@RequestMapping(value = "/dojotags", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 public abstract class AbstractDojoTagsController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(AbstractDojoTagsController.class);
 
-	@RequestMapping(value = "/widget/{widgetId}/event/{event}")
+	@RequestMapping(value = "/dojotags/widget/{widgetId}/event/{event}", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public @ResponseBody
 	Response processWidgetEvent(@PathVariable("widgetId") String widgetId,
 			@PathVariable("event") String event, @WidgetBody Object widget) {

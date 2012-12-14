@@ -1,6 +1,6 @@
-define([ "dojo/_base/declare", "dojo/_base/window", "dojo/dom-construct", "./Container" ],
-		function(declare, win, domConstruct, Container) {
-			return declare("dojotags.Rows", [ Container ], {
+define([ "dojo/_base/declare", "dojo/_base/window", "dojo/dom-construct", "./_Container" ],
+		function(declare, win, domConstruct, _Container) {
+			return declare("dojotags.Rows", [ _Container ], {
 
 				spacerHeight : null,
 

@@ -1,5 +1,5 @@
-define([ "dojo/_base/declare", "./Widget" ], function(declare, Widget) {
-	return declare("dojotags.FormElement", [ Widget ], {
+define([ "dojo/_base/declare", "./_Widget" ], function(declare, _Widget) {
+	return declare("dojotags._FormElement", [ _Widget ], {
 
 		/**
 		 * Nearest ancestor Form widget.
@@ -18,6 +18,7 @@ define([ "dojo/_base/declare", "./Widget" ], function(declare, Widget) {
 
 		initialize : function(args) {
 			this.inherited(arguments);
+			this.model.set("value", args.value || "");
 			// register a handle to the ancestor form widget
 			var form = this.form = this.findAncestorOfType("dojotags.Form");
 			if (form) {
@@ -25,7 +26,7 @@ define([ "dojo/_base/declare", "./Widget" ], function(declare, Widget) {
 				if (args.path) {
 					this.path = args.path;
 					console.debug("Initializing binding to ", this.path);
-					if (this.declaredClass === dojotags.FormError.prototype.declaredClass) {
+					if (this.declaredClass === "dojotags.FormError") {
 						// bind path to the form's errors attribute
 						form.bindErrorPath(this);
 					} else {
@@ -34,7 +35,6 @@ define([ "dojo/_base/declare", "./Widget" ], function(declare, Widget) {
 					}
 				}
 			}
-			this.model.set("value", args.value || "");
 		},
 
 		/**

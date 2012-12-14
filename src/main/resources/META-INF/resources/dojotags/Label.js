@@ -1,6 +1,6 @@
-define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/html", "dojo/dom-style", "./Widget" ],
-		function(declare, lang, html, domStyle, Widget) {
-			return declare("dojotags.Label", [ Widget ], {
+define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/html", "dojo/dom-style", "./_Widget" ],
+		function(declare, lang, html, domStyle, _Widget) {
+			return declare("dojotags.Label", [ _Widget ], {
 				initialize : function(args) {
 					this.model.set("text", args.text || "");
 					// when model's text changes, update the content of the dom

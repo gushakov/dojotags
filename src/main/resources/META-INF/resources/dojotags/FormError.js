@@ -1,6 +1,7 @@
-define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/html", "./FormElement" ], function(declare,
-		lang, html, FormElement) {
-	return declare("dojotags.FormError", [ FormElement ], {
+define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/html", "./_FormElement",
+		"./_BindableWidgetMixin" ], function(declare, lang, html, _FormElement,
+		_BindableWidgetMixin) {
+	return declare("dojotags.FormError", [ _FormElement, _BindableWidgetMixin ], {
 
 		initialize : function(args) {
 			this.inherited(arguments);

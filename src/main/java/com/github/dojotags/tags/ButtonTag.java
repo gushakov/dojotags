@@ -10,7 +10,7 @@ import com.github.dojotags.widgets.Button;
  * @author George Ushakov
  * 
  */
-public class ButtonTag extends AbstractWidgetTag implements BindableWidgetTag {
+public class ButtonTag extends AbstractWidgetTag implements BindableWidgetTag  {
 	private static final long serialVersionUID = 1L;
 	public static final String WIDGET_NAME = "button";
 	public static final String WIDGET_MODULE_NAME = "Button";

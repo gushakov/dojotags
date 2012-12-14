@@ -12,7 +12,7 @@ import com.github.dojotags.web.config.DojoTagsWebMvcConfigurerAdapter;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages = "com.github.dojotags.test.web")
+@ComponentScan(basePackages = { "com.github.dojotags.test.web" })
 public class WebConfig extends DojoTagsWebMvcConfigurerAdapter {
 
 	// set up the default view resolver, mapping logical view name
@@ -29,10 +29,7 @@ public class WebConfig extends DojoTagsWebMvcConfigurerAdapter {
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/").setViewName("index");
 		registry.addViewController("/notags").setViewName("notags");
-		registry.addViewController("/page1").setViewName("page1");
-		registry.addViewController("/page2").setViewName("page2");
 		registry.addViewController("/page3").setViewName("page3");
-		registry.addViewController("/page4").setViewName("page4");
 	}
-	
+
 }

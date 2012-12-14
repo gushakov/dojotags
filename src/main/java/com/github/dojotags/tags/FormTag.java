@@ -1,5 +1,6 @@
 package com.github.dojotags.tags;
 
+
 /**
  * Tag handler for {@code Form} widget.
  * 
@@ -7,15 +8,20 @@ package com.github.dojotags.tags;
  */
 public class FormTag extends AbstractJspBodyWidgetTag implements
 		BindableWidgetTag {
+
 	private static final long serialVersionUID = 1L;
 
 	public static final String WIDGET_NAME = "form";
 	public static final String WIDGET_MODULE_NAME = "Form";
 
-	private String bind;
+	private Object bean;
 
-	public void setBind(String bind) {
-		this.bind = bind;
+	public Object getBean() {
+		return bean;
+	}
+
+	public void setBean(Object bean) {
+		this.bean = bean;
 	}
 
 	public FormTag() {
@@ -27,6 +33,6 @@ public class FormTag extends AbstractJspBodyWidgetTag implements
 
 	@Override
 	public String getBindClassName() {
-		return bind;
+		return bean.getClass().getName();
 	}
 }

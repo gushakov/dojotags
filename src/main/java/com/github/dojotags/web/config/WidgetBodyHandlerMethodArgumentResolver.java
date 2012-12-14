@@ -20,8 +20,8 @@ public class WidgetBodyHandlerMethodArgumentResolver implements
 
 	private ObjectMapper jacksonMapper;
 
-	public WidgetBodyHandlerMethodArgumentResolver() {
-		jacksonMapper = new ObjectMapper();
+	public void setJacksonMapper(ObjectMapper jacksonMapper) {
+		this.jacksonMapper = jacksonMapper;
 	}
 
 	@Override

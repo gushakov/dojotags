@@ -1,6 +1,6 @@
 define([ "dojo/_base/declare", "dojo/_base/window", "dojo/dom-construct", "dojo/dom-style",
-		"./Container" ], function(declare, win, domConstruct, domStyle, Container) {
-	return declare("dojotags.Flow", [ Container ], {
+		"./_Container" ], function(declare, win, domConstruct, domStyle, _Container) {
+	return declare("dojotags.Flow", [ _Container ], {
 
 		spacerWidth : null,
 

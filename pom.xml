@@ -128,24 +128,26 @@
 				</configuration>
 			</plugin>
 
-			<plugin>
-				<groupId>net.alchim31.maven</groupId>
-				<artifactId>yuicompressor-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>compress</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<force>true</force>
-					<nosuffix>true</nosuffix>
-					<excludes>
-						<exclude>**/templates/**</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
+			<!-- Uncomment to enable compression of the JavaScript files durind build. -->
+
+			<!-- <plugin> -->
+			<!-- <groupId>net.alchim31.maven</groupId> -->
+			<!-- <artifactId>yuicompressor-maven-plugin</artifactId> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <goals> -->
+			<!-- <goal>compress</goal> -->
+			<!-- </goals> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- <configuration> -->
+			<!-- <force>false</force> -->
+			<!-- <nosuffix>true</nosuffix> -->
+			<!-- <excludes> -->
+			<!-- <exclude>**/templates/**</exclude> -->
+			<!-- </excludes> -->
+			<!-- </configuration> -->
+			<!-- </plugin> -->
 
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>

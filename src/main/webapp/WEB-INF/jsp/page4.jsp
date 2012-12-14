@@ -14,11 +14,12 @@
 
 <body class="${dijitTheme}">
 
-	<p>Form with the backing bean and validation.</p>
+	<p>Form with a backing bean for initial form values and error
+		validation. Try to submit a fist name which has some non-letter
+		characters.</p>
 
 	<d:page>
-		<d:form wid="frm1" wclass="form"
-			bind="com.github.dojotags.test.form.Person">
+		<d:form wid="frm1" wclass="form" bean="${person}">
 			<d:rows>
 				<d:flow>
 					<d:input path="firstName" />

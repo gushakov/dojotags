@@ -1,7 +1,7 @@
 define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/_base/array", "dojo/dom-construct",
-		"dojox/json/query", "./Widget" ], function(declare, lang, array, domConstruct, query,
-		Widget) {
-	return declare("dojotags.Container", [ Widget ], {
+		"dojox/json/query", "./_Widget" ], function(declare, lang, array, domConstruct, query,
+		_Widget) {
+	return declare("dojotags._Container", [ _Widget ], {
 
 		/**
 		 * List of children widgets of this container.
@@ -15,7 +15,7 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/_base/array", "dojo/dom-
 		},
 
 		addWidget : function(widget) {
-			if (!(widget instanceof dojotags.Widget)) {
+			if (!(widget.isInstanceOf(dojotags._Widget))) {
 				throw new Error("Not an instance of Widget.");
 			}
 
@@ -44,7 +44,7 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/_base/array", "dojo/dom-
 					list.push(widget);
 				}
 				// recurse if child widget is a Container
-				if (widget.isInstanceOf(dojotags.Container)) {
+				if (widget.isInstanceOf(dojotags._Container)) {
 					array.forEach(widget.findDescendantsOfType(type), function(w) {
 						list.push(w);
 					});
