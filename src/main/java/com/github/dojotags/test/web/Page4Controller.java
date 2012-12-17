@@ -1,7 +1,11 @@
 package com.github.dojotags.test.web;
 
+import javax.validation.Valid;
+import javax.validation.Validator;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +23,9 @@ public class Page4Controller extends AbstractDojoTagsController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(Page4Controller.class);
 
+	@Autowired
+	private Validator validator;
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String showPage4() {
 		return "page4";
@@ -34,20 +41,20 @@ public class Page4Controller extends AbstractDojoTagsController {
 	}
 
 	@WidgetEventMapping(widgetId = "frm1", event = "submit")
-	public Response formSubmit(Person form) {
+	public Response formSubmit(@Valid Person form) {
 		Response response = new Response();
 		logger.debug("Processing from submit: firstName {}, lastName {}",
 				form.getFirstName(), form.getLastName());
-		String firstName = form.getFirstName();
-		if (!firstName.matches("\\p{Alpha}+")) {
-			response.getErrors().put("firstName",
-					"Name should contain letter characters only.");
-		} else {
-			Label label = new Label();
-			label.setId("lbl1");
+		Label label = new Label();
+		label.setId("lbl1");
+		if (validatate(form, response, validator)) {
 			label.setText("Form was successfully submited.");
-			response.getUpdates().add(label);
 		}
+		else {
+			label.setText("There are validation errors.");
+		}
+		response.getUpdates().add(label);
 		return response;
 	}
+
 }

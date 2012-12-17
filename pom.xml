@@ -11,7 +11,7 @@
     </description>
 
 	<properties>
-		<spring.version>3.1.0.RELEASE</spring.version>
+		<spring.version>3.2.0.RELEASE</spring.version>
 		<dojo.version>1.8.1</dojo.version>
 		<granule.version>1.0.9</granule.version>
 		<cglib.version>2.2</cglib.version>
@@ -42,10 +42,17 @@
 		</dependency>
 
 		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib</artifactId>
-			<version>${cglib.version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
 		</dependency>
+
+<!-- 		<dependency> -->
+<!-- 			<groupId>cglib</groupId> -->
+<!-- 			<artifactId>cglib</artifactId> -->
+<!-- 			<version>${cglib.version}</version> -->
+<!-- 		</dependency> -->
 
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
@@ -106,6 +113,12 @@
 			<groupId>com.yahoo.platform.yui</groupId>
 			<artifactId>yuicompressor</artifactId>
 			<version>2.4.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.3.0.Final</version>
 		</dependency>
 	</dependencies>
 

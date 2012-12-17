@@ -3,6 +3,10 @@ package com.github.dojotags.web;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,6 +72,16 @@ public abstract class AbstractDojoTagsController {
 		}
 
 		return data;
+	}
+
+	protected <T> boolean validatate(T bean, Response response,
+			Validator validator) {
+		Set<ConstraintViolation<T>> errors = validator.validate(bean);
+		for (ConstraintViolation<T> error : errors) {
+			response.getErrors().put(error.getPropertyPath().toString(),
+					error.getMessage());
+		}
+		return errors.isEmpty();
 	}
 
 }

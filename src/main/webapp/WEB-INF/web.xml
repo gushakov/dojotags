@@ -4,6 +4,23 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
 	<display-name>dojotags</display-name>
+
+	<context-param>
+		<param-name>contextClass</param-name>
+		<param-value>
+          org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+      </param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>com.github.dojotags.app.config.AppConfig</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
 	<!-- Sping MVC dispatcher -->
 	<servlet>
 		<servlet-name>SpringMvcDispatcher</servlet-name>

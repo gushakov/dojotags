@@ -2,12 +2,16 @@ package com.github.dojotags.test.form;
 
 import java.io.Serializable;
 
+import com.github.dojotags.test.web.validation.Name;
+
 public class Person implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Name
 	private String firstName;
 
+	@Name
 	private String lastName;
 
 	public String getFirstName() {
