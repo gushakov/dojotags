@@ -19,7 +19,7 @@ import com.yahoo.platform.yui.compressor.JavaScriptCompressor;
  * Tag handler for {@code Page} widget container. Maintains a map of all nested
  * widget tags used when creating Dojo {@code require} directive.
  * 
- * @author George Ushakov
+ * @author gushakov
  * 
  */
 public class PageTag extends AbstractJspBodyWidgetTag {

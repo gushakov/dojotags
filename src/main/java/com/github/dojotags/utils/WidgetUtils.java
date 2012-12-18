@@ -6,13 +6,14 @@ import java.util.regex.Pattern;
 
 import javax.servlet.jsp.PageContext;
 
+import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 public class WidgetUtils {
-
+	
 	public static boolean assertValidCssUnitOfMeasure(String text) {
 		boolean answer = false;
 		if (text != null) {
@@ -39,11 +40,11 @@ public class WidgetUtils {
 	public static String toJson(Object bean, PageContext pageContext,
 			String objectMapperBeanName) throws JsonGenerationException,
 			JsonMappingException, IOException {
-		// get a handle for the object mapper from the web application context
 		ObjectMapper jacksonMapper = (ObjectMapper) WebApplicationContextUtils
 				.getRequiredWebApplicationContext(
 						pageContext.getServletContext()).getBean(
 						objectMapperBeanName);
 		return jacksonMapper.writeValueAsString(bean);
 	}
+
 }

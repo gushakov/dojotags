@@ -11,7 +11,7 @@ import javax.servlet.jsp.JspException;
  * {@code tagBeginTemplate} and {@code tagEndTemplate} respectively with
  * template attributes and append them to {@code bodyContent}.
  * 
- * @author George Ushakov
+ * @author gushakov
  * 
  */
 public abstract class AbstractJspBodyWidgetTag extends AbstractWidgetTag {

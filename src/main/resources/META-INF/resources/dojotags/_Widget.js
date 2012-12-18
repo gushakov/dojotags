@@ -174,36 +174,56 @@ define(
 				},
 
 				/**
-				 * Subclasses should implement to update the model of this
-				 * widget with the data returned from the server after
-				 * processing the specified event.
+				 * Processes the response from the server by looking at
+				 * <code>response.updates</code> list and performing
+				 * <code>doUpdate()</code> logic for all widgets which need to
+				 * be updated.
 				 * 
 				 * @param {String}
-				 *            event Event processed on the server
+				 *            event Name of the event processed on the server
 				 * @param {Object}
 				 *            response Data object returned from the server
 				 */
 				processCallback : function(event, response) {
-					console.debug("Processing callback for widget ", this, event, response);
-					// process updates
-					array.forEach(response.updates, function(update) {
-						var targetWidget, attr = null;
-						console.debug("Processing update: ", update);
-
-						// get target widget from the global scope
-						targetWidget = kernel.global[update.id];
-						if (targetWidget === undefined) {
-							throw new Error("Cannot find a widget with id " + update.id + ".");
-						}
-
-						// update target widget model attributes
-						for (attr in update) {
-							// skip id attribute
-							if (update.hasOwnProperty(attr) && attr !== "id") {
-								targetWidget.model.set(attr, update[attr]);
+					// process all updates
+					array.forEach(response.updates, lang.hitch(this, function(update) {
+						var targetWidget = null;
+						if (update.id) {
+							// get target widget from the global scope
+							targetWidget = kernel.global[update.id];
+							if (targetWidget === undefined) {
+								throw new Error("Cannot find a widget with id " + update.id + ".");
 							}
+						} else {
+							// update this widget
+							targetWidget = this;
 						}
-					});
+						targetWidget.doUpdate(event, update);
+					}));
+				},
+
+				/**
+				 * Updates this widget's model attributes. Subclasses may
+				 * override if resetting some of the model attributes is not an
+				 * option.
+				 * 
+				 * @param {String}
+				 *            event Name of the event which triggered the update
+				 * @param {_Widget}
+				 *            update Update data, same type as <code>this</code>
+				 *            widget
+				 */
+				doUpdate : function(event, update) {
+					var attr = null;
+					// update target widget model attributes
+					for (attr in update) {
+						// skip id attribute, only update with non null and
+						// non-empty
+						// values
+						if (update.hasOwnProperty(attr) && attr !== "id" && update[attr]) {
+							this.model.set(attr, update[attr]);
+						}
+					}
 				},
 
 				/**
@@ -234,7 +254,7 @@ define(
 				 * 
 				 * @param {String}
 				 *            type Value of declaredClass to match.
-				 * @return Widget This or ancestor widget with matching type.
+				 * @return _Widget This or ancestor widget with matching type.
 				 */
 				findAncestorOfType : function(type) {
 					var widget = null;

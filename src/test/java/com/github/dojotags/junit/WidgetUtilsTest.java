@@ -8,6 +8,7 @@ import org.junit.Test;
 import com.github.dojotags.utils.WidgetUtils;
 
 public class WidgetUtilsTest {
+
 	@Test
 	public void assertValidCssUnitOfMeasure() throws Exception {
 		assertTrue(WidgetUtils.assertValidCssUnitOfMeasure("34px"));
@@ -17,4 +18,5 @@ public class WidgetUtilsTest {
 		assertFalse(WidgetUtils.assertValidCssUnitOfMeasure("34"));
 		assertFalse(WidgetUtils.assertValidCssUnitOfMeasure("ten px"));
 	}
+
 }

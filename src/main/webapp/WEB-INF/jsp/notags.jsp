@@ -17,6 +17,8 @@
 
 <body class="claro">
 
+	<p>This page is used for development of JavaScript widgets.</p>
+
 </body>
 
 </html>

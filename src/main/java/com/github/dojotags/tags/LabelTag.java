@@ -5,7 +5,7 @@ import javax.servlet.jsp.JspException;
 /**
  * Tag handler for {@code Label} widget.
  * 
- * @author George Ushakov
+ * @author gushakov
  * 
  */
 public class LabelTag extends AbstractWidgetTag {

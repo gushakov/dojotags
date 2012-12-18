@@ -20,7 +20,7 @@ import org.stringtemplate.v4.ST;
  * cache them in a map. Subclasses can access a template and substitute actual
  * attributes by providing template name and a map of attributes.
  * 
- * @author George Ushakov
+ * @author gushakov
  * 
  */
 public class TagTemplates {

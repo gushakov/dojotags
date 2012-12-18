@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  * theme for the document. Will set the current Dijit theme as a variable
  * {@code dijitTheme} in the page scope.
  * 
- * @author George Ushakov
+ * @author gushakov
  * 
  */
 public class ConfigTag extends AbstractTemplatedTag {

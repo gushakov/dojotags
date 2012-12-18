@@ -14,7 +14,7 @@
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>com.github.dojotags.app.config.AppConfig</param-value>
+		<param-value>com.github.dojotags.test.app.config.AppConfig</param-value>
 	</context-param>
 
 	<listener>

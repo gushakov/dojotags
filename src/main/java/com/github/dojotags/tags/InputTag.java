@@ -7,7 +7,7 @@ import com.github.dojotags.widgets.Input;
 /**
  * Tag handler for {@code Input} widget.
  * 
- * @author George Ushakov
+ * @author gushakov
  * 
  */
 public class InputTag extends AbstractFormElementWidgetTag implements

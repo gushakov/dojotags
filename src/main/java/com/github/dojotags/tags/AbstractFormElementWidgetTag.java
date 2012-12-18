@@ -57,6 +57,7 @@ public abstract class AbstractFormElementWidgetTag extends AbstractWidgetTag {
 		} else {
 			// default to the value specified as the tag's attribute
 			templateAttrs.put("value", value);
+			templateAttrs.put("path", "");
 		}
 		return result;
 	}

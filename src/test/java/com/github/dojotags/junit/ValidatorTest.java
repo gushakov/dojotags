@@ -18,7 +18,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.github.dojotags.app.config.AppConfig;
+import com.github.dojotags.test.app.config.AppConfig;
 import com.github.dojotags.test.form.Person;
 
 @RunWith(SpringJUnit4ClassRunner.class)

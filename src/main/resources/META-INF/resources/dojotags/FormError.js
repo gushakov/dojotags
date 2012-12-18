@@ -13,8 +13,6 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/html", "./_FormElement",
 
 		createDijit : function(node) {
 			html.set(node, this.model.get("value"));
-			console.debug("Created Error with path ", this.path, " and value ", this.model
-					.get("value"));
 		},
 
 		clear : function() {

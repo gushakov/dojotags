@@ -21,10 +21,8 @@ define(
 					on(dijit, "keypress", lang.hitch(this, function(evt) {
 						if (this.onEnter && evt.charOrCode === keys.ENTER) {
 							if (this.onEnter === "default") {
-								console.debug(this.id, " enter (default)");
 								this.processEvent("enter");
 							} else if (this.onEnter === "submit") {
-								console.debug(this.id, " enter (submit)");
 								this.form.processEvent("submit");
 							}
 						}

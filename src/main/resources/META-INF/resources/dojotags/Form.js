@@ -59,7 +59,6 @@ define([ "dojo/_base/declare", "dojo/_base/array", "dojo/json", "dojo/Stateful",
 			});
 			// set new errors
 			errs = response.errors;
-			console.debug("Processing form errors ", errs);
 			for (attr in errs) {
 				if (errs.hasOwnProperty(attr)) {
 					this.errors.set(attr, errs[attr]);

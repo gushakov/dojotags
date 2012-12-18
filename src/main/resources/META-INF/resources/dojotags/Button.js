@@ -1,7 +1,6 @@
 define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/on", "dijit/form/Button", "dojox/mvc/at",
-		"./_FormElement", "./_BindableWidgetMixin" ], function(declare, lang, on, Button, at,
-		_FormElement, _BindableWidgetMixin) {
-	return declare("dojotags.Button", [ _FormElement, _BindableWidgetMixin ], {
+		"./_Widget", "./_BindableWidgetMixin" ], function(declare, lang, on, Button, at, _Widget, _BindableWidgetMixin) {
+	return declare("dojotags.Button", [ _Widget, _BindableWidgetMixin ], {
 
 		onClick : null,
 
@@ -15,16 +14,13 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/on", "dijit/form/Button"
 			var dijit = this.dijit = new Button({
 				label : at(this.model, "label")
 			}, node);
-			console.debug("Created Button dijit ", dijit);
 
 			if (this.onClick) {
 				on(dijit, "click", lang.hitch(this, function() {
 					if (this.onClick === "default") {
-						console.debug(this.id, " clicked (default)");
 						this.processEvent("click");
 					} else if (this.onClick === "submit") {
-						console.debug(this.id, " clicked (submit)");
-						this.form.processEvent("submit");
+						this.findAncestorOfType("dojotags.Form").processEvent("submit");
 					}
 				}));
 			}

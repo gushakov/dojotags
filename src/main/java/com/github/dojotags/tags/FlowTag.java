@@ -20,7 +20,7 @@ public class FlowTag extends AbstractJspBodyWidgetTag {
 	public FlowTag() {
 		setWidgetName(WIDGET_NAME);
 		setWidgetModuleName(WIDGET_MODULE_NAME);
-		setTagBeginTemplate("flow-begin");
+		setTagBeginTemplate("flow");
 		setAssertHasParentTag(true);
 	}
 

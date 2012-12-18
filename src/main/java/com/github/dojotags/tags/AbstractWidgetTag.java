@@ -13,7 +13,7 @@ import com.github.dojotags.utils.WidgetUtils;
  * tags. Registers this tag with the ancestor tag of type {@code Page}.
  * Automatically assigns a unique id to the missing {@code widgetId} attribute.
  * 
- * @author George Ushakov
+ * @author gushakov
  * @see PageTag#registerNestedTag(AbstractWidgetTag)
  * 
  */

@@ -13,6 +13,7 @@
 		<li><a href="<%=request.getContextPath()%>/page2">Handle "onEnter" event</a></li>
 		<li><a href="<%=request.getContextPath()%>/page3">Custom CSS layout</a></li>
 		<li><a href="<%=request.getContextPath()%>/page4">Form with a backing bean and validtion</a></li>
+		<li><a href="<%=request.getContextPath()%>/page5">Select widget</a></li>
 	</ul>
 </body>
 

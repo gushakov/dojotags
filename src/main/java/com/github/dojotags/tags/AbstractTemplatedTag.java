@@ -17,7 +17,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  * the current {@code JspWriter}. Proceeds with {@code EVAL_BODY_BUFFERED} after
  * {@code doStartTag()} and with {@code EVAL_PAGE} after {@code doEndTag()}.
  * 
- * @author George Ushakov
+ * @author gushakov
  * @see TagTemplates#substitute(String, Map)
  */
 public abstract class AbstractTemplatedTag extends BodyTagSupport {

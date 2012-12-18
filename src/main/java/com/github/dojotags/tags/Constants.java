@@ -3,7 +3,7 @@ package com.github.dojotags.tags;
 /**
  * Constants used in widget tags.
  * 
- * @author George Ushakov
+ * @author gushakov
  * 
  */
 public class Constants {

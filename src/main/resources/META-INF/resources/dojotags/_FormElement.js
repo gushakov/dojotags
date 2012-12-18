@@ -25,7 +25,6 @@ define([ "dojo/_base/declare", "./_Widget" ], function(declare, _Widget) {
 				this.form = form;
 				if (args.path) {
 					this.path = args.path;
-					console.debug("Initializing binding to ", this.path);
 					if (this.declaredClass === "dojotags.FormError") {
 						// bind path to the form's errors attribute
 						form.bindErrorPath(this);

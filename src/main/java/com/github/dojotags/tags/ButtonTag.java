@@ -7,7 +7,7 @@ import com.github.dojotags.widgets.Button;
 /**
  * Tag handler for {@code Button} widget.
  * 
- * @author George Ushakov
+ * @author gushakov
  * 
  */
 public class ButtonTag extends AbstractWidgetTag implements BindableWidgetTag  {

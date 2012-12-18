@@ -4,7 +4,7 @@ package com.github.dojotags.tags;
 /**
  * Tag handler for {@code Form} widget.
  * 
- * @author George Ushakov
+ * @author gushakov
  */
 public class FormTag extends AbstractJspBodyWidgetTag implements
 		BindableWidgetTag {
@@ -27,7 +27,7 @@ public class FormTag extends AbstractJspBodyWidgetTag implements
 	public FormTag() {
 		setWidgetName(WIDGET_NAME);
 		setWidgetModuleName(WIDGET_MODULE_NAME);
-		setTagBeginTemplate("form-begin");
+		setTagBeginTemplate("form");
 		setAssertHasParentTag(true);
 	}
 

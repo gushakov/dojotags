@@ -1,4 +1,4 @@
-package com.github.dojotags.app.config;
+package com.github.dojotags.test.app.config;
 
 import java.util.Locale;
 

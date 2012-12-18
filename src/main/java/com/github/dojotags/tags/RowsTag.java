@@ -7,7 +7,7 @@ import com.github.dojotags.utils.WidgetUtils;
 /**
  * Tag handler for {@code Rows} widget container.
  * 
- * @author George Ushakov
+ * @author gushakov
  * 
  */
 public class RowsTag extends AbstractJspBodyWidgetTag {
@@ -25,7 +25,7 @@ public class RowsTag extends AbstractJspBodyWidgetTag {
 	public RowsTag() {
 		setWidgetName(WIDGET_NAME);
 		setWidgetModuleName(WIDGET_MODULE_NAME);
-		setTagBeginTemplate("rows-begin");
+		setTagBeginTemplate("rows");
 		setAssertHasParentTag(true);
 	}
 
