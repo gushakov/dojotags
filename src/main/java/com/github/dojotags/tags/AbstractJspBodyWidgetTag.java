@@ -5,8 +5,8 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 
 /**
- * Superclass for all widget tags with {@code body-content} of type {@code JSP}.
- * Declares a reference to {@code tagEndTemplate} file template. Implements
+ * Handler for tags with {@code body-content} of type {@code JSP}. Declares a
+ * reference to {@code tagEndTemplate} file template. Implements
  * {@code doInitBody()} and {@code doAfterBody} to substitute
  * {@code tagBeginTemplate} and {@code tagEndTemplate} respectively with
  * template attributes and append them to {@code bodyContent}.
@@ -35,13 +35,13 @@ public abstract class AbstractJspBodyWidgetTag extends AbstractWidgetTag {
 
 	@Override
 	public int doAfterBody() throws JspException {
-		if(tagEndTemplate!=null){
+		if (tagEndTemplate != null) {
 			try {
 				getBodyContent().append(
 						TagTemplates.substitute(tagEndTemplate, templateAttrs));
 			} catch (IOException e) {
 				throw new JspException(e);
-			}			
+			}
 		}
 		return super.doAfterBody();
 	}

@@ -2,7 +2,7 @@ package com.github.dojotags.tags;
 
 
 /**
- * Tag handler for {@code Form} widget.
+ * Tag handler for {@code Form} widget container.
  * 
  * @author gushakov
  */

@@ -17,8 +17,8 @@
 	<p>Click on the button for the Ajax round-trip to the server.</p>
 
 	<d:page>
-		<d:label wid="lbl1" text="Hello" />
-		<d:button wid="btn1" label="Button" onclick="default" />
+		<d:label id="lbl1" text="Hello" />
+		<d:button id="btn1" label="Button" onclick="default" />
 	</d:page>
 
 </body>

@@ -6,14 +6,27 @@ import java.util.regex.Pattern;
 
 import javax.servlet.jsp.PageContext;
 
-import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+/**
+ * Collection of static utility methods.
+ * 
+ * @author gushakov
+ * 
+ */
 public class WidgetUtils {
-	
+
+	/**
+	 * Checks if {@code text} contains a dimension with a valid CSS unit of
+	 * measure: px, em, or %.
+	 * 
+	 * @param text
+	 *            text to check
+	 * @return true if text is a dimension with a valid CSS unit of measure
+	 */
 	public static boolean assertValidCssUnitOfMeasure(String text) {
 		boolean answer = false;
 		if (text != null) {
@@ -26,6 +39,17 @@ public class WidgetUtils {
 		return answer;
 	}
 
+	/**
+	 * Returns an automatically generated unique widget id. Uses widget name and
+	 * a value of the counter in {@code pageContext} to generate a unique id for
+	 * the current page.
+	 * 
+	 * @param name
+	 *            widget name
+	 * @param pageContext
+	 *            current page context
+	 * @return widget id unique in the page scope
+	 */
 	public static String getWidgetGuid(String name, PageContext pageContext) {
 		Integer offset = (Integer) pageContext
 				.getAttribute("dojotags.guid.offset");

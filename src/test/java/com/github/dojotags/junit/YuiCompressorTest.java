@@ -17,7 +17,7 @@ public class YuiCompressorTest {
 
 	@Test
 	public void testCompress() throws Exception {
-		String js = "require([ \"dojo/ready\", \"dojotags/Page\" , \"dojotags/Flow\", \"dojotags/Label\", \"dojotags/Rows\" ], function(ready, Page , Flow, Label, Rows) { var page_1 = new Page({ 		id : \"page_1\", 		widgetClass : \"\" 	});  		ready(function() { 		console.debug(\"DOM is ready\"); 		page_1.startup(); 	});		 });";
+		String js = "require([ \"dojo/ready\", \"dojotags/Page\" , \"dojotags/Flow\", \"dojotags/Label\", \"dojotags/Rows\" ], function(ready, Page , Flow, Label, Rows) { var page_1 = new Page({ 		id : \"page_1\", 		styleClass : \"\" 	});  		ready(function() { 		console.debug(\"DOM is ready\"); 		page_1.startup(); 	});		 });";
 
 		StringReader reader = new StringReader(js);
 		JavaScriptCompressor compressor = new JavaScriptCompressor(reader,

@@ -17,6 +17,12 @@ import com.github.dojotags.web.AbstractDojoTagsController;
 import com.github.dojotags.web.annotation.WidgetEventMapping;
 import com.github.dojotags.widgets.Label;
 
+/**
+ * Controller for a test page.
+ * 
+ * @author gushakov
+ * 
+ */
 @Controller
 @RequestMapping(value = "/page4")
 public class Page4Controller extends AbstractDojoTagsController {

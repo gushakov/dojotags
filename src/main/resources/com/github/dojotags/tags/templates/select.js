@@ -1,7 +1,7 @@
-var $wid$ = new Select({
-	id : "$wid$",
+var $id$ = new Select({
+	id : "$id$",
 	bind : "$bind$",
-	widgetClass : "$wclass$",
+	styleClass : "$styleClass$",
 	parent : $parent$,
 	path: "$path$",
 	value : $value$,

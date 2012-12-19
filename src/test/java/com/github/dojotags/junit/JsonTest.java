@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.dojotags.utils.Items;
+import com.github.dojotags.json.Items;
 import com.github.dojotags.widgets.Select;
 import com.google.common.collect.ImmutableMap;
 

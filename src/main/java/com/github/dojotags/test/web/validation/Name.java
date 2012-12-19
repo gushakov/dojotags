@@ -12,6 +12,13 @@ import javax.validation.Payload;
 // see http://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#table-custom-constraints
 // for documentation about custom validation annotations
 
+/**
+ * Annotation for properties containing proper names: one word consisting of
+ * only alphabetical characters. Used in the validation example.
+ * 
+ * @author gushakov
+ * 
+ */
 @Target({ ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = NameValidator.class)

@@ -4,6 +4,12 @@ import java.io.Serializable;
 
 import com.github.dojotags.test.web.validation.Name;
 
+/**
+ * Form backing object used in examples.
+ * 
+ * @author gushakov
+ * 
+ */
 public class Person implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -9,9 +9,11 @@ import org.slf4j.LoggerFactory;
 import com.github.dojotags.utils.WidgetUtils;
 
 /**
- * Superclass for all widget tags. Specifies attributes common to all widget
- * tags. Registers this tag with the ancestor tag of type {@code Page}.
- * Automatically assigns a unique id to the missing {@code widgetId} attribute.
+ * Superclass for all widget tag handlers. Specifies attributes common to all
+ * widget tags. Registers this tag with the ancestor tag of type {@code Page}.
+ * Automatically assigns a unique id to the missing {@code id} attribute. Sets
+ * the value of {@code bind} attribute for all tags of type
+ * {@code BindableWidgetTag}.
  * 
  * @author gushakov
  * @see PageTag#registerNestedTag(AbstractWidgetTag)
@@ -27,9 +29,9 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 
 	protected String widgetModuleName;
 
-	protected String wid;
+	protected String id;
 
-	protected String wclass;
+	protected String styleClass;
 
 	protected boolean assertHasParentTag;
 
@@ -45,12 +47,12 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 		this.widgetModuleName = widgetModuleName;
 	}
 
-	public void setWid(String wid) {
-		this.wid = wid;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public void setWclass(String wclass) {
-		this.wclass = wclass;
+	public void setStyleClass(String styleClass) {
+		this.styleClass = styleClass;
 	}
 
 	public boolean isAssertHasParentTag() {
@@ -65,13 +67,13 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 	public int doStartTag() throws JspException {
 
 		int result = super.doStartTag();
-		if (wid == null) {
+		if (id == null) {
 			// get the value for widget id automatically
-			wid = WidgetUtils.getWidgetGuid(widgetName, pageContext);
+			id = WidgetUtils.getWidgetGuid(widgetName, pageContext);
 		}
-		templateAttrs.put("wid", wid);
+		templateAttrs.put("id", id);
 
-		templateAttrs.put("wclass", wclass);
+		templateAttrs.put("styleClass", styleClass);
 
 		// do for all tags nested in a page tag
 		if (!widgetName.equals(PageTag.WIDGET_NAME)) {
@@ -99,7 +101,7 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 			} else {
 				// add parent widget id attribute
 				AbstractWidgetTag parentWidgetTag = (AbstractWidgetTag) parentTag;
-				templateAttrs.put("parent", parentWidgetTag.wid);
+				templateAttrs.put("parent", parentWidgetTag.id);
 			}
 		}
 
@@ -115,7 +117,7 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 	protected void resetWidgetAttributes() {
 		// reset widget id to null so that it is automatically generated for the
 		// next widget with no widget id attribute set
-		wid = null;
+		id = null;
 	}
 
 	@Override

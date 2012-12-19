@@ -12,6 +12,12 @@ import com.github.dojotags.web.annotation.WidgetEventMapping;
 import com.github.dojotags.widgets.Button;
 import com.github.dojotags.widgets.Label;
 
+/**
+ * Controller for a test page.
+ * 
+ * @author gushakov
+ * 
+ */
 @Controller
 @RequestMapping(value = "/page1")
 public class Page1Controller extends AbstractDojoTagsController {
@@ -22,7 +28,7 @@ public class Page1Controller extends AbstractDojoTagsController {
 	public String showPage1() {
 		return "page1";
 	}
-	
+
 	@WidgetEventMapping(widgetId = "btn1", event = "click")
 	public Response changeLabelText(Button button) {
 		logger.debug("Processing click event on button {}", button.getId());

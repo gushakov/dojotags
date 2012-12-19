@@ -7,6 +7,14 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+/**
+ * Registers a custom web argument resolver,
+ * {@linkplain WidgetBodyHandlerMethodArgumentResolver} and resources handler
+ * for JavaScript files.
+ * 
+ * @author gushakov
+ * 
+ */
 public abstract class DojoTagsWebMvcConfigurerAdapter extends
 		WebMvcConfigurerAdapter {
 

@@ -17,22 +17,22 @@
 	<p>Rows and flow layouts with custom CSS.</p>
 
 	<d:page>
-		<d:rows wclass="box" spacer="2em">
-			<d:flow wclass="line" spacer="4em">
-				<d:label wclass="first" text="lorem"/>
-				<d:label wclass="second" text="ipsum" />
+		<d:rows styleClass="box" spacer="2em">
+			<d:flow styleClass="line" spacer="4em">
+				<d:label styleClass="first" text="lorem"/>
+				<d:label styleClass="second" text="ipsum" />
 			</d:flow>
-			<d:flow wclass="line" spacer="4em">
-				<d:label wclass="first" text="lorem"/>
-				<d:label wclass="second" text="ipsum" />
+			<d:flow styleClass="line" spacer="4em">
+				<d:label styleClass="first" text="lorem"/>
+				<d:label styleClass="second" text="ipsum" />
 			</d:flow>
-			<d:flow wclass="line" spacer="4em">
-				<d:label wclass="first" text="lorem"/>
-				<d:label wclass="second" text="ipsum" />
+			<d:flow styleClass="line" spacer="4em">
+				<d:label styleClass="first" text="lorem"/>
+				<d:label styleClass="second" text="ipsum" />
 			</d:flow>
-			<d:flow wclass="line" spacer="4em">
-				<d:label wclass="first" text="lorem"/>
-				<d:label wclass="second" text="ipsum" />
+			<d:flow styleClass="line" spacer="4em">
+				<d:label styleClass="first" text="lorem"/>
+				<d:label styleClass="second" text="ipsum" />
 			</d:flow>
 		</d:rows>
 	</d:page>

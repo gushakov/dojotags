@@ -10,6 +10,12 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.github.dojotags.web.config.DojoTagsWebMvcConfigurerAdapter;
 
+/**
+ * Web configuration context used in the test web application.
+ * 
+ * @author gushakov
+ * 
+ */
 @EnableWebMvc
 @Configuration
 @ComponentScan(basePackages = { "com.github.dojotags.test.web" })

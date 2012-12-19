@@ -17,8 +17,8 @@ define(
 				 * 
 				 * @type String
 				 */
-				widgetClass : null,
-
+				style : null,				
+				
 				/**
 				 * Model map for this widget. Will be serialized upon Ajax
 				 * request processing. Contains domain objects to be represented
@@ -75,7 +75,7 @@ define(
 				 *            {Object} Constructor arguments
 				 */
 				constructor : function(args) {
-					var widgetClass, node;
+					var styleClass, node;
 					if (args.id === undefined) {
 						throw new Error("Widget id cannot be null.");
 					}
@@ -88,7 +88,7 @@ define(
 					this.pagePath = args.pagePath;
 					this.id = args.id;
 					this.bind = args.bind;
-					widgetClass = this.widgetClass = args.widgetClass;
+					styleClass = this.styleClass = args.styleClass;
 
 					this.model = new Stateful({});
 
@@ -108,8 +108,8 @@ define(
 
 					// create a dom node and a dijit for this widget
 					node = this.domNode = domConstruct.create("div", null);
-					if (widgetClass) {
-						domAttr.set(node, "class", this.widgetClass);
+					if (styleClass) {
+						domAttr.set(node, "class", this.styleClass);
 					}
 					this.createDijit(node);
 

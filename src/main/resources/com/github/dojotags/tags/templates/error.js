@@ -1,6 +1,6 @@
-var $wid$ = new FormError({
-	id : "$wid$",
-	widgetClass : "$wclass$",
+var $id$ = new FormError({
+	id : "$id$",
+	styleClass : "$styleClass$",
 	parent : $parent$,
 	path : "$path$"
 });

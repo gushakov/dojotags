@@ -28,13 +28,13 @@
 		<body-content>JSP</body-content>
 		<attribute>
 			<description>Widget id, must be unique in the global scope.</description>
-			<name>wid</name>
+			<name>id</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>CSS Class to be applied to the widget DOM element.</description>
-			<name>wclass</name>
+			<name>styleClass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -56,13 +56,13 @@
 		<body-content>JSP</body-content>
 		<attribute>
 			<description>Widget id, must be unique in the global scope.</description>
-			<name>wid</name>
+			<name>id</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>CSS Class to be applied to the widget DOM element.</description>
-			<name>wclass</name>
+			<name>styleClass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -82,13 +82,13 @@
 		<body-content>JSP</body-content>
 		<attribute>
 			<description>Page widget id, must be unique in the global scope.</description>
-			<name>wid</name>
+			<name>id</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>CSS Class to be applied to the widget DOM element.</description>
-			<name>wclass</name>
+			<name>styleClass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -107,13 +107,13 @@
 		<body-content>JSP</body-content>
 		<attribute>
 			<description>Page widget id, must be unique in the global scope.</description>
-			<name>wid</name>
+			<name>id</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>CSS Class to be applied to the widget DOM element.</description>
-			<name>wclass</name>
+			<name>styleClass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -132,13 +132,13 @@
 		<body-content>empty</body-content>
 		<attribute>
 			<description>Widget id, must be unique in the global scope.</description>
-			<name>wid</name>
+			<name>id</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>CSS Class to be applied to the widget DOM element.</description>
-			<name>wclass</name>
+			<name>styleClass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -157,13 +157,13 @@
 		<body-content>empty</body-content>
 		<attribute>
 			<description>Widget id, must be unique in the global scope.</description>
-			<name>wid</name>
+			<name>id</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>CSS Class to be applied to the widget DOM element.</description>
-			<name>wclass</name>
+			<name>styleClass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -188,13 +188,13 @@
 		<body-content>empty</body-content>
 		<attribute>
 			<description>Widget id, must be unique in the global scope.</description>
-			<name>wid</name>
+			<name>id</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>CSS Class to be applied to the widget DOM element.</description>
-			<name>wclass</name>
+			<name>styleClass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -225,13 +225,13 @@
 		<body-content>empty</body-content>
 		<attribute>
 			<description>Widget id, must be unique in the global scope.</description>
-			<name>wid</name>
+			<name>id</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>CSS Class to be applied to the widget DOM element.</description>
-			<name>wclass</name>
+			<name>styleClass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
@@ -250,13 +250,13 @@
 		<body-content>empty</body-content>
 		<attribute>
 			<description>Widget id, must be unique in the global scope.</description>
-			<name>wid</name>
+			<name>id</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
 			<description>CSS Class to be applied to the widget DOM element.</description>
-			<name>wclass</name>
+			<name>styleClass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>

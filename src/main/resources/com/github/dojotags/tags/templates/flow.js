@@ -1,6 +1,6 @@
-var $wid$ = new Flow({
-	id : "$wid$",
-	widgetClass : "$wclass$",
+var $id$ = new Flow({
+	id : "$id$",
+	styleClass : "$styleClass$",
 	parent : $parent$,
 	spacerWidth : "$spacer$"
 });

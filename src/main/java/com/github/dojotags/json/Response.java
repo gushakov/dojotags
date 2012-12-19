@@ -6,9 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.github.dojotags.web.AbstractDojoTagsController;
 import com.github.dojotags.widgets.Widget;
 
 /**
@@ -21,9 +18,10 @@ import com.github.dojotags.widgets.Widget;
  * 
  * @author gushakov
  * 
- * @see {@linkplain AbstractDojoTagsController#processWidgetEvent(String, String, Object)}
- * @see {@linkplain ResponseBody}
- * @see {@code dojotags._Widget#processCallback}
+ * @see com.github.dojotags.web.AbstractDojoTagsController#processWidgetEvent(String,
+ *      String, Object)
+ * @see dojotags._Widget#processCallback
+ * @see org.springframework.web.bind.annotation.ResponseBody
  * 
  */
 public class Response implements Serializable {

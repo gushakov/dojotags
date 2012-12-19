@@ -8,9 +8,15 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
-import com.github.dojotags.utils.Items;
+import com.github.dojotags.json.Items;
 import com.github.dojotags.widgets.Select;
 
+/**
+ * Tag handler for {@code Select} widget.
+ * 
+ * @author gushakov
+ * 
+ */
 public class SelectTag extends AbstractFormElementWidgetTag implements
 		BindableWidgetTag {
 
@@ -21,13 +27,13 @@ public class SelectTag extends AbstractFormElementWidgetTag implements
 	private ObjectMapper jacksonMapper;
 
 	private Items items;
-	
+
 	private String onopen;
 
 	public void setItems(Items items) {
 		this.items = items;
 	}
-	
+
 	public void setOnopen(String onopen) {
 		this.onopen = onopen;
 	}
@@ -44,7 +50,8 @@ public class SelectTag extends AbstractFormElementWidgetTag implements
 	public int doStartTag() throws JspException {
 		int result = super.doStartTag();
 		try {
-			templateAttrs.put("items", jacksonMapper.writeValueAsString(items.getList()));
+			templateAttrs.put("items",
+					jacksonMapper.writeValueAsString(items.getList()));
 			templateAttrs.put("onopen", onopen);
 		} catch (JsonGenerationException e) {
 			throw new JspException(e);

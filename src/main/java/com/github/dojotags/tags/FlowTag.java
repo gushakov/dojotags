@@ -4,6 +4,12 @@ import javax.servlet.jsp.JspException;
 
 import com.github.dojotags.utils.WidgetUtils;
 
+/**
+ * Tag handler for {@code Flow} widget container.
+ * 
+ * @author gushakov
+ * 
+ */
 public class FlowTag extends AbstractJspBodyWidgetTag {
 
 	private static final long serialVersionUID = 1L;

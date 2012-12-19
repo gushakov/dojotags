@@ -4,6 +4,16 @@ import java.lang.reflect.InvocationTargetException;
 
 import javax.servlet.jsp.JspException;
 
+/**
+ * Tag handler for all widget tags which can be embedded inside a {@code Form}
+ * tag. Declares {@code path} attribute which references a property of the form
+ * backing object. The value of this property will be then specified as the
+ * value of {@code value} attribute. If {@code path} is not set, {@code value}
+ * attribute can be used to specify an initial value of a widget.
+ * 
+ * @author gushakov
+ * 
+ */
 public abstract class AbstractFormElementWidgetTag extends AbstractWidgetTag {
 
 	private static final long serialVersionUID = 1L;

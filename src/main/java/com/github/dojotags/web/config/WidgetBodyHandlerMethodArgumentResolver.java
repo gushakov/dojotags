@@ -13,6 +13,14 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 import com.github.dojotags.web.annotation.WidgetBody;
 
+/**
+ * Converts the Json from the body of the request to the Java bean with the
+ * class specified in the {@code Bind-Class} request header using
+ * {@linkplain ObjectMapper}.
+ * 
+ * @author gushakov
+ * 
+ */
 public class WidgetBodyHandlerMethodArgumentResolver implements
 		HandlerMethodArgumentResolver {
 	private static final Logger logger = LoggerFactory

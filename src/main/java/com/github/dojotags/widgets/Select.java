@@ -3,8 +3,14 @@ package com.github.dojotags.widgets;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 
-import com.github.dojotags.utils.Items;
+import com.github.dojotags.json.Items;
 
+/**
+ * Encapsulates model attributes for {@code Select} widget.
+ * 
+ * @author gushakov
+ * 
+ */
 public class Select extends Widget {
 
 	private static final long serialVersionUID = 1L;

@@ -9,7 +9,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
- * Superclass for all template driven tags. Has a reference to
+ * Handler for all template driven tags. Has a reference to
  * {@code tagBeginTemplate} file template and {@code templateAttrs} map which
  * will be populated with tag attributes during execution of
  * {@code doStartTag()} method. Defaults to appending the string resulting from
@@ -44,10 +44,12 @@ public abstract class AbstractTemplatedTag extends BodyTagSupport {
 		// add context attribute
 		if (HttpServletRequest.class.isAssignableFrom(pageContext.getRequest()
 				.getClass())) {
-			HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+			HttpServletRequest request = (HttpServletRequest) pageContext
+					.getRequest();
 			String contextPath = request.getContextPath();
 			templateAttrs.put("contextPath", contextPath);
-			String pagePath = request.getAttribute("javax.servlet.forward.servlet_path").toString();
+			String pagePath = request.getAttribute(
+					"javax.servlet.forward.servlet_path").toString();
 			templateAttrs.put("pagePath", pagePath);
 		} else {
 			throw new JspException("Not implemented for request of type "

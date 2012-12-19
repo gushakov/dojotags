@@ -16,8 +16,7 @@ import org.slf4j.LoggerFactory;
 import com.yahoo.platform.yui.compressor.JavaScriptCompressor;
 
 /**
- * Tag handler for {@code Page} widget container. Maintains a map of all nested
- * widget tags used when creating Dojo {@code require} directive.
+ * Tag handler for {@code Page} widget.
  * 
  * @author gushakov
  * 

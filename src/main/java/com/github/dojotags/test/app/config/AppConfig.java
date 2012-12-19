@@ -8,6 +8,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.StaticMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+/**
+ * Configuration context for the test web application.
+ * 
+ * @author gushakov
+ * 
+ */
 @Configuration
 public class AppConfig {
 

@@ -7,13 +7,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.github.dojotags.json.Items;
 import com.github.dojotags.json.Response;
-import com.github.dojotags.utils.Items;
 import com.github.dojotags.web.AbstractDojoTagsController;
 import com.github.dojotags.web.annotation.WidgetEventMapping;
 import com.github.dojotags.widgets.Select;
 import com.google.common.collect.ImmutableMap;
 
+/**
+ * Controller for a test page.
+ * 
+ * @author gushakov
+ * 
+ */
 @Controller
 @RequestMapping(value = "/page5")
 public class Page5Controller extends AbstractDojoTagsController {

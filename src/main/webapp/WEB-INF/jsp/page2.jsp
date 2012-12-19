@@ -17,8 +17,8 @@
 	<p>Trigger "onenter" event for an input element. Enter your name and press enter.</p>
 
 	<d:page>
-		<d:input wid="inp1" onenter="default"/>
-		<d:label wid="lbl1"/>
+		<d:input id="inp1" onenter="default"/>
+		<d:label id="lbl1"/>
 	</d:page>
 
 </body>

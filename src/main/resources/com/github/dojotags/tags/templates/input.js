@@ -1,7 +1,7 @@
-var $wid$ = new Input({
-	id : "$wid$",
+var $id$ = new Input({
+	id : "$id$",
 	bind : "$bind$",
-	widgetClass : "$wclass$",
+	styleClass : "$styleClass$",
 	parent : $parent$,
 	path: "$path$",
 	value : "$value$",

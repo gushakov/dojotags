@@ -19,18 +19,18 @@
 		characters.</p>
 
 	<d:page>
-		<d:form wid="frm1" wclass="form" bean="${person}">
+		<d:form id="frm1" styleClass="form" bean="${person}">
 			<d:rows>
 				<d:flow>
 					<d:input path="firstName" />
-					<d:error wclass="error" path="firstName" />
+					<d:error styleClass="error" path="firstName" />
 				</d:flow>
 				<d:flow>
 					<d:input path="lastName" />
-					<d:error wclass="error" path="lastName" />
+					<d:error styleClass="error" path="lastName" />
 				</d:flow>
 				<d:button label="Submit" onclick="submit" />
-				<d:label wid="lbl1" />
+				<d:label id="lbl1" />
 			</d:rows>
 		</d:form>
 	</d:page>

@@ -1,6 +1,6 @@
-var $wid$ = new Form({
-	id : "$wid$",
+var $id$ = new Form({
+	id : "$id$",
 	bind : "$bind$",
-	widgetClass : "$wclass$",
+	styleClass : "$styleClass$",
 	parent : $parent$
 });

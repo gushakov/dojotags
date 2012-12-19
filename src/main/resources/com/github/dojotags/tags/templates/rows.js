@@ -1,6 +1,6 @@
-var $wid$ = new Rows({
-	id : "$wid$",
-	widgetClass : "$wclass$",
+var $id$ = new Rows({
+	id : "$id$",
+	styleClass : "$styleClass$",
 	parent : $parent$,
 	spacerHeight : "$spacer$"
 });

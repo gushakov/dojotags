@@ -1,4 +1,4 @@
-package com.github.dojotags.utils;
+package com.github.dojotags.json;
 
 import java.io.IOException;
 
@@ -7,6 +7,13 @@ import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.JsonSerializer;
 import org.codehaus.jackson.map.SerializerProvider;
 
+/**
+ * Custom Json serializer for {@code Items} bean. Serializes {@code list}
+ * property.
+ * 
+ * @author gushakov
+ * 
+ */
 public class ItemsSerializer extends JsonSerializer<Items> {
 
 	@Override

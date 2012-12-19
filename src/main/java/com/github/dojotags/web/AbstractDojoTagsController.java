@@ -20,6 +20,16 @@ import com.github.dojotags.json.Response;
 import com.github.dojotags.web.annotation.WidgetBody;
 import com.github.dojotags.web.annotation.WidgetEventMapping;
 
+/**
+ * Controller for handling widget events. Will handle all POST requests to
+ * <code>/dojotags/widget/{widgetId}/event/{event}</code> URL with Json body.
+ * Subclasses should provide an appropriate method annotated with
+ * {@linkplain WidgetEventMapping} annotation and expecting a bound widget model
+ * object.
+ * 
+ * @author gushakov
+ * 
+ */
 public abstract class AbstractDojoTagsController {
 
 	private static final Logger logger = LoggerFactory

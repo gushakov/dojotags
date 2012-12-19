@@ -6,6 +6,12 @@ import java.util.regex.Pattern;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+/**
+ * Validator for properties annotated with {@linkplain Name}.
+ * 
+ * @author gushakov
+ * 
+ */
 public class NameValidator implements ConstraintValidator<Name, CharSequence> {
 
 	@Override
@@ -15,17 +21,17 @@ public class NameValidator implements ConstraintValidator<Name, CharSequence> {
 	@Override
 	public boolean isValid(CharSequence value,
 			ConstraintValidatorContext context) {
-		
+
 		boolean answer = false;
-		
-		if (value != null){
+
+		if (value != null) {
 			Pattern pattern = Pattern.compile("\\p{Alpha}+");
 			Matcher matcher = pattern.matcher(value);
-			if (matcher.matches()){
+			if (matcher.matches()) {
 				answer = true;
 			}
 		}
-		
+
 		return answer;
 	}
 

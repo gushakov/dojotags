@@ -1,5 +1,11 @@
 package com.github.dojotags.widgets;
 
+/**
+ * Encapsulates model attributes for {@code Label} widget.
+ * 
+ * @author gushakov
+ * 
+ */
 public class Label extends Widget {
 	private static final long serialVersionUID = 1L;
 
@@ -12,5 +18,5 @@ public class Label extends Widget {
 	public void setText(String text) {
 		this.text = text;
 	}
-	
+
 }
