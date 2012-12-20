@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.github.dojotags.json.Response;
 import com.github.dojotags.web.AbstractDojoTagsController;
+import com.github.dojotags.web.annotation.WidgetBinding;
 import com.github.dojotags.web.annotation.WidgetEventMapping;
 import com.github.dojotags.widgets.Button;
 import com.github.dojotags.widgets.Label;
@@ -21,22 +22,25 @@ import com.github.dojotags.widgets.Label;
  * 
  */
 @Controller
-@RequestMapping(value = "/page1")
-public class Page1Controller extends AbstractDojoTagsController {
+@RequestMapping(value = "/page6")
+public class Page6Controller extends AbstractDojoTagsController {
 	private static final Logger logger = LoggerFactory
-			.getLogger(Page1Controller.class);
+			.getLogger(Page6Controller.class);
+
+	@WidgetBinding(id = "lbl1")
+	Label label;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String showPage6() {
-		return "page1";
+		logger.debug("Label lbl1 text {}", label.getText());
+		return "page6";
 	}
 
 	@WidgetEventMapping(widgetId = "btn1", event = "click")
 	public Response changeLabelText(Button button) {
 		logger.debug("Processing click event on button {}", button.getId());
+		logger.debug("Label lbl1 text {}", label.getText());
 		Response response = new Response();
-		Label label = new Label();
-		label.setId("lbl1");
 		label.setText("This label was updated by a click on a button "
 				+ button.getId() + " " + new Date());
 		response.getUpdates().add(label);

@@ -1,5 +1,7 @@
 package com.github.dojotags.test.web.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +22,8 @@ import com.github.dojotags.web.config.DojoTagsWebMvcConfigurerAdapter;
 @Configuration
 @ComponentScan(basePackages = { "com.github.dojotags.test.web" })
 public class WebConfig extends DojoTagsWebMvcConfigurerAdapter {
+	private static final Logger logger = LoggerFactory
+			.getLogger(WebConfig.class);
 
 	// set up the default view resolver, mapping logical view name
 	// to a JSP with the same file name

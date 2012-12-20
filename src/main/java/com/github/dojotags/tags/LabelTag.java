@@ -2,6 +2,13 @@ package com.github.dojotags.tags;
 
 import javax.servlet.jsp.JspException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.github.dojotags.utils.WidgetUtils;
+import com.github.dojotags.web.registry.WidgetsRegistry;
+import com.github.dojotags.widgets.Label;
+
 /**
  * Tag handler for {@code Label} widget.
  * 
@@ -9,6 +16,8 @@ import javax.servlet.jsp.JspException;
  * 
  */
 public class LabelTag extends AbstractWidgetTag {
+	private static final Logger logger = LoggerFactory
+			.getLogger(LabelTag.class);
 	private static final long serialVersionUID = 1L;
 	public static final String WIDGET_NAME = "label";
 	public static final String WIDGET_MODULE_NAME = "Label";
@@ -27,9 +36,18 @@ public class LabelTag extends AbstractWidgetTag {
 	}
 
 	@Override
-	public int doStartTag() throws JspException {
+	public int doStartTag() throws JspException {		
 		int result = super.doStartTag();
-		templateAttrs.put("text", text);
+		WidgetsRegistry registry = WidgetUtils.getWidgetsRegistry(pageContext);
+		Label label = registry.get(id, Label.class);
+		logger.debug("Looked up label {} from widgets registry.", label);
+		if (text == null){
+			templateAttrs.put("text", label.getText());
+		}
+		else {
+			label.setText(text);
+			templateAttrs.put("text", text);
+		}
 		return result;
 	}
 }

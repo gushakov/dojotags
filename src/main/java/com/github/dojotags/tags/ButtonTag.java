@@ -2,6 +2,9 @@ package com.github.dojotags.tags;
 
 import javax.servlet.jsp.JspException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.github.dojotags.widgets.Button;
 
 /**
@@ -11,6 +14,9 @@ import com.github.dojotags.widgets.Button;
  * 
  */
 public class ButtonTag extends AbstractWidgetTag implements BindableWidgetTag  {
+	private static final Logger logger = LoggerFactory
+			.getLogger(ButtonTag.class);
+	
 	private static final long serialVersionUID = 1L;
 	public static final String WIDGET_NAME = "button";
 	public static final String WIDGET_MODULE_NAME = "Button";

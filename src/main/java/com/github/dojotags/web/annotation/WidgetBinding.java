@@ -6,17 +6,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/**
- * Annotaion used to mark controller methods which handle a widget event.
- * 
- * @author gushakov
- * 
- */
-@Target(ElementType.METHOD)
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface WidgetEventMapping {
-	String widgetId();
-
-	String event() default "click";
+public @interface WidgetBinding {
+	String id();
 }

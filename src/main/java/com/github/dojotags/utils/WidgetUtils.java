@@ -1,15 +1,13 @@
 package com.github.dojotags.utils;
 
-import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.jsp.PageContext;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import com.github.dojotags.web.registry.WidgetsRegistry;
 
 /**
  * Collection of static utility methods.
@@ -61,14 +59,18 @@ public class WidgetUtils {
 		return guid;
 	}
 
-	public static String toJson(Object bean, PageContext pageContext,
-			String objectMapperBeanName) throws JsonGenerationException,
-			JsonMappingException, IOException {
-		ObjectMapper jacksonMapper = (ObjectMapper) WebApplicationContextUtils
-				.getRequiredWebApplicationContext(
-						pageContext.getServletContext()).getBean(
-						objectMapperBeanName);
-		return jacksonMapper.writeValueAsString(bean);
+	/**
+	 * Returns session-scoped instance of {@linkplain WidgetsRegistry} declared
+	 * in the root web application context.
+	 * 
+	 * @return widget registry
+	 * 
+	 * @see org.springframework.web.context.support.WebApplicationContextUtils
+	 * @see com.github.dojotags.app.config.WidgetsRegistryConfiguration
+	 */
+	public static WidgetsRegistry getWidgetsRegistry(PageContext pageContext) {
+		return WebApplicationContextUtils.getRequiredWebApplicationContext(
+				pageContext.getServletContext()).getBean(WidgetsRegistry.class);
 	}
 
 }

@@ -16,10 +16,10 @@
 
 <br>
 
-	<p>Click on the button for the Ajax round-trip to the server.</p>
+	<p>Setting label's attributes via the bean in widgets registry.</p>
 
 	<d:page>
-		<d:label id="lbl1" text="Hello" />
+		<d:label id="lbl1" text="Toto toto"/>
 		<d:button id="btn1" label="Button" onclick="default" />
 	</d:page>
 

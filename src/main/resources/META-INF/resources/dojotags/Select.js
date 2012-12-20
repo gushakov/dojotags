@@ -7,12 +7,16 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/_base/array", "dojo/aspe
 		_store : null,
 
 		onOpen : null,
+		
+		_openedOnce: null,
 
 		initialize : function(args) {
 			this.inherited(arguments);
 
 			this.onOpen = args.onOpen || "ignore";
 
+			this._openedOnce = false;
+			
 			this._store = new Memory({
 				data : args.items
 			});
@@ -22,8 +26,9 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/_base/array", "dojo/aspe
 					this.model.set("regExp", args.name.source);
 					// process open event for manual open of the select's
 					// drop-down list
-					if (args.name.source === "^.*$") {
+					if (args.name.source === "^.*$" && this._openedOnce === false) {
 						this.processEvent("open");
+						this._openedOnce = true;
 					}
 				}), true);
 			}
@@ -35,7 +40,7 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/_base/array", "dojo/aspe
 				// add new items to the store
 				array.forEach(update.addItems, lang.hitch(this, function(item) {
 					this._store.put(item);
-				}));
+				}));				
 			}
 		},
 
