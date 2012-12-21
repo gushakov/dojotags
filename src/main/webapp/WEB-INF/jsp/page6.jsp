@@ -19,7 +19,7 @@
 	<p>Setting label's attributes via the bean in widgets registry.</p>
 
 	<d:page>
-		<d:label id="lbl1" text="Toto toto"/>
+		<d:label id="lbl1"/>
 		<d:button id="btn1" label="Button" onclick="default" />
 	</d:page>
 

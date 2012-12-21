@@ -22,6 +22,9 @@ public class Select extends Widget {
 	private String regExp;
 
 	@JsonIgnore
+	private Items items;
+	
+	@JsonIgnore
 	private Items addItems;
 
 	public Integer getValue() {
@@ -46,6 +49,14 @@ public class Select extends Widget {
 
 	public void setRegExp(String regExp) {
 		this.regExp = regExp;
+	}
+	
+	public Items getItems() {
+		return items;
+	}
+
+	public void setItems(Items items) {
+		this.items = items;
 	}
 
 	@JsonProperty

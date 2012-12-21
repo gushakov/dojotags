@@ -273,12 +273,6 @@
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Immutable map of select items.</description>
-			<name>items</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
 			<description>Event triggered when user opens the combo-box manually.
 			Set to "update" to request additional items from the server. Ignored by default.</description>
 			<name>onopen</name>

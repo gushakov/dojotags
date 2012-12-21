@@ -8,7 +8,8 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
-import com.github.dojotags.json.Items;
+import com.github.dojotags.utils.WidgetUtils;
+import com.github.dojotags.web.registry.WidgetsRegistry;
 import com.github.dojotags.widgets.Select;
 
 /**
@@ -26,13 +27,7 @@ public class SelectTag extends AbstractFormElementWidgetTag implements
 
 	private ObjectMapper jacksonMapper;
 
-	private Items items;
-
 	private String onopen;
-
-	public void setItems(Items items) {
-		this.items = items;
-	}
 
 	public void setOnopen(String onopen) {
 		this.onopen = onopen;
@@ -49,9 +44,18 @@ public class SelectTag extends AbstractFormElementWidgetTag implements
 	@Override
 	public int doStartTag() throws JspException {
 		int result = super.doStartTag();
+		WidgetsRegistry widgetsRegistry = WidgetUtils
+				.getWidgetsRegistry(pageContext);
+		Select select = widgetsRegistry.get(id, Select.class);
 		try {
-			templateAttrs.put("items",
-					jacksonMapper.writeValueAsString(items.getList()));
+			if (select != null) {
+				templateAttrs.put("items",
+						jacksonMapper.writeValueAsString(select.getItems()));
+			} else {
+				select = new Select();
+				select.setId(id);
+				widgetsRegistry.put(select);
+			}
 			templateAttrs.put("onopen", onopen);
 		} catch (JsonGenerationException e) {
 			throw new JspException(e);

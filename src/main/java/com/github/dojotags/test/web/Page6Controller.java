@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.github.dojotags.json.Response;
 import com.github.dojotags.web.AbstractDojoTagsController;
-import com.github.dojotags.web.annotation.WidgetBinding;
 import com.github.dojotags.web.annotation.WidgetEventMapping;
 import com.github.dojotags.widgets.Button;
 import com.github.dojotags.widgets.Label;
@@ -27,18 +26,19 @@ public class Page6Controller extends AbstractDojoTagsController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(Page6Controller.class);
 
-	@WidgetBinding(id = "lbl1")
-	Label label;
-
 	@RequestMapping(method = RequestMethod.GET)
 	public String showPage6() {
-		logger.debug("Label lbl1 text {}", label.getText());
+		Label label = new Label();
+		label.setId("lbl1");
+		label.setText("George");
+		widgetsRegistry.put(label);
 		return "page6";
 	}
 
 	@WidgetEventMapping(widgetId = "btn1", event = "click")
 	public Response changeLabelText(Button button) {
 		logger.debug("Processing click event on button {}", button.getId());
+		Label label = widgetsRegistry.get("lbl1", Label.class);
 		logger.debug("Label lbl1 text {}", label.getText());
 		Response response = new Response();
 		label.setText("This label was updated by a click on a button "

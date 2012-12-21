@@ -10,6 +10,7 @@ import javax.validation.Validator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.dojotags.json.Response;
 import com.github.dojotags.web.annotation.WidgetBody;
 import com.github.dojotags.web.annotation.WidgetEventMapping;
+import com.github.dojotags.web.registry.WidgetsRegistry;
 
 /**
  * Controller for handling widget events. Will handle all POST requests to
@@ -34,6 +36,9 @@ public abstract class AbstractDojoTagsController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(AbstractDojoTagsController.class);
+
+	@Autowired
+	protected WidgetsRegistry widgetsRegistry;
 
 	@RequestMapping(value = "/dojotags/widget/{widgetId}/event/{event}", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public @ResponseBody
@@ -67,7 +72,6 @@ public abstract class AbstractDojoTagsController {
 			logger.debug(
 					"Found handler method {} for widget {} and event {}",
 					new Object[] { method.getName(), annotWidgetId, annotEvent });
-
 			// execute the handler method
 			try {
 				data = (Response) method.invoke(this, widget);

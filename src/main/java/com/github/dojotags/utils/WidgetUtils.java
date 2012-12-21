@@ -1,5 +1,6 @@
 package com.github.dojotags.utils;
 
+import java.lang.annotation.Annotation;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -71,6 +72,29 @@ public class WidgetUtils {
 	public static WidgetsRegistry getWidgetsRegistry(PageContext pageContext) {
 		return WebApplicationContextUtils.getRequiredWebApplicationContext(
 				pageContext.getServletContext()).getBean(WidgetsRegistry.class);
+	}
+
+	/**
+	 * Returns annotation of the given {@code type} if any is present in the
+	 * list of given annotations.
+	 * 
+	 * @param annotations
+	 *            list of annotations to search
+	 * @param type
+	 *            class of the annotation to look for
+	 * @return annotation of the given type or null if no such annotation can be
+	 *         found
+	 */
+	public static <T extends Annotation> T findAnnotaion(
+			Annotation[] annotations, Class<T> type) {
+		Annotation annot = null;
+		for (Annotation annotation : annotations) {
+			if (annotation.getClass().equals(type)) {
+				annot = annotation;
+				break;
+			}
+		}
+		return type.cast(annot);
 	}
 
 }

@@ -18,7 +18,7 @@
 		event.</p>
 
 	<d:page>
-		<d:select id="sel1" items="${items}" value="1" onopen="update" />
+		<d:select id="sel1" value="1" onopen="update" />
 	</d:page>
 
 </body>
