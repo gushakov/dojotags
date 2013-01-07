@@ -14,11 +14,11 @@
 
 <body class="${dijitTheme}">
 
-<d:page view="com.github.dojotags.test.web.mvvm.Page1View">
+	<d:page view="com.github.dojotags.test.web.mvvm.Page1View">
 
-<d:input id="firstName"/>
+		<d:input name="firstName" onEnter="changeFirstName" />
 
-</d:page>
+	</d:page>
 
 </body>
 </html>

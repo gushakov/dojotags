@@ -16,8 +16,14 @@ import com.github.dojotags.web.annotation.ViewModel;
 import com.github.dojotags.web.annotation.WidgetEvent;
 
 /**
- * Controller for handling widget events. Will handle all POST requests to
- * <code>/dojotags/widget/{widgetId}/event/{event}</code> URL with Json body.
+ * Controller for handling widget events. Will handle all POST requests with
+ * content type "application/json" submitted to URL matching
+ * <code>/dojotags/widget/{widgetId}/event/{event}</code> pattern. Resolves
+ * {@code viewModel} object by looking up a session bean from the application
+ * context using the value of "View-Class" header attribute and updates it with
+ * the relevant widget unmarshalled from the request body. Calls any method of
+ * {@code viewModel} annotated with {@code WidgetEvent} with matching event
+ * name.
  * 
  * @author gushakov
  * 

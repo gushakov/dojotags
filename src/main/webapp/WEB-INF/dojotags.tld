@@ -33,6 +33,12 @@
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>
 		<attribute>
+			<description>Widget name, must be unique in the page scope.</description>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
 			<description>CSS Class to be applied to the widget DOM element.</description>
 			<name>styleClass</name>
 			<required>false</required>
@@ -62,6 +68,18 @@
 		<attribute>
 			<description>Widget id, must be unique in the global scope.</description>
 			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Widget name, must be unique in the page scope.</description>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Name of the event to fire when enter is pressed inside this input element. Defaults to "enter".</description>
+			<name>onEnter</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>

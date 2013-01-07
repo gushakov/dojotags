@@ -101,12 +101,17 @@ public class ViewModelHandlerMethodArgumentResolver implements
 				"Got view-model bean from application context {} with class {}",
 				viewModel, viewModel.getClass());
 
-		// invoke setter for the corresponding field in the view-model,
-		// needed since the actual object we get is a session-scoped proxy and
-		// we cannot directly set the field value
-		Method method = viewModel.getClass().getMethod(
-				getSetter(widget.getId()), widgetClass);
-		method.invoke(viewModel, widget);
+		// invoke setter for the field in the view-model corresponding to the
+		// widget's name, note we cannot directly set the field value since the
+		// actual view-model object we get is a session-scoped proxy
+		try {
+			Method method = viewModel.getClass().getMethod(
+					getSetter(widget.getName()), widgetClass);
+			method.invoke(viewModel, widget);
+		} catch (NoSuchMethodException e) {
+			// ignore, we are not interested in listening to this widget's
+			// change events
+		}
 
 		return viewModel;
 	}

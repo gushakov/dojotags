@@ -3,6 +3,8 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/on", "dojo/keys",
 		keys, ValidationTextBox, at, _Widget) {
 	return declare("dojotags.Input", [ _Widget ], {
 		
+		onEnter: null,
+		
 		_cancelOnChangeOnce: null,
 		
 		initialize : function(args) {

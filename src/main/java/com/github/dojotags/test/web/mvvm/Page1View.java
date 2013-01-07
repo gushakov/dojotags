@@ -20,7 +20,7 @@ public class Page1View {
 		this.firstName = firstName;
 	}
 
-	@WidgetEvent("enter")
+	@WidgetEvent("changeFirstName")
 	public void onEnter(){
 		if (firstName!=null){
 			logger.debug("Entered new first name {}", firstName.getValue());			

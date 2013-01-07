@@ -8,9 +8,16 @@ define(
 				/**
 				 * Id of the widget, should be unique in the global scope.
 				 * 
-				 * @type {String}
+				 * @type String
 				 */
 				id : null,
+
+				/**
+				 * Name of the widget, used for reference in the view-model.
+				 * 
+				 * @type String
+				 */
+				name : null,
 
 				/**
 				 * CSS class of the root DOM node for this widget.
@@ -87,6 +94,7 @@ define(
 					this.contextPath = args.contextPath;
 					this.pagePath = args.pagePath;
 					this.id = args.id;
+					this.name = args.name;
 					styleClass = this.styleClass = args.styleClass;
 
 					this.model = new Stateful({});
@@ -242,6 +250,7 @@ define(
 				serializeModel : function() {
 					var copy = lang.clone(this.model);
 					copy.id = this.id;
+					copy.name = this.name;
 					return json.stringify(copy);
 				},
 

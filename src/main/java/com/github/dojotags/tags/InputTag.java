@@ -15,6 +15,12 @@ public class InputTag extends AbstractWidgetTag {
 	public static final String WIDGET_NAME = "input";
 	public static final String WIDGET_MODULE_NAME = "Input";
 
+	private String onEnter;
+	
+	public void setOnEnter(String onEnter) {
+		this.onEnter = onEnter;
+	}
+	
 	public InputTag() {
 		setWidgetName(WIDGET_NAME);
 		setWidgetModuleName(WIDGET_MODULE_NAME);
@@ -25,6 +31,7 @@ public class InputTag extends AbstractWidgetTag {
 	@Override
 	public int doStartTag() throws JspException {
 		int result = super.doStartTag();
+		templateAttrs.put("onEnter", onEnter);
 		//TODO: allow setting of the initial value
 		templateAttrs.put("value", "");
 		return result;

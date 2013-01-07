@@ -11,9 +11,7 @@ import com.github.dojotags.utils.WidgetUtils;
 /**
  * Superclass for all widget tag handlers. Specifies attributes common to all
  * widget tags. Registers this tag with the ancestor tag of type {@code Page}.
- * Automatically assigns a unique id to the missing {@code id} attribute. Sets
- * the value of {@code bind} attribute for all tags of type
- * {@code BindableWidgetTag}.
+ * Automatically assigns a unique id to the missing {@code id} attribute.
  * 
  * @author gushakov
  * @see PageTag#registerNestedTag(AbstractWidgetTag)
@@ -31,6 +29,8 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 	
 	protected String id;
 
+	protected String name;
+	
 	protected String styleClass;
 
 	protected boolean assertHasParentTag;
@@ -49,6 +49,10 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 	
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public void setStyleClass(String styleClass) {
@@ -72,7 +76,9 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 			id = WidgetUtils.getWidgetGuid(widgetName, pageContext);
 		}
 		templateAttrs.put("id", id);
-		
+
+		templateAttrs.put("name", name);
+
 		templateAttrs.put("styleClass", styleClass);
 
 		// do for all tags nested in a page tag
