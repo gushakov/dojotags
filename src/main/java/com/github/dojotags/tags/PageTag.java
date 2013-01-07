@@ -8,6 +8,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javax.servlet.jsp.JspException;
+
 import org.mozilla.javascript.ErrorReporter;
 import org.mozilla.javascript.EvaluatorException;
 import org.slf4j.Logger;
@@ -29,8 +31,13 @@ public class PageTag extends AbstractJspBodyWidgetTag {
 	public static final String WIDGET_NAME = "page";
 	public static final String WIDGET_MODULE_NAME = "Page";
 
+	private String view;
 	private boolean compress;
 
+	public void setView(String view) {
+		this.view = view;
+	}
+	
 	public void setCompress(boolean compress) {
 		this.compress = compress;
 	}
@@ -53,6 +60,13 @@ public class PageTag extends AbstractJspBodyWidgetTag {
 		}
 	}
 
+	@Override
+	public int doStartTag() throws JspException {
+		int result = super.doStartTag();
+		templateAttrs.put("viewClass", view);
+		return result;
+	}
+	
 	/**
 	 * Overrides default to substitute placeholders in Dojo require statement
 	 * (modules and arguments) with values constructed from the names of the

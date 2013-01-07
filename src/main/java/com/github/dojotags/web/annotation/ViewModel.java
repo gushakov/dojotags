@@ -7,9 +7,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation for requests with {@code Bind-Class} header specifying the class
- * for the Java object which should be deserialized from the Json in the request
- * body.
+ * Annotation for a web argument which will be resolved with the view-model
+ * bean.
  * 
  * @author gushakov
  * 
@@ -17,5 +16,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface WidgetBody {
+public @interface ViewModel {
 }

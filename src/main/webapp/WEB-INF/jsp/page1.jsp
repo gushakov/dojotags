@@ -14,14 +14,11 @@
 
 <body class="${dijitTheme}">
 
-<br>
+<d:page view="com.github.dojotags.test.web.mvvm.Page1View">
 
-	<p>Click on the button for the Ajax round-trip to the server.</p>
+<d:input id="firstName"/>
 
-	<d:page>
-		<d:label id="lbl1" text="Hello" />
-		<d:button id="btn1" label="Button" onclick="default" />
-	</d:page>
+</d:page>
 
 </body>
 </html>

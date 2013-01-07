@@ -2,7 +2,6 @@ package com.github.dojotags.tags;
 
 import javax.servlet.jsp.JspException;
 
-import com.github.dojotags.widgets.Input;
 
 /**
  * Tag handler for {@code Input} widget.
@@ -10,18 +9,11 @@ import com.github.dojotags.widgets.Input;
  * @author gushakov
  * 
  */
-public class InputTag extends AbstractFormElementWidgetTag implements
-		BindableWidgetTag {
+public class InputTag extends AbstractWidgetTag {
 
 	private static final long serialVersionUID = 1L;
 	public static final String WIDGET_NAME = "input";
 	public static final String WIDGET_MODULE_NAME = "Input";
-
-	private String onenter;
-
-	public void setOnenter(String onenter) {
-		this.onenter = onenter;
-	}
 
 	public InputTag() {
 		setWidgetName(WIDGET_NAME);
@@ -29,17 +21,13 @@ public class InputTag extends AbstractFormElementWidgetTag implements
 		setTagBeginTemplate("input");
 		setAssertHasParentTag(true);
 	}
-
+	
 	@Override
 	public int doStartTag() throws JspException {
 		int result = super.doStartTag();
-		templateAttrs.put("onenter", onenter);
+		//TODO: allow setting of the initial value
+		templateAttrs.put("value", "");
 		return result;
-	}
-
-	@Override
-	public String getBindClassName() {
-		return Input.class.getName();
 	}
 
 }

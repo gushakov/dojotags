@@ -3,6 +3,7 @@ package com.github.dojotags.tags;
 import java.io.IOException;
 
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.BodyContent;
 
 /**
  * Handler for tags with {@code body-content} of type {@code JSP}. Declares a
@@ -50,8 +51,11 @@ public abstract class AbstractJspBodyWidgetTag extends AbstractWidgetTag {
 	public int doEndTag() throws JspException {
 		super.resetWidgetAttributes();
 		try {
-			getBodyContent().getEnclosingWriter().println(
-					modifyBodyContentBeforeOutput());
+			BodyContent bodyContent = getBodyContent();
+			if (bodyContent != null) {
+				bodyContent.getEnclosingWriter().println(
+						modifyBodyContentBeforeOutput());
+			}
 		} catch (IOException e) {
 			throw new JspException(e);
 		}

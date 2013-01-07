@@ -28,7 +28,7 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 	protected String widgetName;
 
 	protected String widgetModuleName;
-
+	
 	protected String id;
 
 	protected String styleClass;
@@ -46,7 +46,7 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 	public void setWidgetModuleName(String widgetModuleName) {
 		this.widgetModuleName = widgetModuleName;
 	}
-
+	
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -72,7 +72,7 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 			id = WidgetUtils.getWidgetGuid(widgetName, pageContext);
 		}
 		templateAttrs.put("id", id);
-
+		
 		templateAttrs.put("styleClass", styleClass);
 
 		// do for all tags nested in a page tag
@@ -103,12 +103,6 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 				AbstractWidgetTag parentWidgetTag = (AbstractWidgetTag) parentTag;
 				templateAttrs.put("parent", parentWidgetTag.id);
 			}
-		}
-
-		// if this is a bindable tag set the bind attribute
-		if (this instanceof BindableWidgetTag) {
-			templateAttrs.put("bind",
-					((BindableWidgetTag) this).getBindClassName());
 		}
 
 		return result;

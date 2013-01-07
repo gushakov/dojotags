@@ -3,5 +3,6 @@ require([ "dojo/ready", "dojotags/Page" #requireModules# ], function(ready, Page
 		id : "$id$",
 		contextPath: "$contextPath$",
 		pagePath: "$pagePath$",
-		styleClass : "$styleClass$"
+		styleClass : "$styleClass$",
+		viewClass : "$viewClass$"
 	});

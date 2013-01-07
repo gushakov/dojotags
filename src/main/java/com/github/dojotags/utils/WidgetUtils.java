@@ -6,10 +6,6 @@ import java.util.regex.Pattern;
 
 import javax.servlet.jsp.PageContext;
 
-import org.springframework.web.context.support.WebApplicationContextUtils;
-
-import com.github.dojotags.web.registry.WidgetsRegistry;
-
 /**
  * Collection of static utility methods.
  * 
@@ -58,20 +54,6 @@ public class WidgetUtils {
 		String guid = name + "_" + offset;
 		pageContext.setAttribute("dojotags.guid.offset", offset + 1);
 		return guid;
-	}
-
-	/**
-	 * Returns session-scoped instance of {@linkplain WidgetsRegistry} declared
-	 * in the root web application context.
-	 * 
-	 * @return widget registry
-	 * 
-	 * @see org.springframework.web.context.support.WebApplicationContextUtils
-	 * @see com.github.dojotags.app.config.WidgetsRegistryConfiguration
-	 */
-	public static WidgetsRegistry getWidgetsRegistry(PageContext pageContext) {
-		return WebApplicationContextUtils.getRequiredWebApplicationContext(
-				pageContext.getServletContext()).getBean(WidgetsRegistry.class);
 	}
 
 	/**

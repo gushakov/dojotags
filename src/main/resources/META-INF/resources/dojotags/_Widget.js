@@ -17,8 +17,8 @@ define(
 				 * 
 				 * @type String
 				 */
-				style : null,				
-				
+				style : null,
+
 				/**
 				 * Model map for this widget. Will be serialized upon Ajax
 				 * request processing. Contains domain objects to be represented
@@ -87,7 +87,6 @@ define(
 					this.contextPath = args.contextPath;
 					this.pagePath = args.pagePath;
 					this.id = args.id;
-					this.bind = args.bind;
 					styleClass = this.styleClass = args.styleClass;
 
 					this.model = new Stateful({});
@@ -168,9 +167,18 @@ define(
 					}));
 				},
 
+				/**
+				 * Returns "View-Class" header with the class name for the page
+				 * supporting view.
+				 * 
+				 * @return Object Map of headers
+				 */
 				getRequestHeaders : function() {
-					// no headers by default
-					return {};
+					var headers = {};
+					if (this.page) {
+						headers["View-Class"] = this.page.viewClass;
+					}
+					return headers;
 				},
 
 				/**

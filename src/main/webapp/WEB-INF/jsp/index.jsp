@@ -9,11 +9,7 @@
 	Examples using Dojo Tags library.
 	<ul>
 		<li><a href="<%=request.getContextPath()%>/notags">No tags, just JavaScript</a></li>
-		<li><a href="<%=request.getContextPath()%>/page1">Simple label and a button</a></li>
-		<li><a href="<%=request.getContextPath()%>/page2">Handle "onEnter" event</a></li>
-		<li><a href="<%=request.getContextPath()%>/page3">Custom CSS layout</a></li>
-		<li><a href="<%=request.getContextPath()%>/page4">Form with a backing bean and validtion</a></li>
-		<li><a href="<%=request.getContextPath()%>/page5">Select widget</a></li>
+		<li><a href="<%=request.getContextPath()%>/page1">Simple page</a></li>
 	</ul>
 </body>
 

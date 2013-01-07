@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 /**
  * Registers a custom web argument resolver,
- * {@linkplain WidgetBodyHandlerMethodArgumentResolver} and resources handler
+ * {@linkplain ViewModelHandlerMethodArgumentResolver} and resources handler
  * for JavaScript files.
  * 
  * @author gushakov
@@ -22,7 +22,7 @@ public abstract class DojoTagsWebMvcConfigurerAdapter extends
 	@Override
 	public void addArgumentResolvers(
 			List<HandlerMethodArgumentResolver> argumentResolvers) {
-		WidgetBodyHandlerMethodArgumentResolver resolver = new WidgetBodyHandlerMethodArgumentResolver();
+		ViewModelHandlerMethodArgumentResolver resolver = new ViewModelHandlerMethodArgumentResolver();
 		resolver.setJacksonMapper(new ObjectMapper());
 		argumentResolvers.add(resolver);
 	}
