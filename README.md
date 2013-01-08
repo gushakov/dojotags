@@ -26,3 +26,5 @@ under localhost, port 8080.
 
 Once the project is more advanced, I'll add the Ant target to get a JAR with all the resources: JavaScript, tag classes,
 and tag library descriptor file, which can then be deployed to any webapp as a standard resource.
+
+test
