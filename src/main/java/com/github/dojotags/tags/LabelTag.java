@@ -2,6 +2,8 @@ package com.github.dojotags.tags;
 
 import javax.servlet.jsp.JspException;
 
+//test new master
+
 /**
  * Tag handler for {@code Label} widget.
  * 
