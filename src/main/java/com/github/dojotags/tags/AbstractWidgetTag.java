@@ -1,5 +1,8 @@
 package com.github.dojotags.tags;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.JspTag;
 
@@ -26,11 +29,11 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 	protected String widgetName;
 
 	protected String widgetModuleName;
-	
+
 	protected String id;
 
 	protected String name;
-	
+
 	protected String styleClass;
 
 	protected boolean assertHasParentTag;
@@ -46,11 +49,11 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 	public void setWidgetModuleName(String widgetModuleName) {
 		this.widgetModuleName = widgetModuleName;
 	}
-	
+
 	public void setId(String id) {
 		this.id = id;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -124,6 +127,33 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 	public int doEndTag() throws JspException {
 		resetWidgetAttributes();
 		return super.doEndTag();
+	}
+
+	public Object getInitialValue() throws JspException {
+		Object value = null;
+		if (name != null) {
+			PageTag pageTag = (PageTag) findAncestorWithClass(this,
+					PageTag.class);
+			if (pageTag != null) {
+				Object viewModel = pageTag.getViewModel();
+				if (viewModel != null) {
+					Method getter = Utils.findMehod(Utils.getGetter(name),
+							viewModel.getClass().getMethods());
+					if (getter != null) {
+						try {
+							value = getter.invoke(viewModel);
+						} catch (IllegalArgumentException e) {
+							throw new JspException(e);
+						} catch (IllegalAccessException e) {
+							throw new JspException(e);
+						} catch (InvocationTargetException e) {
+							throw new JspException(e);
+						}
+					}
+				}
+			}
+		}
+		return value;
 	}
 
 }

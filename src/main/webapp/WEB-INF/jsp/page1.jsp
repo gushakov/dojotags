@@ -18,6 +18,8 @@
 
 		<d:input name="firstName" onEnter="changeFirstName" />
 		<d:label name="greeting" text="toto"/>
+		<d:input name="lastName"/>
+		<d:label text="toto"/>
 
 	</d:page>
 

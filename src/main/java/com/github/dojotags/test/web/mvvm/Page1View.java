@@ -28,6 +28,10 @@ public class Page1View {
 	public void setGreeting(String greeting) {
 		this.greeting = greeting;
 	}
+	
+	public void init(){
+		greeting = "Initial value";
+	}
 
 	@WidgetEvent(value = "changeFirstName", updates = { "greeting" })
 	public void onEnter() {

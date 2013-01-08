@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.github.dojotags.utils.Utils;
 
-public class WidgetUtilsTest {
+public class UtilsTest {
 
 	@Test
 	public void assertValidCssUnitOfMeasure() throws Exception {

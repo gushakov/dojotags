@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 
 import javax.servlet.jsp.PageContext;
 
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 /**
  * Collection of static utility methods.
  * 
@@ -91,7 +93,7 @@ public class Utils {
 		return "get" + fieldName.substring(0, 1).toUpperCase()
 				+ fieldName.substring(1);
 	}
-	
+
 	/**
 	 * Constructs a setter method name given a field name.
 	 * 
@@ -122,6 +124,20 @@ public class Utils {
 			}
 		}
 		return method;
+	}
+
+	/**
+	 * Looks up a bean from current web application context.
+	 * 
+	 * @param pageContext
+	 *            page context
+	 * @param beanClass
+	 *            class of the bean to look up
+	 * @return a bean from the web application context
+	 */
+	public static <T> T lookupBean(PageContext pageContext, Class<T> beanClass) {
+		return WebApplicationContextUtils.getRequiredWebApplicationContext(
+				pageContext.getServletContext()).getBean(beanClass);
 	}
 
 }

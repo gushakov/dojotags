@@ -15,6 +15,7 @@ import org.mozilla.javascript.EvaluatorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.github.dojotags.utils.Utils;
 import com.yahoo.platform.yui.compressor.JavaScriptCompressor;
 
 /**
@@ -37,7 +38,7 @@ public class PageTag extends AbstractJspBodyWidgetTag {
 	public void setView(String view) {
 		this.view = view;
 	}
-	
+
 	public void setCompress(boolean compress) {
 		this.compress = compress;
 	}
@@ -60,13 +61,26 @@ public class PageTag extends AbstractJspBodyWidgetTag {
 		}
 	}
 
+	public Object getViewModel() throws JspException {
+		Object viewModel = null;
+		if (view != null) {
+			try {
+				viewModel = Utils.lookupBean(pageContext, Class.forName(view));
+			} catch (ClassNotFoundException e) {
+				throw new JspException(e);
+			}
+		}
+
+		return viewModel;
+	}
+
 	@Override
 	public int doStartTag() throws JspException {
 		int result = super.doStartTag();
 		templateAttrs.put("viewClass", view);
 		return result;
 	}
-	
+
 	/**
 	 * Overrides default to substitute placeholders in Dojo require statement
 	 * (modules and arguments) with values constructed from the names of the
@@ -104,7 +118,7 @@ public class PageTag extends AbstractJspBodyWidgetTag {
 		super.resetWidgetAttributes();
 		compress = false;
 	}
-	
+
 	private String compress(String js) {
 		StringReader reader = new StringReader(js);
 		StringWriter writer = new StringWriter();

@@ -28,7 +28,6 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/_base/array", "dojo/_bas
 				var widget = null, name = null;
 				for (name in update) {
 					if (update.hasOwnProperty(name)) {
-						console.debug("22222222", utils);
 						widget = utils.findWidgetByName(name);
 						if (widget) {
 							widget.doUpdate(event, update[name]);

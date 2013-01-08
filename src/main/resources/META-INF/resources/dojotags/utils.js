@@ -50,10 +50,8 @@ define([ "dojo/request", "dojo/_base/kernel", "dojo/Deferred" ],
 				 * @returns {_Widget} widget with the given name
 				 */
 				findWidgetByName : function(name) {
-					var widget = null, attr = null, object = null, global;
-					global = kernel.global;
-					for (attr in global) {
-						console.debug("=============>", 22222);
+					var widget = null, attr = null, object = null;
+					for (attr in kernel.global) {
 						if (kernel.global.hasOwnProperty(attr)) {
 							object = kernel.global[attr];
 							if (object.isInstanceOf && object.isInstanceOf(dojotags._Widget)
