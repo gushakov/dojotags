@@ -82,7 +82,7 @@
 			<name>styleClass</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
-		</attribute>		
+		</attribute>
 		<attribute>
 			<description>Text to be displayed.</description>
 			<name>text</name>
@@ -123,6 +123,38 @@
 		<attribute>
 			<description>Value to be assigned to the input element.</description>
 			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<description>Generates Flows widget container which lays out its children widgets horizontally in a flow.
+        </description>
+		<name>flow</name>
+		<tag-class>com.github.dojotags.tags.FlowTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>Page widget id, must be unique in the global scope.</description>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Widget name, must be unique in the page scope.</description>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>CSS Class to be applied to the widget DOM element.</description>
+			<name>styleClass</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Width of the spacer between the elements of the flow.</description>
+			<name>spacer</name>
 			<required>false</required>
 			<rtexprvalue>false</rtexprvalue>
 		</attribute>

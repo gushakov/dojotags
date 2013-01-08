@@ -14,12 +14,19 @@
 
 <body class="${dijitTheme}">
 
-	<d:page view="com.github.dojotags.test.web.mvvm.Page1View">
+	<d:page styleClass="form" view="com.github.dojotags.test.web.mvvm.Page1View">
 
-		<d:input name="firstName" onEnter="changeFirstName" />
-		<d:label name="greeting" text="toto"/>
-		<d:input name="lastName"/>
-		<d:label text="toto"/>
+		<d:flow>
+			<d:label text="First name" />
+			<d:input name="firstName" onEnter="greet" />
+		</d:flow>
+
+		<d:flow>
+			<d:label text="Last name" />
+			<d:input name="lastName"  onEnter="greet"/>
+		</d:flow>
+
+		<d:label name="greeting" styleClass="greeting" />
 
 	</d:page>
 

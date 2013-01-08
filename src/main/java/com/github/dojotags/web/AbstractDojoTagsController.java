@@ -154,9 +154,7 @@ public abstract class AbstractDojoTagsController {
 
 		Map<String, Object> response = new HashMap<String, Object>();
 
-		// find an appropriate handler method by reading @DojoTag
-		// method annotations for matching value (widget id)
-
+		// find and invoke an appropriate widget event handling method
 		for (Method method : viewModel.getClass().getMethods()) {
 			Annotation annot = AnnotationUtils.findAnnotation(method,
 					WidgetEvent.class);

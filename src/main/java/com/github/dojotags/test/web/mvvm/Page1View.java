@@ -10,6 +10,8 @@ public class Page1View {
 			.getLogger(Page1View.class);
 
 	private String firstName;
+	
+	private String lastName;
 
 	private String greeting;
 
@@ -19,6 +21,14 @@ public class Page1View {
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getGreeting() {
@@ -33,10 +43,10 @@ public class Page1View {
 		greeting = "Initial value";
 	}
 
-	@WidgetEvent(value = "changeFirstName", updates = { "greeting" })
-	public void onEnter() {
-		logger.debug("Entered new first name {}", firstName);
-		greeting = "Hello " + firstName;
+	@WidgetEvent(value = "greet", updates = { "greeting" })
+	public void greet() {
+		logger.debug("Processing greet event first name {}, last name {}", firstName, lastName);
+		greeting = "Hello " + firstName + " " + lastName;
 	}
 
 }
