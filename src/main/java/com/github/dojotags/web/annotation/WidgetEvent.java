@@ -18,4 +18,5 @@ import java.lang.annotation.Target;
 @Documented
 public @interface WidgetEvent {
 	String value() default "";
+	String[] updates() default {};
 }

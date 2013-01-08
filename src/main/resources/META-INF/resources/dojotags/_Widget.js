@@ -81,7 +81,7 @@ define(
 				 * @param args
 				 *            {Object} Constructor arguments
 				 */
-				constructor : function(args) {
+				constructor : function(args) {					
 					var styleClass, node;
 					if (args.id === undefined) {
 						throw new Error("Widget id cannot be null.");
@@ -152,10 +152,9 @@ define(
 
 				/**
 				 * Sends an Ajax request to the server with the URI template:
-				 * <code>/dojotags/widget/{this.id}/event/{event}</code> and
-				 * <code>Widget-Class</code> header set to the widget's class.
-				 * Calls the callback method with the data returned from the
-				 * server once the response has been received.
+				 * <code>/dojotags/widget/{this.id}/event/{event}</code>.
+				 * Calls the callback method on the widget's page with the data
+				 * returned from the server once the response has been received.
 				 * 
 				 * @param {String}
 				 *            event Name of the event
@@ -170,7 +169,8 @@ define(
 						data : this.serializeModel(),
 						headers : this.getRequestHeaders()
 					}), lang.hitch(this, function(response) {
-						this.processCallback(event, response);
+						// delegate update processing to the widgt's page
+						this.page.processCallback(event, response);
 						return response;
 					}));
 				},
@@ -190,35 +190,6 @@ define(
 				},
 
 				/**
-				 * Processes the response from the server by looking at
-				 * <code>response.updates</code> list and performing
-				 * <code>doUpdate()</code> logic for all widgets which need to
-				 * be updated.
-				 * 
-				 * @param {String}
-				 *            event Name of the event processed on the server
-				 * @param {Object}
-				 *            response Data object returned from the server
-				 */
-				processCallback : function(event, response) {
-					// process all updates
-					array.forEach(response.updates, lang.hitch(this, function(update) {
-						var targetWidget = null;
-						if (update.id) {
-							// get target widget from the global scope
-							targetWidget = kernel.global[update.id];
-							if (targetWidget === undefined) {
-								throw new Error("Cannot find a widget with id " + update.id + ".");
-							}
-						} else {
-							// update this widget
-							targetWidget = this;
-						}
-						targetWidget.doUpdate(event, update);
-					}));
-				},
-
-				/**
 				 * Updates this widget's model attributes. Subclasses may
 				 * override if resetting some of the model attributes is not an
 				 * option.
@@ -226,18 +197,15 @@ define(
 				 * @param {String}
 				 *            event Name of the event which triggered the update
 				 * @param {_Widget}
-				 *            update Update data, same type as <code>this</code>
-				 *            widget
+				 *            data Update data containing updated values for
+				 *            widget model attributes
 				 */
-				doUpdate : function(event, update) {
+				doUpdate : function(event, data) {
 					var attr = null;
 					// update target widget model attributes
-					for (attr in update) {
-						// skip id attribute, only update with non null and
-						// non-empty
-						// values
-						if (update.hasOwnProperty(attr) && attr !== "id" && update[attr]) {
-							this.model.set(attr, update[attr]);
+					for (attr in data) {
+						if (data.hasOwnProperty(attr) && data[attr]) {
+							this.model.set(attr, data[attr]);
 						}
 					}
 				},

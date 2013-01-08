@@ -44,7 +44,7 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/on", "dojo/keys",
 
 		getRequestHeaders : function() {
 			var headers = this.inherited(arguments);
-			headers["Bind-Class"] = "com.github.dojotags.widgets.Input";
+			headers["Widget-Type"] = "dojotags.Input";
 			return headers;
 		}
 	});

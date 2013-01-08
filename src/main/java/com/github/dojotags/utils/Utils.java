@@ -1,6 +1,7 @@
 package com.github.dojotags.utils;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,7 +13,7 @@ import javax.servlet.jsp.PageContext;
  * @author gushakov
  * 
  */
-public class WidgetUtils {
+public class Utils {
 
 	/**
 	 * Checks if {@code text} contains a dimension with a valid CSS unit of
@@ -77,6 +78,50 @@ public class WidgetUtils {
 			}
 		}
 		return type.cast(annot);
+	}
+
+	/**
+	 * Constructs a getter method name given a field name.
+	 * 
+	 * @param fieldName
+	 *            field name
+	 * @return getter method name
+	 */
+	public static String getGetter(String fieldName) {
+		return "get" + fieldName.substring(0, 1).toUpperCase()
+				+ fieldName.substring(1);
+	}
+	
+	/**
+	 * Constructs a setter method name given a field name.
+	 * 
+	 * @param fieldName
+	 *            field name
+	 * @return setter method name
+	 */
+	public static String getSetter(String fieldName) {
+		return "set" + fieldName.substring(0, 1).toUpperCase()
+				+ fieldName.substring(1);
+	}
+
+	/**
+	 * Find a method by name.
+	 * 
+	 * @param name
+	 *            method name
+	 * @param methods
+	 *            collection of methods
+	 * @return first method with matching name, parameters are ignored
+	 */
+	public static Method findMehod(String name, Method[] methods) {
+		Method method = null;
+		for (Method nextMethod : methods) {
+			if (nextMethod.getName().equals(name)) {
+				method = nextMethod;
+				break;
+			}
+		}
+		return method;
 	}
 
 }

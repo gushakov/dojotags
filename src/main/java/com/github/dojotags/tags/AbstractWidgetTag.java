@@ -6,7 +6,7 @@ import javax.servlet.jsp.tagext.JspTag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.dojotags.utils.WidgetUtils;
+import com.github.dojotags.utils.Utils;
 
 /**
  * Superclass for all widget tag handlers. Specifies attributes common to all
@@ -73,7 +73,7 @@ public abstract class AbstractWidgetTag extends AbstractTemplatedTag {
 		int result = super.doStartTag();
 		if (id == null) {
 			// get the value for widget id automatically
-			id = WidgetUtils.getWidgetGuid(widgetName, pageContext);
+			id = Utils.getWidgetGuid(widgetName, pageContext);
 		}
 		templateAttrs.put("id", id);
 

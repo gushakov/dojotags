@@ -1,6 +1,7 @@
 package com.github.dojotags.web.config;
 
 import java.lang.reflect.Method;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,13 +16,17 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
+import com.github.dojotags.utils.Utils;
 import com.github.dojotags.web.annotation.ViewModel;
-import com.github.dojotags.widgets.Widget;
 
 /**
- * Uses {@linkplain ObjectMapper} to convert the body of the request to a
- * {@code Widget} and sets this widget in the view-model retrieved from the
- * application context by the class name specified in the "View-Class" header.
+ * Resolver for the web arguments annotated with {@code ViewModel}. Uses
+ * {@linkplain ObjectMapper} to convert the body of the request to a
+ * {@code Map<String, Object>} map corresponding to the set of widget model
+ * attributes representing the change in the widget's state. Looks up a
+ * view-model bean (session scoped) in the application context using the value
+ * of "View-Class" request header and sets the appropriate member variable using
+ * "name" and "value" attributes of the map.
  * 
  * @author gushakov
  * 
@@ -74,19 +79,19 @@ public class ViewModelHandlerMethodArgumentResolver implements
 					"Request does not have View-Class header.");
 		}
 
-		String bindClassHeader = webRequest.getHeader("Bind-Class");
-		if (bindClassHeader == null) {
+		String widgetTypeHeader = webRequest.getHeader("Widget-Type");
+		if (widgetTypeHeader == null) {
 			throw new IllegalArgumentException(
 					"Request does not have Bind-Class header.");
 		}
 
-		Class<?> widgetClass = Class.forName(bindClassHeader);
-
 		// unmarshall request body (Json) to a widget instance
-		Widget widget = (Widget) jacksonMapper.readValue(
-				servletRequest.getReader(), widgetClass);
-		logger.debug("Unmarshalled widget with id {} from request body",
-				widget.getId());
+		@SuppressWarnings("unchecked")
+		Map<String, Object> map = (Map<String, Object>) jacksonMapper
+				.readValue(servletRequest.getReader(), Map.class);
+		logger.debug(
+				"Unmarshalled widget state change request for widget with id {}",
+				map.get("id"));
 
 		// get the application context
 		WebApplicationContext context = WebApplicationContextUtils
@@ -104,21 +109,28 @@ public class ViewModelHandlerMethodArgumentResolver implements
 		// invoke setter for the field in the view-model corresponding to the
 		// widget's name, note we cannot directly set the field value since the
 		// actual view-model object we get is a session-scoped proxy
-		try {
-			Method method = viewModel.getClass().getMethod(
-					getSetter(widget.getName()), widgetClass);
-			method.invoke(viewModel, widget);
-		} catch (NoSuchMethodException e) {
-			// ignore, we are not interested in listening to this widget's
-			// change events
+		Method method = Utils.findMehod(Utils.getSetter((String) map.get("name")),
+				viewModel.getClass().getMethods());
+		if (method != null) {
+			method.invoke(
+					viewModel,
+					convertValue(widgetTypeHeader,
+							map.get("value"), method.getParameterTypes()[0]));
 		}
 
 		return viewModel;
 	}
 
-	private String getSetter(String fieldName) {
-		return "set" + fieldName.substring(0, 1).toUpperCase()
-				+ fieldName.substring(1);
+	private <T> T convertValue(String widgetType, Object fromValue,
+			Class<T> valueType) {
+		T toValue = null;
+		if (widgetType.equals("dojotags.Input")) {
+			toValue = valueType.cast(fromValue);
+		} else {
+			throw new IllegalArgumentException("Unknown wiget type "
+					+ widgetType);
+		}
+		return toValue;
 	}
 
 }

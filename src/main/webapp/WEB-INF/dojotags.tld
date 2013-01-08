@@ -61,6 +61,37 @@
 	</tag>
 
 	<tag>
+		<description>Generates a Label widget declaration. Must be embedded in a container widget.</description>
+		<name>label</name>
+		<tag-class>com.github.dojotags.tags.LabelTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>Widget id, must be unique in the global scope.</description>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Widget name, must be unique in the page scope.</description>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>CSS Class to be applied to the widget DOM element.</description>
+			<name>styleClass</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>		
+		<attribute>
+			<description>Text to be displayed.</description>
+			<name>text</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
 		<description>Generates an Input widget declaration. Must be embedded in a container widget.</description>
 		<name>input</name>
 		<tag-class>com.github.dojotags.tags.InputTag</tag-class>

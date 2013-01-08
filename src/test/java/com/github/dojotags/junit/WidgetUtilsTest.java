@@ -5,18 +5,18 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.github.dojotags.utils.WidgetUtils;
+import com.github.dojotags.utils.Utils;
 
 public class WidgetUtilsTest {
 
 	@Test
 	public void assertValidCssUnitOfMeasure() throws Exception {
-		assertTrue(WidgetUtils.assertValidCssUnitOfMeasure("34px"));
-		assertTrue(WidgetUtils.assertValidCssUnitOfMeasure("34 px"));
-		assertTrue(WidgetUtils.assertValidCssUnitOfMeasure("34em"));
-		assertTrue(WidgetUtils.assertValidCssUnitOfMeasure("34%"));
-		assertFalse(WidgetUtils.assertValidCssUnitOfMeasure("34"));
-		assertFalse(WidgetUtils.assertValidCssUnitOfMeasure("ten px"));
+		assertTrue(Utils.assertValidCssUnitOfMeasure("34px"));
+		assertTrue(Utils.assertValidCssUnitOfMeasure("34 px"));
+		assertTrue(Utils.assertValidCssUnitOfMeasure("34em"));
+		assertTrue(Utils.assertValidCssUnitOfMeasure("34%"));
+		assertFalse(Utils.assertValidCssUnitOfMeasure("34"));
+		assertFalse(Utils.assertValidCssUnitOfMeasure("ten px"));
 	}
 
 }

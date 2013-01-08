@@ -17,6 +17,7 @@
 	<d:page view="com.github.dojotags.test.web.mvvm.Page1View">
 
 		<d:input name="firstName" onEnter="changeFirstName" />
+		<d:label name="greeting" text="toto"/>
 
 	</d:page>
 
