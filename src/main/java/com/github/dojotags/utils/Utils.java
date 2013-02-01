@@ -70,7 +70,7 @@ public class Utils {
 	 * @return annotation of the given type or null if no such annotation can be
 	 *         found
 	 */
-	public static <T extends Annotation> T findAnnotaion(
+	public static <T extends Annotation> T findAnnotation(
 			Annotation[] annotations, Class<T> type) {
 		Annotation annot = null;
 		for (Annotation annotation : annotations) {
