@@ -7,7 +7,6 @@
     </appender>
     <logger name="com.github.dojotags" level="debug"/>
     <logger name="org.springframework.web" level="info"/>
-    <logger name="com.granule" level="debug"/>
     <root level="info">
         <appender-ref ref="stdout"/>
     </root>
