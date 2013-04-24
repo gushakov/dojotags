@@ -137,7 +137,7 @@
 				</configuration>
 			</plugin>
 
-			<!-- Uncomment to enable compression of the JavaScript files durind build. -->
+			<!-- Uncomment to enable compression of the JavaScript files during build. -->
 
 			<!-- <plugin> -->
 			<!-- <groupId>net.alchim31.maven</groupId> -->
