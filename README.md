@@ -6,7 +6,7 @@ JSP tag library implementation which uses Dojo toolkit on the client side and Sp
 Getting Dojo web JAR
 --------------------
 
-To create Dojo web JAR downloade the latest Dojo binary from https://dojotoolkit.org/download/ and package
+To create Dojo web JAR download the latest Dojo binary from https://dojotoolkit.org/download/ and package
 it in a JAR with the following structure:
 
 /META-INF/resources/(dijit, dojo, dojox here)
