@@ -25,10 +25,10 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "dojo/_base/array", "dojo/_bas
 			// process all updates
 			array.forEach(response.updates, lang.hitch(this, function(update) {
 				// find widget by name
-				var widget = null, name = null;
-				for (name in update) {
-					if (update.hasOwnProperty(name)) {
-						widget = utils.findWidgetByName(name);
+				//var widget = null, name = null;
+				for (var name in update) {
+					if (update[name] !== undefined){
+						var widget = utils.findWidgetByName(name);
 						if (widget) {
 							widget.doUpdate(event, update[name]);
 						}
